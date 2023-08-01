@@ -1,0 +1,111 @@
+with raw_json as (
+    select
+        *
+    from
+        read_json(
+            $filename,
+            format = 'array',
+            columns = {match_id: integer,
+            competition: 'struct(id integer, name varchar)',
+            country_name: varchar,
+            season: 'struct(id integer, name varchar)',
+            match_date: date,
+            kick_off: time,
+            stadium: 'struct(id integer, name varchar)',
+            stadium_country: varchar,
+            referee_name: 'struct(id integer, name varchar)'
+            referee_country: 'struct(id integer, name varchar))'
+            home_team: 'struct(id integer, name varchar)',
+            home_team_gender: varchar,
+            home_team_youth: bool,
+            home_team_manager 'struct(id integer, name varchar, nickname varchar, dob date, country struct(id integer, name varchar))',
+            home_team_group varchar,
+            home_team_country struct(id integer, name varchar),
+            away_team: 'struct(id integer, name varchar)',
+            away_team_gender: varchar,
+            away_team_youth: bool,
+            away_team_manager 'struct(id integer, name varchar, nickname varchar, dob date, country struct(id integer, name varchar))',
+            away_team_group varchar,
+            away_team_country struct(id integer, name varchar),
+            home_score: integer,
+            away_score: integer,
+            attendance: integer,
+            behind_closed_doors: bool,
+            neutral_ground: bool,
+            play_status: varchar,
+            match_status: varchar,
+            match_status_360: varchar,
+            match_week: integer,
+            competition_stage: 'struct(id integer, name varchar)'}
+            last_updated: varchar,
+            last_updated_360: varchar,
+            metadata: 'struct(data_version varchar, shot_fidelity_version varchar)',
+            data_version: varchar
+        )
+),
+final as (
+    select
+        match_id,
+        competition.id as competition_id,
+        competition.name as competition_name,
+        country_name as competition_country_name,
+        season.id,
+        season.name,
+        match_date,
+        kick_off,
+        stadium.id as stadium_id,
+        stadium.name as stadium_name,
+        stadium_country,
+        referee_name.id as referee_id,
+        referee_name.name as referee_name,
+        referee_country.id as referee_country_id,
+        referee_country.name as referee_country_name
+        home_team.id as home_team_id,
+        home_team.name as home_team_name,
+        home_team.home_team_gender,
+        home_team.home_team_youth,
+        home_team_manager.id as home_team_manager_id,
+        home_team_manager.name as home_team_manager_name,
+        home_team_manager.nickname as home_team_manager_nickname,
+        home_team_manager.dob as home_team_manager_dob,
+        home_team_manager.country.id as home_team_manager_country_id,
+        home_team_manager.country.name as home_team_manager_country_name,
+        home_team.home_team_group,
+        home_team.home_team_country.id as home_team_country_id,
+        home_team.home_team_country.name as home_team_country_name,
+        away_team.id as away_team_id,
+        away_team.name as away_team_name,
+        away_team.away_team_gender,
+        away_team.away_team_youth,
+        away_team_manager.id as away_team_manager_id,
+        away_team_manager.name as away_team_manager_name,
+        away_team_manager.nickname as away_team_manager_nickname,
+        away_team_manager.dob as away_team_manager_dob,
+        away_team_manager.country.id as away_team_manager_country_id,
+        away_team_manager.country.name as away_team_manager_country_name,
+        away_team.away_team_group,
+        away_team.away_team_country.id as away_team_country_id,
+        away_team.away_team_country.name as away_team_country_name,
+        home_score,
+        away_score,
+        attendance,
+        behind_closed_doors,
+        neutral_ground,
+        play_status,
+        match_status,
+        match_status_360,
+        match_week,
+        competition_stage.id as competition_stage_id,
+        competition_stage.name as competition_stage_name,
+        case when last_updated is null then null else cast(left(concat(replace(last_updated, 'T', ' '), ':00'), 19) as timestamp) end as last_updated,
+        case when last_updated_360 is null then null else cast(left(concat(replace(last_updated_360, 'T', ' '), ':00'), 19) as timestamp) end as last_updated_360,
+        metadata.data_version as metadata_data_version,
+        metadata.shot_fidelity_version as metadata_shot_fidelity_version,
+        data_version
+    from
+        raw_json
+)
+select
+    *
+from
+    final;
