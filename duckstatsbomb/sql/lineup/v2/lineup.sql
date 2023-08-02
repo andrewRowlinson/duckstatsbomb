@@ -13,7 +13,7 @@ with raw_json as (
                         player_name VARCHAR,
                         player_nickname VARCHAR,
                         jersey_number UBIGINT,
-                        country STRUCT(id UBIGINT, "name" VARCHAR),
+                        country STRUCT(id UBIGINT, "name" VARCHAR)
                         )[]'}
         )
 ),

@@ -7,7 +7,7 @@ with raw_json as (
             format = 'array',
             auto_detect = true,
             maximum_object_size = 11000000,
-            filename = false,
+            filename = true,
             columns = { 'id': varchar,
             index: integer,
             type: 'struct(id ubigint, name varchar)',
@@ -16,6 +16,7 @@ with raw_json as (
 ),
 related as (
     select
+        cast(split(split(filename, '/') [-1], '.') [1] as integer) as match_id,
         id as event_uuid,
         index,
         replace(type.name, '*', '') as type_name,
