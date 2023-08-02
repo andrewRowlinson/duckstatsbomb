@@ -1,0 +1,14 @@
+name: duckstatsbomb-dev
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - jupyterlab
+  - grayskull
+  - hatch
+  - pandas
+  - pytest
+  - twine
+  - pip
+  - pip:
+      - --editable .

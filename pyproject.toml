@@ -1,0 +1,56 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "duckstatsbomb"
+description = 'A data parser for StatsBomb soccer data using duckdb'
+readme = "README.md"
+license = "MIT"
+keywords = [
+  "football",
+  "soccer",
+  "statsbomb",
+]
+authors = [
+  { name = "Andrew Rowlinson", email = "rowlinsonandy@gmail.com" },
+]
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+]
+dependencies = ['duckdb >= 0.8']
+dynamic = ["version"]
+
+[project.urls]
+Documentation = "https://github.com/andrewRowlinson/duckstatsbomb/blob/main/README.md"
+Issues = "https://github.com/andrewRowlinson/duckstatsbomb/issues"
+Source = "https://github.com/andrewRowlinson/duckstatsbomb"
+
+[tool.hatch.version]
+path = "duckstatsbomb/__about__.py"
+
+[tool.hatch.envs.default]
+dependencies = [
+  "pytest",
+  "pytest-cov",
+]
+[tool.hatch.envs.default.scripts]
+cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=temporary --cov=tests"
+no-cov = "cov --no-cov"
+
+[[tool.hatch.envs.test.matrix]]
+python = ["37", "38", "39", "310", "311"]
+
+[tool.coverage.run]
+branch = true
+parallel = true
+omit = [
+  "duckstatsbomb/__about__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
