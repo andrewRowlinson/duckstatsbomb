@@ -21,8 +21,8 @@ class Sbopen:
         self.freeze_sql = pkgutil.get_data(__package__, 'sql/event/v4/freeze.sql')
         self.tactic_sql = pkgutil.get_data(__package__, 'sql/event/v4/tactic.sql')
         self.related_sql = pkgutil.get_data(__package__, 'sql/event/v4/related.sql')
+        self.threesixty_freeze_sql = pkgutil.get_data(__package__, 'sql/threesixty/v1/freeze_frame.sql')
         self.threesixty_sql = pkgutil.get_data(__package__, 'sql/threesixty/v1/threesixty.sql')
-        self.visible_sql = pkgutil.get_data(__package__, 'sql/threesixty/v1/visible.sql')
         self.con = duckdb.connect(database=':memory:')
 
     def event(self, match_id):
@@ -164,7 +164,28 @@ class Sbopen:
         return self.con.execute(self.competition_sql, {'filename': url}).df()
 
 
-    def frame(self, match_id):
+    def threesixty_frame(self, match_id):
+        """ StatsBomb 360 open-data freeze-frames.
+
+        Parameters
+        ----------
+        match_id : int
+
+        Returns
+        -------
+        pandas.DataFrame
+
+        Examples
+        --------
+        >>> from duckstatsbomb import Sbopen
+        >>> parser = Sbopen()
+        >>> frames = parser.threesixty_frame(3788741)
+        """
+        url = f'{self.url}three-sixty/{match_id}.json'
+        return self.con.execute(self.threesixty_freeze_sql, {'filename': url}).df()
+
+
+    def threesixty(self, match_id):
         """ StatsBomb 360 open-data.
 
         Parameters
@@ -179,31 +200,10 @@ class Sbopen:
         --------
         >>> from duckstatsbomb import Sbopen
         >>> parser = Sbopen()
-        >>> frames = parser.frame(3788741)
+        >>> threesixty = parser.threesixty(3788741)
         """
         url = f'{self.url}three-sixty/{match_id}.json'
         return self.con.execute(self.threesixty_sql, {'filename': url}).df()
-
-
-    def frame_visible(self, match_id):
-        """ StatsBomb 360 open-data for the visible area.
-
-        Parameters
-        ----------
-        match_id : int
-
-        Returns
-        -------
-        pandas.DataFrame
-
-        Examples
-        --------
-        >>> from duckstatsbomb import Sbopen
-        >>> parser = Sbopen()
-        >>> frames_visible = parser.frame_visible(3788741)
-        """
-        url = f'{self.url}three-sixty/{match_id}.json'
-        return self.con.execute(self.visible_sql, {'filename': url}).df()
 
     def close(self):
         """ Close the duckdb connection."""
