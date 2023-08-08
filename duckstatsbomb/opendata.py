@@ -16,7 +16,7 @@ class Sbopen:
         self.url = 'https://raw.githubusercontent.com/statsbomb/open-data/master/data/'
         self.competition_sql = pkgutil.get_data(__package__, 'sql/competition/v4/competition.sql')
         self.match_sql = pkgutil.get_data(__package__, 'sql/match/v3/match.sql')
-        self.lineup_sql = pkgutil.get_data(__package__, 'sql/lineup/v2/lineup.sql')
+        self.lineup_sql = pkgutil.get_data(__package__, 'sql/lineup/v2/lineup_player.sql')
         self.event_sql = pkgutil.get_data(__package__, 'sql/event/v4/event.sql')
         self.freeze_sql = pkgutil.get_data(__package__, 'sql/event/v4/freeze.sql')
         self.tactic_sql = pkgutil.get_data(__package__, 'sql/event/v4/tactic.sql')
