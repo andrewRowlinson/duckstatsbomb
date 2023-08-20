@@ -3,9 +3,11 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - jupyterlab
+  - aiohttp
+  - fsspec
   - grayskull
   - hatch
+  - jupyterlab
   - pandas
   - pytest
   - twine

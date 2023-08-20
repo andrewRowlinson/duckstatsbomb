@@ -1,1 +1,4 @@
 duckdb>=0.8
+pandas
+aiohttp
+fsspec

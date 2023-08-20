@@ -18,7 +18,7 @@ authors = [
 classifiers = [
   "License :: OSI Approved :: MIT License",
 ]
-dependencies = ['duckdb >= 0.8']
+dependencies = ['duckdb >= 0.8', 'pandas', 'aiohttp', 'fsspec']
 dynamic = ["version"]
 
 [project.urls]
