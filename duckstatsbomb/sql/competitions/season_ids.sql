@@ -1,11 +1,10 @@
 with raw_json as (
     select
-        url,
         unnest(
             from_json(
                 json(_decoded_content),
-               '[{"event_uuid": "varchar",
-                   "visible_area": "double[]"
+                '[{"competition_id": "integer",
+                   "season_id": "integer",
                    }]'
             )
         ) as json
@@ -18,8 +17,9 @@ with raw_json as (
         )
 )
 select
-    cast(split(split(url, '/') [-1], '.') [1] as integer) as match_id,
-    json.event_uuid,
-    json.visible_area
+    json.competition_id,
+    json.season_id
 from
     raw_json
+where
+    json.competition_id = $competition_id

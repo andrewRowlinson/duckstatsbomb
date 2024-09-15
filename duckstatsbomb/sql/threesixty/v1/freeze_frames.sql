@@ -23,9 +23,9 @@ select
         json.event_uuid,
         unnest(json.freeze_frame).location[1] as x,
         unnest(json.freeze_frame).location[2] as y,
-        unnest(json.freeze_frame).teammate,
-        unnest(json.freeze_frame).actor,
-        unnest(json.freeze_frame).keeper
+        unnest(json.freeze_frame).teammate as teammate,
+        unnest(json.freeze_frame).actor as actor,
+        unnest(json.freeze_frame).keeper as keeper
 from raw_json
 )
 select

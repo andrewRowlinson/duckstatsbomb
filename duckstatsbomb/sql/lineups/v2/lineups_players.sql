@@ -18,7 +18,7 @@ with raw_json as (
                 read_json($filename)
         )
 ),
-parsed_json as (
+final as (
     select
         cast(split(split(url, '/') [-1], '.') [1] as integer) as match_id,
         json.team_id,
@@ -31,13 +31,6 @@ parsed_json as (
         unnest(json.lineup).country.name as country_name,
     from
         raw_json
-),
-final as (
-    select
-        *
-    from
-        parsed_json
-
 )
 select
     *

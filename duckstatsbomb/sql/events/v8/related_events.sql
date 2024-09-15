@@ -1,34 +1,39 @@
 with raw_json as (
     select
-        *
+        url,
+        unnest(
+            from_json(
+                json(_decoded_content),
+                '[{"id": "varchar",
+                   "index": "integer",
+                   "type": "struct(id ubigint, name varchar)",
+                   "related_events": "VARCHAR[]"
+                  }]'
+            )
+        ) as json
     from
-        read_json(
-            $filename,
-            format = 'array',
-            auto_detect = true,
-            maximum_object_size = 11000000,
-            filename = true,
-            columns = { 'id': varchar,
-            index: integer,
-            type: 'struct(id ubigint, name varchar)',
-            related_events: 'VARCHAR[]' }
+        (
+            select
+                *
+            from
+                read_json($filename)
         )
 ),
 related as (
     select
-        cast(split(split(filename, '/') [-1], '.') [1] as integer) as match_id,
-        id as event_uuid,
-        index,
-        replace(type.name, '*', '') as type_name,
-        unnest(related_events) as event_uuid_related
+        cast(split(split(url, '/') [-1], '.') [1] as integer) as match_id,
+        json.id as event_uuid,
+        json.index,
+        replace(json.type.name, '*', '') as type_name,
+        unnest(json.related_events) as event_uuid_related
     from
         raw_json
 ),
 events as (
     select
-        id as event_uuid_related,
-        index as index_related,
-        replace(type.name, '*', '') as type_name_related
+        json.id as event_uuid_related,
+        json.index as index_related,
+        replace(json.type.name, '*', '') as type_name_related
     from
         raw_json
 ),
@@ -43,4 +48,4 @@ final as (
 select
     *
 from
-    final;
+    final
