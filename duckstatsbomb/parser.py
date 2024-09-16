@@ -79,8 +79,13 @@ class SbBase(ABC):
         if file_type not in self.valid_match_data:
             raise ValueError(f'file_type should be one of {self.valid_match_data}')
 
+    @abstractmethod
+    def _match_url(self, competition_id, season_id):
+        """ Implement match url helper."""
+        pass
+
     def _competition_season_matchids(self, competition_id=None, season_id=None):    
-        url = f'{self.url}matches/{competition_id}/{season_id}.json'
+        url = self._match_url(competition_id, season_id)
         filename = self._request_get(url)
         return self.con.execute(self.sql['match_ids'], {'filename': filename}).fetchall()
 
@@ -90,7 +95,7 @@ class SbBase(ABC):
         seasonids = self.con.execute(self.sql['season_ids'],
                                      {'filename': filename,
                                       'competition_id': competition_id}).fetchall()
-        urls = [f'{self.url}matches/{row[0]}/{row[1]}.json' for row in seasonids]
+        urls = [self._match_url(row[0], row[1]) for row in seasonids]
         filename = self._request_get(urls)
         return self.con.execute(self.sql['match_ids'], {'filename': filename}).fetchall()
 
@@ -134,10 +139,9 @@ class SbBase(ABC):
             if len(competition_id) != len(season_id):
                 raise ValueError(f'competition_id (len = {len(competition_id)}) '
                                  f'and season_id (len = {len(season_id)}) should be the same length')
-            urls = [f'{self.url}matches/{comp}/{season_id[idx]}.json'
-                    for idx, comp in enumerate(competition_id)]
+            urls = [self._match_url(comp, season_id[idx]) for idx, comp in enumerate(competition_id)]
         else:
-            urls = f'{self.url}matches/{competition_id}/{season_id}.json'
+            urls = self._match_url(competition_id, season_id)
         filename = self._request_get(urls)
         return self.con.execute(self.sql['matches'], {'filename': filename}).df()
 
@@ -225,6 +229,9 @@ class Sbopen(SbBase):
         self.valid_match_data = ['lineups_players', 'events', 'frames', 'tactics',
                                  'related_events', 'threesixty_frames', 'threesixty']
 
+    def _match_url(self, competition_id, season_id):
+        return f'{self.url}matches/{competition_id}/{season_id}.json'
+
 
 class Sbapi(SbBase):
     """ Class for loading data from the StatsBomb API."""
@@ -259,8 +266,7 @@ class Sbapi(SbBase):
                  session_kws=session_kws,
                  connection_kws=connection_kws,
                         )
-        #self.url = 'https://raw.githubusercontent.com/statsbomb/open-data/master/data/'
-        self.url = 'http://127.0.0.1:8080/'
+        self.url = 'https://data.statsbombservices.com/api/'
         self.sql = {'competitions': self._get_sql(f'sql/competitions/v{competition_version}/competitions.sql'),
                     'matches': self._get_sql(f'sql/matches/v{matches_version}/matches.sql'),
                     'match_ids': self._get_sql(f'sql/matches/match_ids.sql'),
@@ -278,21 +284,25 @@ class Sbapi(SbBase):
                     'threesixty_visible_count': self._get_sql(f'sql/threesixty/v{threesixty_version}/visible_count.sql'),
                     'threesixty_visible_distance': self._get_sql(f'sql/threesixty/v{threesixty_version}/visible_distance.sql'),
                     }
-        self.url_map = {'lineups_players': f'{self.url}/lineups/v{lineups_version}',
-                        'lineups_events': f'{self.url}/lineups/v{lineups_version}',
-                        'lineups_formations': f'{self.url}/lineups/v{lineups_version}',
-                        'lineups_positions': f'{self.url}/lineups/v{lineups_version}',
-                        'events': f'{self.url}/events/v{events_version}',
-                        'frames': f'{self.url}/events/v{events_version}',
-                        'tactics': f'{self.url}/events/v{events_version}',
-                        'related_events': f'{self.url}/events/v{events_version}',
-                        'threesixty_frames': f'{self.url}/three-sixty/v{threesixty_version}',
-                        'threesixty': f'{self.url}/three-sixty/v{threesixty_version}',
-                        'threesixty_visible_count': f'{self.url}/three-sixty/v{threesixty_version}',
-                        'threesixty_visible_distance': f'{self.url}/three-sixty/v{threesixty_version}',
+        self.url_map = {'lineups_players': f'{self.url}/v{lineups_version}/lineups',
+                        'lineups_events': f'{self.url}/v{lineups_version}/lineups',
+                        'lineups_formations': f'{self.url}/v{lineups_version}/lineups',
+                        'lineups_positions': f'{self.url}/v{lineups_version}/lineups',
+                        'events': f'{self.url}/v{events_version}/events',
+                        'frames': f'{self.url}/v{events_version}/events',
+                        'tactics': f'{self.url}/v{events_version}/events',
+                        'related_events': f'{self.url}/v{events_version}/events',
+                        'threesixty_frames': f'{self.url}/v{threesixty_version}/360-frames',
+                        'threesixty': f'{self.url}/v{threesixty_version}/360-frames',
+                        'threesixty_visible_count': f'{self.url}/v{threesixty_version}/360-frames',
+                        'threesixty_visible_distance': f'{self.url}/v{threesixty_version}/360-frames',
                        }        
         self.valid_match_data = ['lineups_players', 'lineups_events',
                                  'lineups_formations', 'lineups_positions', 'events', 'frames', 'tactics',
                                  'related_events', 'threesixty_frames', 'threesixty',
                                  'threesixty_visible_count', 'threesixty_visible_distance',
                                 ]
+        self.matches_version = matches_version
+
+    def _match_url(self, competition_id, season_id):
+        return f'{self.url}{self.matches_version}/v6/competitions/{competition_id}/seasons/{season_id}/matches.json'
