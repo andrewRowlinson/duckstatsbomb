@@ -90,7 +90,7 @@ class SbBase(ABC):
         return self.con.execute(self.sql['match_ids'], {'filename': filename}).fetchall()
 
     def _competition_matchids(self, competition_id):
-        url = f'{self.url}competitions.json'
+        url = f'{self.url}/competitions.json'
         filename = self._request_get(url)
         seasonids = self.con.execute(self.sql['season_ids'],
                                      {'filename': filename,
@@ -205,7 +205,7 @@ class Sbopen(SbBase):
                  session_kws=session_kws,
                  connection_kws=connection_kws,
                         )
-        self.url = 'https://raw.githubusercontent.com/statsbomb/open-data/master/data/'
+        self.url = 'https://raw.githubusercontent.com/statsbomb/open-data/master/data'
         self.sql = {'competitions': self._get_sql('sql/competitions/v4/competitions.sql'),
                     'matches': self._get_sql('sql/matches/v3/matches.sql'),
                     'match_ids': self._get_sql('sql/matches/match_ids.sql'),
@@ -230,7 +230,7 @@ class Sbopen(SbBase):
                                  'related_events', 'threesixty_frames', 'threesixty']
 
     def _match_url(self, competition_id, season_id):
-        return f'{self.url}matches/{competition_id}/{season_id}.json'
+        return f'{self.url}/matches/{competition_id}/{season_id}.json'
 
 
 class Sbapi(SbBase):
@@ -305,4 +305,4 @@ class Sbapi(SbBase):
         self.matches_version = matches_version
 
     def _match_url(self, competition_id, season_id):
-        return f'{self.url}{self.matches_version}/v6/competitions/{competition_id}/seasons/{season_id}/matches.json'
+        return f'{self.url}/v{self.matches_version}/competitions/{competition_id}/seasons/season_id}/matches.json'
