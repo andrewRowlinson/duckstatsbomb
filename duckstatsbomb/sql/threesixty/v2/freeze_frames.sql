@@ -1,22 +1,34 @@
 with raw_json as (
     select
-        * replace(unnest(freeze_frame) as freeze_frame)
+        url,
+        unnest(
+            from_json(
+                json(_decoded_content),
+                '[{"event_uuid": "varchar",
+                   "freeze_frame": "struct(teammate boolean, actor boolean, keeper boolean, location double[])[]"
+                   }]'
+            )
+        ) as json
     from
-        read_json(
-            $filename,
-            format = 'array',
-            columns = {event_uuid: varchar,
-            freeze_frame: 'struct(teammate boolean, actor boolean, keeper boolean, location double[])[]'},
-            filename = true
+        (
+            select
+                *
+            from
+                read_json($filename, maximum_object_size=20000000)
         )
+),
+final as (
+select
+        cast(split(split(url, '/') [-1], '.') [1] as integer) as match_id,
+        json.event_uuid,
+        unnest(json.freeze_frame).location[1] as x,
+        unnest(json.freeze_frame).location[2] as y,
+        unnest(json.freeze_frame).teammate as teammate,
+        unnest(json.freeze_frame).actor as actor,
+        unnest(json.freeze_frame).keeper as keeper
+from raw_json
 )
 select
-    cast(split(split(filename, '/') [-1], '.') [1] as integer) as match_id,
-    event_uuid,
-    freeze_frame.location [1] as x,
-    freeze_frame.location [2] as y,
-    freeze_frame.teammate,
-    freeze_frame.actor,
-    freeze_frame.keeper
+    *
 from
-    raw_json;
+    final

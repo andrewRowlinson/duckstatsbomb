@@ -3,13 +3,14 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - aiohttp
-  - fsspec
+  - duckdb
   - grayskull
   - hatch
   - jupyterlab
   - pandas
   - pytest
+  - python = 3.11
+  - requests-cache
   - twine
   - pip
   - pip:
