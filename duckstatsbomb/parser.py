@@ -12,23 +12,24 @@ __all__ = ['Sbopen', 'Sbapi']
 
 class SbBase(ABC):
 
-    def __init__(self,
-                 competitions_version,
-                 matches_version,
-                 events_version,
-                 lineups_version,
-                 threesixty_version,
-                 database=':default:',
-                 output_format='dataframe',
-                 cache_name='statsbomb_cache',
-                 remove_expired_responses=True,
-                 expire_after=360,
-                 backend='filesystem',
-                 requests_max_workers=None,
-                 duckdb_threads=None,
-                 session_kws=None,
-                 connection_kws=None,
-                 ):
+    def __init__(
+        self,
+        competitions_version,
+        matches_version,
+        events_version,
+        lineups_version,
+        threesixty_version,
+        database=':default:',
+        output_format='dataframe',
+        cache_name='statsbomb_cache',
+        remove_expired_responses=True,
+        expire_after=360,
+        backend='filesystem',
+        requests_max_workers=None,
+        duckdb_threads=None,
+        session_kws=None,
+        connection_kws=None,
+    ):
         self.competitions_version = competitions_version
         self.matches_version = matches_version
         self.events_version = events_version
@@ -43,7 +44,12 @@ class SbBase(ABC):
         self.con = duckdb.connect(database=database, **connection_kws)
         if duckdb_threads is not None:
             self.con.execute(f'set threads to {duckdb_threads}')
-        self.session = CachedSession(cache_name=cache_name, backend=backend, expire_after=expire_after, **session_kws)
+        self.session = CachedSession(
+            cache_name=cache_name,
+            backend=backend,
+            expire_after=expire_after,
+            **session_kws,
+        )
         self.requests_max_workers = requests_max_workers
         if remove_expired_responses:
             self.remove_expired_responses()
@@ -52,39 +58,68 @@ class SbBase(ABC):
         self.sql = None
         self.url_map = None
         self.valid_match_data = None
-        self.sql = {'competitions': self._get_sql(f'sql/competitions/v{competitions_version}/competitions.sql'),
-                    'matches': self._get_sql(f'sql/matches/v{matches_version}/matches.sql'),
-                    'match_ids': self._get_sql(f'sql/matches/match_ids.sql'),
-                    'season_ids': self._get_sql(f'sql/competitions/season_ids.sql'),
-                    'lineups_players': self._get_sql(f'sql/lineups/v{lineups_version}/lineups_players.sql'),
-                    'events': self._get_sql(f'sql/events/v{events_version}/events.sql'),
-                    'frames': self._get_sql(f'sql/events/v{events_version}/freeze_frames.sql'),
-                    'tactics': self._get_sql(f'sql/events/v{events_version}/tactics.sql'),
-                    'related_events': self._get_sql(f'sql/events/v{events_version}/related_events.sql'),
-                    'threesixty_frames': self._get_sql(f'sql/threesixty/v{threesixty_version}/freeze_frames.sql'),
-                    'threesixty': self._get_sql(f'sql/threesixty/v{threesixty_version}/threesixty.sql'),
-                    }
-        self.valid_match_data = ['lineups_players', 'events', 'frames', 'tactics',
-                                 'related_events', 'threesixty_frames', 'threesixty']
-
+        self.sql = {
+            'competitions': self._get_sql(
+                f'sql/competitions/v{competitions_version}/competitions.sql'
+            ),
+            'matches': self._get_sql(f'sql/matches/v{matches_version}/matches.sql'),
+            'match_ids': self._get_sql(f'sql/matches/match_ids.sql'),
+            'season_ids': self._get_sql(f'sql/competitions/season_ids.sql'),
+            'lineups_players': self._get_sql(
+                f'sql/lineups/v{lineups_version}/lineups_players.sql'
+            ),
+            'events': self._get_sql(f'sql/events/v{events_version}/events.sql'),
+            'frames': self._get_sql(f'sql/events/v{events_version}/freeze_frames.sql'),
+            'tactics': self._get_sql(f'sql/events/v{events_version}/tactics.sql'),
+            'related_events': self._get_sql(
+                f'sql/events/v{events_version}/related_events.sql'
+            ),
+            'threesixty_frames': self._get_sql(
+                f'sql/threesixty/v{threesixty_version}/freeze_frames.sql'
+            ),
+            'threesixty': self._get_sql(
+                f'sql/threesixty/v{threesixty_version}/threesixty.sql'
+            ),
+        }
+        self.valid_match_data = [
+            'lineups_players',
+            'events',
+            'frames',
+            'tactics',
+            'related_events',
+            'threesixty_frames',
+            'threesixty',
+        ]
 
     def _get_sql(self, sql_path):
-        """ Get SQL string from a file."""
+        """Get SQL string from a file."""
         return pkgutil.get_data(__package__, sql_path).decode('utf-8')
 
     def _validation_value_error(self):
         if self.competitions_version not in [4]:
-            raise ValueError(f"Invalid argument: currently supported competitions_version are: [4]")
+            raise ValueError(
+                f"Invalid argument: currently supported competitions_version are: [4]"
+            )
         if self.matches_version not in [3, 6]:
-            raise ValueError(f"Invalid argument: currently supported matches_version are: [3, 6]")
+            raise ValueError(
+                f"Invalid argument: currently supported matches_version are: [3, 6]"
+            )
         if self.events_version not in [4, 8]:
-            raise ValueError(f"Invalid argument: currently supported events_version are: [4, 8]")
+            raise ValueError(
+                f"Invalid argument: currently supported events_version are: [4, 8]"
+            )
         if self.lineups_version not in [2, 4]:
-            raise ValueError(f"Invalid argument: currently supported lineups_version are: [2, 4]")
+            raise ValueError(
+                f"Invalid argument: currently supported lineups_version are: [2, 4]"
+            )
         if self.threesixty_version not in [1, 2]:
-            raise ValueError(f"Invalid argument: currently supported threesixty_version are: [1, 2]")
+            raise ValueError(
+                f"Invalid argument: currently supported threesixty_version are: [1, 2]"
+            )
         if self.output_format != 'dataframe':
-            raise ValueError(f"Invalid argument: currently supported output_formats are: 'dataframe'")
+            raise ValueError(
+                f"Invalid argument: currently supported output_formats are: 'dataframe'"
+            )
 
     def _request(self, url):
         resp = self.session.get(url)
@@ -103,13 +138,13 @@ class SbBase(ABC):
             return filepaths
 
     def _request_get(self, urls):
-        """ Request and cache responses and return filepaths to cached responses """
+        """Request and cache responses and return filepaths to cached responses"""
         if isinstance(urls, str):
             return [self._request(urls)]
         return self._request_threaded(urls)
 
     def _urls(self, match_id, url_slug):
-        """ Build urls."""
+        """Build urls."""
         if isinstance(match_id, collections.abc.Iterable):
             return [f'{url_slug}/{matchid}.json' for matchid in match_id]
         return f'{url_slug}/{match_id}.json'
@@ -120,26 +155,31 @@ class SbBase(ABC):
 
     @abstractmethod
     def _match_url(self, competition_id, season_id):
-        """ Implement match url helper."""
+        """Implement match url helper."""
         pass
 
-    def _competition_season_matchids(self, competition_id=None, season_id=None):    
+    def _competition_season_matchids(self, competition_id=None, season_id=None):
         url = self._match_url(competition_id, season_id)
         filename = self._request_get(url)
-        return self.con.execute(self.sql['match_ids'], {'filename': filename}).fetchall()
+        return self.con.execute(
+            self.sql['match_ids'], {'filename': filename}
+        ).fetchall()
 
     def _competition_matchids(self, competition_id):
         url = f'{self.url}/competitions.json'
         filename = self._request_get(url)
-        seasonids = self.con.execute(self.sql['season_ids'],
-                                     {'filename': filename,
-                                      'competition_id': competition_id}).fetchall()
+        seasonids = self.con.execute(
+            self.sql['season_ids'],
+            {'filename': filename, 'competition_id': competition_id},
+        ).fetchall()
         urls = [self._match_url(row[0], row[1]) for row in seasonids]
         filename = self._request_get(urls)
-        return self.con.execute(self.sql['match_ids'], {'filename': filename}).fetchall()
+        return self.con.execute(
+            self.sql['match_ids'], {'filename': filename}
+        ).fetchall()
 
     def competitions(self):
-        """ StatsBomb competition open-data.
+        """StatsBomb competition open-data.
 
         Returns
         -------
@@ -157,7 +197,7 @@ class SbBase(ABC):
         return self.con.execute(self.sql['competitions'], {'filename': filename}).df()
 
     def matches(self, competition_id, season_id):
-        """ StatsBomb match open-data.
+        """StatsBomb match open-data.
 
         Parameters
         ----------
@@ -176,23 +216,28 @@ class SbBase(ABC):
         """
         if isinstance(competition_id, collections.abc.Iterable):
             if len(competition_id) != len(season_id):
-                raise ValueError(f'competition_id (len = {len(competition_id)}) '
-                                 f'and season_id (len = {len(season_id)}) should be the same length')
-            urls = [self._match_url(comp, season_id[idx]) for idx, comp in enumerate(competition_id)]
+                raise ValueError(
+                    f'competition_id (len = {len(competition_id)}) '
+                    f'and season_id (len = {len(season_id)}) should be the same length'
+                )
+            urls = [
+                self._match_url(comp, season_id[idx])
+                for idx, comp in enumerate(competition_id)
+            ]
         else:
             urls = self._match_url(competition_id, season_id)
         filename = self._request_get(urls)
         return self.con.execute(self.sql['matches'], {'filename': filename}).df()
 
     def match_data(self, match_id, file_type):
-        """ TO DO"""
+        """TO DO"""
         self._validate_file_type(file_type)
         urls = self._urls(match_id, url_slug=self.url_map[file_type])
         filename = self._request_get(urls)
         return self.con.execute(self.sql[file_type], {'filename': filename}).df()
 
     def competition_data(self, competition_id, season_id=None, file_type='events'):
-        """ TO DO"""
+        """TO DO"""
         self._validate_file_type(file_type)
         if season_id is None:
             match_id = self._competition_matchids(competition_id)
@@ -203,136 +248,160 @@ class SbBase(ABC):
         return self.con.execute(self.sql[file_type], {'filename': filename}).df()
 
     def close_connection(self):
-        """ Close the duckdb connection."""
+        """Close the duckdb connection."""
         self.con.close()
 
     def remove_expired_responses(self):
-        """ Remove expired responses from the cache"""
+        """Remove expired responses from the cache"""
         self.session.cache.remove_expired_responses()
 
     def clear_cache(self):
-        """ Clear the cache."""
+        """Clear the cache."""
         self.session.cache.clear()
 
 
 class Sbopen(SbBase):
-    """ Class for loading data from the StatsBomb open-data.
+    """Class for loading data from the StatsBomb open-data.
     The data is available at: https://github.com/statsbomb/open-data under
     a non-commercial license.
     """
 
-    def __init__(self,
-                 competitions_version=4,
-                 matches_version=3,
-                 events_version=4,
-                 lineups_version=2,
-                 threesixty_version=1,
-                 database=':default:',
-                 output_format='dataframe',
-                 cache_name='statsbomb_cache',
-                 remove_expired_responses=True,
-                 expire_after=360,
-                 backend='filesystem',
-                 requests_max_workers=None,
-                 duckdb_threads=None,
-                 session_kws=None,
-                 connection_kws=None,
-                 ):
+    def __init__(
+        self,
+        competitions_version=4,
+        matches_version=3,
+        events_version=4,
+        lineups_version=2,
+        threesixty_version=1,
+        database=':default:',
+        output_format='dataframe',
+        cache_name='statsbomb_cache',
+        remove_expired_responses=True,
+        expire_after=360,
+        backend='filesystem',
+        requests_max_workers=None,
+        duckdb_threads=None,
+        session_kws=None,
+        connection_kws=None,
+    ):
         super().__init__(
-                 competitions_version=competitions_version,
-                 matches_version=matches_version,
-                 events_version=events_version,
-                 lineups_version=lineups_version,
-                 threesixty_version=threesixty_version,
-                 database=database,
-                 output_format=output_format,
-                 cache_name=cache_name,
-                 remove_expired_responses=remove_expired_responses,
-                 expire_after=expire_after,
-                 backend=backend,
-                 requests_max_workers=requests_max_workers,
-                 duckdb_threads=duckdb_threads,
-                 session_kws=session_kws,
-                 connection_kws=connection_kws,
-                        )
+            competitions_version=competitions_version,
+            matches_version=matches_version,
+            events_version=events_version,
+            lineups_version=lineups_version,
+            threesixty_version=threesixty_version,
+            database=database,
+            output_format=output_format,
+            cache_name=cache_name,
+            remove_expired_responses=remove_expired_responses,
+            expire_after=expire_after,
+            backend=backend,
+            requests_max_workers=requests_max_workers,
+            duckdb_threads=duckdb_threads,
+            session_kws=session_kws,
+            connection_kws=connection_kws,
+        )
         self.url = 'https://raw.githubusercontent.com/statsbomb/open-data/master/data'
-        self.url_map = {'lineups_players': f'{self.url}/lineups',
-                        'events': f'{self.url}/events',
-                        'frames': f'{self.url}/events',
-                        'tactics': f'{self.url}/events',
-                        'related_events': f'{self.url}/events',
-                        'threesixty_frames': f'{self.url}/three-sixty',
-                        'threesixty': f'{self.url}/three-sixty',
-                       }
+        self.url_map = {
+            'lineups_players': f'{self.url}/lineups',
+            'events': f'{self.url}/events',
+            'frames': f'{self.url}/events',
+            'tactics': f'{self.url}/events',
+            'related_events': f'{self.url}/events',
+            'threesixty_frames': f'{self.url}/three-sixty',
+            'threesixty': f'{self.url}/three-sixty',
+        }
 
     def _match_url(self, competition_id, season_id):
         return f'{self.url}/matches/{competition_id}/{season_id}.json'
 
 
 class Sbapi(SbBase):
-    """ Class for loading data from the StatsBomb API."""
+    """Class for loading data from the StatsBomb API."""
 
-    def __init__(self,
-                 competitions_version=4,
-                 matches_version=6,
-                 events_version=8,
-                 lineups_version=4,
-                 threesixty_version=2,
-                 database=':default:',
-                 output_format='dataframe',
-                 cache_name='statsbomb_cache',
-                 remove_expired_responses=True,
-                 expire_after=360,
-                 backend='filesystem',
-                 requests_max_workers=None,
-                 duckdb_threads=None,
-                 session_kws=None,
-                 connection_kws=None,
-                 sb_username=None,
-                 sb_password=None,
-                 ):
+    def __init__(
+        self,
+        competitions_version=4,
+        matches_version=6,
+        events_version=8,
+        lineups_version=4,
+        threesixty_version=2,
+        database=':default:',
+        output_format='dataframe',
+        cache_name='statsbomb_cache',
+        remove_expired_responses=True,
+        expire_after=360,
+        backend='filesystem',
+        requests_max_workers=None,
+        duckdb_threads=None,
+        session_kws=None,
+        connection_kws=None,
+        sb_username=None,
+        sb_password=None,
+    ):
         super().__init__(
-                 competitions_version=competitions_version,
-                 matches_version=matches_version,
-                 events_version=events_version,
-                 lineups_version=lineups_version,
-                 threesixty_version=threesixty_version,
-                 database=database,
-                 output_format=output_format,
-                 cache_name=cache_name,
-                 remove_expired_responses=remove_expired_responses,
-                 expire_after=expire_after,
-                 backend=backend,
-                 requests_max_workers=requests_max_workers,
-                 duckdb_threads=duckdb_threads,
-                 session_kws=session_kws,
-                 connection_kws=connection_kws,
-                        )
+            competitions_version=competitions_version,
+            matches_version=matches_version,
+            events_version=events_version,
+            lineups_version=lineups_version,
+            threesixty_version=threesixty_version,
+            database=database,
+            output_format=output_format,
+            cache_name=cache_name,
+            remove_expired_responses=remove_expired_responses,
+            expire_after=expire_after,
+            backend=backend,
+            requests_max_workers=requests_max_workers,
+            duckdb_threads=duckdb_threads,
+            session_kws=session_kws,
+            connection_kws=connection_kws,
+        )
         self.url = 'http://127.0.0.1:8080'
-        self.url_map = {'lineups_players': f'{self.url}/v{lineups_version}/lineups',
-                        'events': f'{self.url}/v{events_version}/events',
-                        'frames': f'{self.url}/v{events_version}/events',
-                        'tactics': f'{self.url}/v{events_version}/events',
-                        'related_events': f'{self.url}/v{events_version}/events',
-                        'threesixty_frames': f'{self.url}/v{threesixty_version}/360-frames',
-                        'threesixty': f'{self.url}/v{threesixty_version}/360-frames',
-                       }        
+        self.url_map = {
+            'lineups_players': f'{self.url}/v{lineups_version}/lineups',
+            'events': f'{self.url}/v{events_version}/events',
+            'frames': f'{self.url}/v{events_version}/events',
+            'tactics': f'{self.url}/v{events_version}/events',
+            'related_events': f'{self.url}/v{events_version}/events',
+            'threesixty_frames': f'{self.url}/v{threesixty_version}/360-frames',
+            'threesixty': f'{self.url}/v{threesixty_version}/360-frames',
+        }
 
         if lineups_version >= 4:
-            self.sql['lineups_events'] = self._get_sql(f'sql/lineups/v{lineups_version}/lineups_events.sql')
-            self.sql['lineups_formations'] = self._get_sql(f'sql/lineups/v{lineups_version}/lineups_formations.sql')
-            self.sql['lineups_positions'] = self._get_sql(f'sql/lineups/v{lineups_version}/lineups_positions.sql')
+            self.sql['lineups_events'] = self._get_sql(
+                f'sql/lineups/v{lineups_version}/lineups_events.sql'
+            )
+            self.sql['lineups_formations'] = self._get_sql(
+                f'sql/lineups/v{lineups_version}/lineups_formations.sql'
+            )
+            self.sql['lineups_positions'] = self._get_sql(
+                f'sql/lineups/v{lineups_version}/lineups_positions.sql'
+            )
             self.url_map['lineups_events'] = f'{self.url}/v{lineups_version}/lineups'
-            self.url_map['lineups_formations'] = f'{self.url}/v{lineups_version}/lineups'
+            self.url_map['lineups_formations'] = (
+                f'{self.url}/v{lineups_version}/lineups'
+            )
             self.url_map['lineups_positions'] = f'{self.url}/v{lineups_version}/lineups'
-            self.valid_match_data.extend(['lineups_events', 'lineups_formations', 'lineups_positions'])
+            self.valid_match_data.extend(
+                ['lineups_events', 'lineups_formations', 'lineups_positions']
+            )
 
         if threesixty_version >= 2:
-            self.sql['threesixty_visible_count'] = self._get_sql(f'sql/threesixty/v{threesixty_version}/visible_count.sql')
-            self.sql['threesixty_visible_distance'] = self._get_sql(f'sql/threesixty/v{threesixty_version}/visible_distance.sql')
-            self.url_map['threesixty_visible_count'] = f'{self.url}/v{threesixty_version}/360-frames'
-            self.url_map['threesixty_visible_distance'] = f'{self.url}/v{threesixty_version}/360-frames'
-            self.valid_match_data.extend(['threesixty_visible_count', 'threesixty_visible_distance'])
+            self.sql['threesixty_visible_count'] = self._get_sql(
+                f'sql/threesixty/v{threesixty_version}/visible_count.sql'
+            )
+            self.sql['threesixty_visible_distance'] = self._get_sql(
+                f'sql/threesixty/v{threesixty_version}/visible_distance.sql'
+            )
+            self.url_map['threesixty_visible_count'] = (
+                f'{self.url}/v{threesixty_version}/360-frames'
+            )
+            self.url_map['threesixty_visible_distance'] = (
+                f'{self.url}/v{threesixty_version}/360-frames'
+            )
+            self.valid_match_data.extend(
+                ['threesixty_visible_count', 'threesixty_visible_distance']
+            )
 
     def _match_url(self, competition_id, season_id):
         return f'{self.url}/v{self.matches_version}/competitions/{competition_id}/seasons/{season_id}/matches.json'
