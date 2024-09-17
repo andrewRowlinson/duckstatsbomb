@@ -13,6 +13,11 @@ __all__ = ['Sbopen', 'Sbapi']
 class SbBase(ABC):
 
     def __init__(self,
+                 competitions_version,
+                 matches_version,
+                 events_version,
+                 lineups_version,
+                 threesixty_version,
                  database=':default:',
                  output_format='dataframe',
                  cache_name='statsbomb_cache',
@@ -24,8 +29,13 @@ class SbBase(ABC):
                  session_kws=None,
                  connection_kws=None,
                  ):
-        if output_format != 'dataframe':
-            raise TypeError(f"Invalid argument: currently supported formats are: 'dataframe'")
+        self.competitions_version = competitions_version
+        self.matches_version = matches_version
+        self.events_version = events_version
+        self.lineups_version = lineups_version
+        self.threesixty_version = threesixty_version
+        self.output_format = output_format
+        self._validation_value_error()
         if session_kws is None:
             session_kws = {}
         if connection_kws is None:
@@ -42,10 +52,39 @@ class SbBase(ABC):
         self.sql = None
         self.url_map = None
         self.valid_match_data = None
+        self.sql = {'competitions': self._get_sql(f'sql/competitions/v{competitions_version}/competitions.sql'),
+                    'matches': self._get_sql(f'sql/matches/v{matches_version}/matches.sql'),
+                    'match_ids': self._get_sql(f'sql/matches/match_ids.sql'),
+                    'season_ids': self._get_sql(f'sql/competitions/season_ids.sql'),
+                    'lineups_players': self._get_sql(f'sql/lineups/v{lineups_version}/lineups_players.sql'),
+                    'events': self._get_sql(f'sql/events/v{events_version}/events.sql'),
+                    'frames': self._get_sql(f'sql/events/v{events_version}/freeze_frames.sql'),
+                    'tactics': self._get_sql(f'sql/events/v{events_version}/tactics.sql'),
+                    'related_events': self._get_sql(f'sql/events/v{events_version}/related_events.sql'),
+                    'threesixty_frames': self._get_sql(f'sql/threesixty/v{threesixty_version}/freeze_frames.sql'),
+                    'threesixty': self._get_sql(f'sql/threesixty/v{threesixty_version}/threesixty.sql'),
+                    }
+        self.valid_match_data = ['lineups_players', 'events', 'frames', 'tactics',
+                                 'related_events', 'threesixty_frames', 'threesixty']
+
 
     def _get_sql(self, sql_path):
         """ Get SQL string from a file."""
-        return pkgutil.get_data(__package__, sql_path).decode('utf-8')       
+        return pkgutil.get_data(__package__, sql_path).decode('utf-8')
+
+    def _validation_value_error(self):
+        if self.competitions_version not in [4]:
+            raise ValueError(f"Invalid argument: currently supported competitions_version are: [4]")
+        if self.matches_version not in [3, 6]:
+            raise ValueError(f"Invalid argument: currently supported matches_version are: [3, 6]")
+        if self.events_version not in [4, 8]:
+            raise ValueError(f"Invalid argument: currently supported events_version are: [4, 8]")
+        if self.lineups_version not in [2, 4]:
+            raise ValueError(f"Invalid argument: currently supported lineups_version are: [2, 4]")
+        if self.threesixty_version not in [1, 2]:
+            raise ValueError(f"Invalid argument: currently supported threesixty_version are: [1, 2]")
+        if self.output_format != 'dataframe':
+            raise ValueError(f"Invalid argument: currently supported output_formats are: 'dataframe'")
 
     def _request(self, url):
         resp = self.session.get(url)
@@ -113,7 +152,7 @@ class SbBase(ABC):
         >>> parser = Sbopen()
         >>> competitions = parser.competitions()
         """
-        url = f'{self.url}competitions.json'
+        url = f'{self.url}/competitions.json'
         filename = self._request_get(url)
         return self.con.execute(self.sql['competitions'], {'filename': filename}).df()
 
@@ -183,6 +222,11 @@ class Sbopen(SbBase):
     """
 
     def __init__(self,
+                 competitions_version=4,
+                 matches_version=3,
+                 events_version=4,
+                 lineups_version=2,
+                 threesixty_version=1,
                  database=':default:',
                  output_format='dataframe',
                  cache_name='statsbomb_cache',
@@ -194,7 +238,13 @@ class Sbopen(SbBase):
                  session_kws=None,
                  connection_kws=None,
                  ):
-        super().__init__(database=database,
+        super().__init__(
+                 competitions_version=competitions_version,
+                 matches_version=matches_version,
+                 events_version=events_version,
+                 lineups_version=lineups_version,
+                 threesixty_version=threesixty_version,
+                 database=database,
                  output_format=output_format,
                  cache_name=cache_name,
                  remove_expired_responses=remove_expired_responses,
@@ -206,18 +256,6 @@ class Sbopen(SbBase):
                  connection_kws=connection_kws,
                         )
         self.url = 'https://raw.githubusercontent.com/statsbomb/open-data/master/data'
-        self.sql = {'competitions': self._get_sql('sql/competitions/v4/competitions.sql'),
-                    'matches': self._get_sql('sql/matches/v3/matches.sql'),
-                    'match_ids': self._get_sql('sql/matches/match_ids.sql'),
-                    'season_ids': self._get_sql('sql/competitions/season_ids.sql'),
-                    'lineups_players': self._get_sql('sql/lineups/v2/lineups_players.sql'),
-                    'events': self._get_sql('sql/events/v4/events.sql'),
-                    'frames': self._get_sql('sql/events/v4/freeze_frames.sql'),
-                    'tactics': self._get_sql('sql/events/v4/tactics.sql'),
-                    'related_events': self._get_sql('sql/events/v4/related_events.sql'),
-                    'threesixty_frames': self._get_sql('sql/threesixty/v1/freeze_frames.sql'),
-                    'threesixty': self._get_sql('sql/threesixty/v1/threesixty.sql'),
-                    }
         self.url_map = {'lineups_players': f'{self.url}/lineups',
                         'events': f'{self.url}/events',
                         'frames': f'{self.url}/events',
@@ -226,8 +264,6 @@ class Sbopen(SbBase):
                         'threesixty_frames': f'{self.url}/three-sixty',
                         'threesixty': f'{self.url}/three-sixty',
                        }
-        self.valid_match_data = ['lineups_players', 'events', 'frames', 'tactics',
-                                 'related_events', 'threesixty_frames', 'threesixty']
 
     def _match_url(self, competition_id, season_id):
         return f'{self.url}/matches/{competition_id}/{season_id}.json'
@@ -237,6 +273,11 @@ class Sbapi(SbBase):
     """ Class for loading data from the StatsBomb API."""
 
     def __init__(self,
+                 competitions_version=4,
+                 matches_version=6,
+                 events_version=8,
+                 lineups_version=4,
+                 threesixty_version=2,
                  database=':default:',
                  output_format='dataframe',
                  cache_name='statsbomb_cache',
@@ -249,13 +290,14 @@ class Sbapi(SbBase):
                  connection_kws=None,
                  sb_username=None,
                  sb_password=None,
-                 competition_version=4,
-                 events_version=8,
-                 lineups_version=4,
-                 matches_version=6,
-                 threesixty_version=2,                 
                  ):
-        super().__init__(database=database,
+        super().__init__(
+                 competitions_version=competitions_version,
+                 matches_version=matches_version,
+                 events_version=events_version,
+                 lineups_version=lineups_version,
+                 threesixty_version=threesixty_version,
+                 database=database,
                  output_format=output_format,
                  cache_name=cache_name,
                  remove_expired_responses=remove_expired_responses,
@@ -266,43 +308,31 @@ class Sbapi(SbBase):
                  session_kws=session_kws,
                  connection_kws=connection_kws,
                         )
-        self.url = 'https://data.statsbombservices.com/api/'
-        self.sql = {'competitions': self._get_sql(f'sql/competitions/v{competition_version}/competitions.sql'),
-                    'matches': self._get_sql(f'sql/matches/v{matches_version}/matches.sql'),
-                    'match_ids': self._get_sql(f'sql/matches/match_ids.sql'),
-                    'season_ids': self._get_sql(f'sql/competitions/season_ids.sql'),
-                    'lineups_players': self._get_sql(f'sql/lineups/v{lineups_version}/lineups_players.sql'),
-                    'lineups_events': self._get_sql(f'sql/lineups/v{lineups_version}/lineups_events.sql'),
-                    'lineups_formations': self._get_sql(f'sql/lineups/v{lineups_version}/lineups_formations.sql'),
-                    'lineups_positions': self._get_sql(f'sql/lineups/v{lineups_version}/lineups_positions.sql'),
-                    'events': self._get_sql(f'sql/events/v{events_version}/events.sql'),
-                    'frames': self._get_sql(f'sql/events/v{events_version}/freeze_frames.sql'),
-                    'tactics': self._get_sql(f'sql/events/v{events_version}/tactics.sql'),
-                    'related_events': self._get_sql(f'sql/events/v{events_version}/related_events.sql'),
-                    'threesixty_frames': self._get_sql(f'sql/threesixty/v{threesixty_version}/freeze_frames.sql'),
-                    'threesixty': self._get_sql(f'sql/threesixty/v{threesixty_version}/threesixty.sql'),
-                    'threesixty_visible_count': self._get_sql(f'sql/threesixty/v{threesixty_version}/visible_count.sql'),
-                    'threesixty_visible_distance': self._get_sql(f'sql/threesixty/v{threesixty_version}/visible_distance.sql'),
-                    }
+        self.url = 'http://127.0.0.1:8080'
         self.url_map = {'lineups_players': f'{self.url}/v{lineups_version}/lineups',
-                        'lineups_events': f'{self.url}/v{lineups_version}/lineups',
-                        'lineups_formations': f'{self.url}/v{lineups_version}/lineups',
-                        'lineups_positions': f'{self.url}/v{lineups_version}/lineups',
                         'events': f'{self.url}/v{events_version}/events',
                         'frames': f'{self.url}/v{events_version}/events',
                         'tactics': f'{self.url}/v{events_version}/events',
                         'related_events': f'{self.url}/v{events_version}/events',
                         'threesixty_frames': f'{self.url}/v{threesixty_version}/360-frames',
                         'threesixty': f'{self.url}/v{threesixty_version}/360-frames',
-                        'threesixty_visible_count': f'{self.url}/v{threesixty_version}/360-frames',
-                        'threesixty_visible_distance': f'{self.url}/v{threesixty_version}/360-frames',
                        }        
-        self.valid_match_data = ['lineups_players', 'lineups_events',
-                                 'lineups_formations', 'lineups_positions', 'events', 'frames', 'tactics',
-                                 'related_events', 'threesixty_frames', 'threesixty',
-                                 'threesixty_visible_count', 'threesixty_visible_distance',
-                                ]
-        self.matches_version = matches_version
+
+        if lineups_version >= 4:
+            self.sql['lineups_events'] = self._get_sql(f'sql/lineups/v{lineups_version}/lineups_events.sql')
+            self.sql['lineups_formations'] = self._get_sql(f'sql/lineups/v{lineups_version}/lineups_formations.sql')
+            self.sql['lineups_positions'] = self._get_sql(f'sql/lineups/v{lineups_version}/lineups_positions.sql')
+            self.url_map['lineups_events'] = f'{self.url}/v{lineups_version}/lineups'
+            self.url_map['lineups_formations'] = f'{self.url}/v{lineups_version}/lineups'
+            self.url_map['lineups_positions'] = f'{self.url}/v{lineups_version}/lineups'
+            self.valid_match_data.extend(['lineups_events', 'lineups_formations', 'lineups_positions'])
+
+        if threesixty_version >= 2:
+            self.sql['threesixty_visible_count'] = self._get_sql(f'sql/threesixty/v{threesixty_version}/visible_count.sql')
+            self.sql['threesixty_visible_distance'] = self._get_sql(f'sql/threesixty/v{threesixty_version}/visible_distance.sql')
+            self.url_map['threesixty_visible_count'] = f'{self.url}/v{threesixty_version}/360-frames'
+            self.url_map['threesixty_visible_distance'] = f'{self.url}/v{threesixty_version}/360-frames'
+            self.valid_match_data.extend(['threesixty_visible_count', 'threesixty_visible_distance'])
 
     def _match_url(self, competition_id, season_id):
-        return f'{self.url}/v{self.matches_version}/competitions/{competition_id}/seasons/season_id}/matches.json'
+        return f'{self.url}/v{self.matches_version}/competitions/{competition_id}/seasons/{season_id}/matches.json'

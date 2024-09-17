@@ -19,7 +19,7 @@ with raw_json as (
             select
                 *
             from
-                read_json($filename, maximum_object_size=20000000)
+                read_json($filename, maximum_object_size=25000000)
         )
 )
 select
