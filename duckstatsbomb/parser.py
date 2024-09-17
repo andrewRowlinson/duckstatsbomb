@@ -1,4 +1,4 @@
-"""`duckstatsbomb.opendata` is a python module for loading StatsBomb open-data."""
+"""`duckstatsbomb.parser` is a python module for loading StatsBomb open-data / API data."""
 
 import duckdb
 from requests_cache import CachedSession
@@ -11,6 +11,7 @@ __all__ = ['Sbopen', 'Sbapi']
 
 
 class SbBase(ABC):
+    """TODO"""
 
     def __init__(
         self,
@@ -96,6 +97,7 @@ class SbBase(ABC):
         return pkgutil.get_data(__package__, sql_path).decode('utf-8')
 
     def _validation_value_error(self):
+        """TODO"""
         if self.competitions_version not in [4]:
             raise ValueError(
                 f"Invalid argument: currently supported competitions_version are: [4]"
@@ -122,11 +124,13 @@ class SbBase(ABC):
             )
 
     def _request(self, url):
+        """TODO"""
         resp = self.session.get(url)
         resp.raise_for_status()
         return str(self.session.cache.cache_dir / f'{resp.cache_key}.json')
 
     def _request_threaded(self, urls):
+        """TODO"""
         with ThreadPoolExecutor(max_workers=self.requests_max_workers) as executor:
             future_list = [executor.submit(self.session.get, url) for url in urls]
             filepaths = []
@@ -150,6 +154,7 @@ class SbBase(ABC):
         return f'{url_slug}/{match_id}.json'
 
     def _validate_file_type(self, file_type):
+        """TODO"""
         if file_type not in self.valid_match_data:
             raise ValueError(f'file_type should be one of {self.valid_match_data}')
 
@@ -159,6 +164,7 @@ class SbBase(ABC):
         pass
 
     def _competition_season_matchids(self, competition_id=None, season_id=None):
+        """TODO"""
         url = self._match_url(competition_id, season_id)
         filename = self._request_get(url)
         return self.con.execute(
@@ -166,6 +172,7 @@ class SbBase(ABC):
         ).fetchall()
 
     def _competition_matchids(self, competition_id):
+        """TODO"""
         url = f'{self.url}/competitions.json'
         filename = self._request_get(url)
         seasonids = self.con.execute(
@@ -313,6 +320,7 @@ class Sbopen(SbBase):
         }
 
     def _match_url(self, competition_id, season_id):
+        """TODO"""
         return f'{self.url}/matches/{competition_id}/{season_id}.json'
 
 
@@ -404,4 +412,5 @@ class Sbapi(SbBase):
             )
 
     def _match_url(self, competition_id, season_id):
+        """TODO"""
         return f'{self.url}/v{self.matches_version}/competitions/{competition_id}/seasons/{season_id}/matches.json'
