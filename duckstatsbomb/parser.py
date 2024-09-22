@@ -124,11 +124,16 @@ class SbBase(ABC):
         ]
 
     def _get_sql(self, sql_path):
-        """Get SQL string from a file."""
+        """Get a SQL string from a SQL file in the duckstatsbomb package.
+
+        Parameters
+        ----------
+        sql_path : path to the SQL file in the duckstatsbomb package.
+        """
         return pkgutil.get_data(__package__, sql_path).decode('utf-8')
 
     def _validation_value_error(self):
-        """TODO"""
+        """Validates the data version numbers and the output format"""
         if self.competitions_version not in [4]:
             raise ValueError(
                 f"Invalid argument: currently supported competitions_version are: [4]"
@@ -155,13 +160,32 @@ class SbBase(ABC):
             )
 
     def _request(self, url):
-        """TODO"""
+        """Request a url with requests-cache and return the file path str of the cached response.
+
+        Parameters
+        ----------
+        url : str
+
+        Returns
+        -------
+        path : str
+        """
         resp = self.session.get(url)
         resp.raise_for_status()
         return str(self.session.cache.cache_dir / f'{resp.cache_key}.json')
 
     def _request_threaded(self, urls):
-        """TODO"""
+        """Request multiple urls in parallel using requests-cache and
+        ThreadPoolExecutor, and return a list of file path strs of the cached responses.
+
+        Parameters
+        ----------
+        urls : list of str
+
+        Returns
+        -------
+        paths : list of str
+        """
         with ThreadPoolExecutor(max_workers=self.requests_max_workers) as executor:
             future_list = [executor.submit(self.session.get, url) for url in urls]
             filepaths = []
@@ -173,7 +197,18 @@ class SbBase(ABC):
             return filepaths
 
     def _request_get(self, urls):
-        """Request and cache responses and return filepaths to cached responses"""
+        """Request a list of urls with requests-cache.
+        Requests are made in parallel using ThreadPoolExecutor if multiple urls are requested.
+
+
+        Parameters
+        ----------
+        urls : list of str
+
+        Returns
+        -------
+        paths : list of str
+        """
         if isinstance(urls, str):
             return [self._request(urls)]
         return self._request_threaded(urls)
