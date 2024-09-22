@@ -25,7 +25,7 @@ class SbBase(ABC):
     duckdb_threads, int, default None
         The number of threads used by duckdb. The default uses the duckdb default
     output_format : str, default 'pandas'
-        The format of data that is returned by match_data, competition_data, competitions, and match_data.
+        The format of data that is returned by the methods: match_data, competition_data, competitions, and match_data.
     cache_name : str, default 'statsbomb_cache'
         Base directory for cache files
     cache_backend : str, default 'filesystem'
@@ -124,7 +124,7 @@ class SbBase(ABC):
         ]
 
     def _get_sql(self, sql_path):
-        """Get a SQL string from a SQL file in the duckstatsbomb package.
+        """Return a SQL file in the package contents as a string.
 
         Parameters
         ----------
@@ -160,7 +160,7 @@ class SbBase(ABC):
             )
 
     def _request(self, url):
-        """Request a url with requests-cache and return the file path str of the cached response.
+        """Request and cache a url via requests-cache and return the file path string.
 
         Parameters
         ----------
@@ -175,8 +175,8 @@ class SbBase(ABC):
         return str(self.session.cache.cache_dir / f'{resp.cache_key}.json')
 
     def _request_threaded(self, urls):
-        """Request multiple urls in parallel using requests-cache and
-        ThreadPoolExecutor, and return a list of file path strs of the cached responses.
+        """Request and cache multiple urls in parallel using requests-cache and
+        ThreadPoolExecutor, and return a list of file path strings.
 
         Parameters
         ----------
@@ -208,29 +208,58 @@ class SbBase(ABC):
         Returns
         -------
         paths : list of str
+            File paths of the cached responses.
         """
         if isinstance(urls, str):
             return [self._request(urls)]
         return self._request_threaded(urls)
 
     def _urls(self, match_id, url_slug):
-        """Build urls."""
+        """Creates a url string from a base url path and a match identifier.
+
+        Parameters
+        ----------
+        match_id : int
+            The StatsBomb match identifier
+        url_slug : str
+            The url base path for the data.
+
+        Returns
+        -------
+        url : str
+        """
         if isinstance(match_id, collections.abc.Iterable):
             return [f'{url_slug}/{matchid}{self.url_ending}' for matchid in match_id]
         return f'{url_slug}/{match_id}{self.url_ending}'
 
-    def _validate_file_type(self, file_type):
-        """TODO"""
-        if file_type not in self.valid_match_data:
-            raise ValueError(f'file_type should be one of {self.valid_match_data}')
+    def _validate_kind(self, kind):
+        """Validate that the kind of data e.g. 'events' is one of the valid StatsBomb data types.
+
+        Parameters
+        ----------
+        kind : str
+        """
+        if kind not in self.valid_match_data:
+            raise ValueError(f'kind should be one of {self.valid_match_data}')
 
     @abstractmethod
     def _match_url(self, competition_id, season_id):
-        """Implement match url helper."""
+        """Implement a method to create a match url from a competition and season identifier."""
         pass
 
     def _competition_season_matchids(self, competition_id=None, season_id=None):
-        """TODO"""
+        """Return a list of match identifiers for a given competition and season identifier.
+
+        Parameters
+        ----------
+        competition_id, season_id : int
+            A StatsBomb competition or season identifier.
+
+        Returns
+        -------
+        matchids
+            A list of tuples. The tuples contain a single match identifier integer.
+        """
         url = self._match_url(competition_id, season_id)
         filename = self._request_get(url)
         return self.con.execute(
@@ -238,7 +267,18 @@ class SbBase(ABC):
         ).fetchall()
 
     def _competition_matchids(self, competition_id):
-        """TODO"""
+        """Return a list of match identifiers for a given competition identifier.
+
+        Parameters
+        ----------
+        competition_id : int
+            A StatsBomb competition identifier.
+
+        Returns
+        -------
+        matchids
+            A list of tuples. The tuples contain a single match identifier integer.
+        """
         url = f'{self.url}/competitions{self.url_ending}'
         filename = self._request_get(url)
         seasonids = self.con.execute(
@@ -252,12 +292,11 @@ class SbBase(ABC):
         ).fetchall()
 
     def competitions(self):
-        """StatsBomb competition open-data.
+        """StatsBomb competition data.
 
         Returns
         -------
-        competition
-            A dataframe or a flattened list of dictionaries.
+        pandas.DataFrame
 
         Examples
         --------
@@ -270,12 +309,11 @@ class SbBase(ABC):
         return self.con.execute(self.sql['competitions'], {'filename': filename}).df()
 
     def matches(self, competition_id, season_id):
-        """StatsBomb match open-data.
+        """StatsBomb match data.
 
         Parameters
         ----------
-        competition_id : int
-        season_id : int
+        competition_id, season_id : int
 
         Returns
         -------
@@ -302,33 +340,77 @@ class SbBase(ABC):
         filename = self._request_get(urls)
         return self.con.execute(self.sql['matches'], {'filename': filename}).df()
 
-    def match_data(self, match_id, file_type):
-        """TO DO"""
-        self._validate_file_type(file_type)
-        urls = self._urls(match_id, url_slug=self.url_map[file_type])
-        filename = self._request_get(urls)
-        return self.con.execute(self.sql[file_type], {'filename': filename}).df()
+    def valid_data(self):
+        """Returns a list of valid data types
 
-    def competition_data(self, competition_id, season_id=None, file_type='events'):
-        """TO DO"""
-        self._validate_file_type(file_type)
+        Returns
+        -------
+        list
+        """
+        return self.valid_match_data
+
+    def match_data(self, match_id, kind):
+        """StatsBomb match event data for the given match_id.
+
+        Parameters
+        ----------
+        match_id : int or list of int
+        kind : str
+            A data type, e.g. 'events'. For a list of valid kind values use the valid_data method.
+
+        Returns
+        -------
+        pandas.DataFrame
+
+        Examples
+        --------
+        >>> from duckstatsbomb import Sbopen
+        >>> parser = Sbopen()
+        >>> events = parser.match_data([3788741, 3788742], kind='events')
+        """
+        self._validate_kind(kind)
+        urls = self._urls(match_id, url_slug=self.url_map[kind])
+        filename = self._request_get(urls)
+        return self.con.execute(self.sql[kind], {'filename': filename}).df()
+
+    def competition_data(self, competition_id, season_id=None, kind='events'):
+        """StatsBomb match event for all matches in a competitition.
+
+        Parameters
+        ----------
+        competition, season_id : int
+            If season_id is None, the method will return matches over multiple seasons (if available).
+        kind : str
+            A data type, e.g. 'events'. For a list of valid kind values use the valid_data method.
+
+        Returns
+        -------
+        pandas.DataFrame
+
+        Examples
+        --------
+        >>> from duckstatsbomb import Sbopen
+        >>> parser = Sbopen()
+        >>> events = parser.competition_data(2, 44, kind='events') # the invincibles
+        """
+        self._validate_kind(kind)
         if season_id is None:
             match_id = self._competition_matchids(competition_id)
         else:
             match_id = self._competition_season_matchids(competition_id, season_id)
         urls = [
-            f'{self.url_map[file_type]}/{matchid[0]}{self.url_ending}'
+            f'{self.url_map[kind]}/{matchid[0]}{self.url_ending}'
             for matchid in match_id
         ]
         filename = self._request_get(urls)
-        return self.con.execute(self.sql[file_type], {'filename': filename}).df()
+        return self.con.execute(self.sql[kind], {'filename': filename}).df()
 
     def close_connection(self):
         """Close the duckdb connection."""
         self.con.close()
 
     def remove_expired_responses(self):
-        """Remove expired responses from the cache"""
+        """Remove expired responses from the cache."""
         self.session.cache.remove_expired_responses()
 
     def clear_cache(self):
@@ -337,7 +419,7 @@ class SbBase(ABC):
 
 
 class Sbopen(SbBase):
-    """A base class for loading data from the StatsBomb open-data.
+    """A class for loading data from the StatsBomb open-data.
     The data is available at: https://github.com/statsbomb/open-data under
     a non-commercial license.
 
@@ -378,13 +460,13 @@ class Sbopen(SbBase):
         lineup_version=2,
         threesixty_version=1,
         database=':default:',
+        duckdb_threads=None,
         output_format='pandas',
         cache_name='statsbomb_cache',
         cache_backend='filesystem',
         remove_expired_responses=True,
         expire_after=360,
         requests_max_workers=None,
-        duckdb_threads=None,
         session_kws=None,
         connection_kws=None,
     ):
@@ -418,12 +500,22 @@ class Sbopen(SbBase):
         }
 
     def _match_url(self, competition_id, season_id):
-        """TODO"""
+        """Creates a matches url string for a given competition and season.
+
+        Parameters
+        ----------
+        competition_id, season_id : int
+            The StatsBomb competition and season identifiers
+
+        Returns
+        -------
+        url : str
+        """
         return f'{self.url}/matches/{competition_id}/{season_id}{self.url_ending}'
 
 
 class Sbapi(SbBase):
-    """A base class for loading data from the StatsBomb API.
+    """A class for loading data from the StatsBomb API.
     You can either provide the username and password as arguments or set the SB_USERNAME and SB_PASSWORD
     environmental variables.
 
@@ -441,7 +533,7 @@ class Sbapi(SbBase):
     duckdb_threads, int, default None
         The number of threads used by duckdb. The default uses the duckdb default
     output_format : str, default 'pandas'
-        The format of data that is returned by match_data, competition_data, competitions, and match_data.
+        The format of data that is returned by the methods: match_data, competition_data, competitions, and match_data.
     cache_name : str, default 'statsbomb_cache'
         Base directory for cache files
     cache_backend : str, default 'filesystem'
@@ -547,5 +639,15 @@ class Sbapi(SbBase):
             )
 
     def _match_url(self, competition_id, season_id):
-        """TODO"""
+        """Creates a matches url string for a given competition and season.
+
+        Parameters
+        ----------
+        competition_id, season_id : int
+            The StatsBomb competition and season identifiers
+
+        Returns
+        -------
+        url : str
+        """
         return f'{self.url}/v{self.matches_version}/competitions/{competition_id}/seasons/{season_id}/{self.url_ending}'
