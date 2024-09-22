@@ -23,51 +23,31 @@ from duckstatsbomb import Sbopen
 parser = Sbopen()
 parser.valid_data()
 ```
-### Player lineups data
+
+### Data from one match
 ```python
 from duckstatsbomb import Sbopen
 parser = Sbopen()
-df_lineup_players = parser.match_data([3749052, 3749522], kind='lineup_players')
+df_lineup_players = parser.match_data(3749052, kind='lineup_players')
 ```
 
-### Events data
+### Data from multiple matches
 ```python
 from duckstatsbomb import Sbopen
 parser = Sbopen()
 df_events = parser.match_data([3749052, 3749522], kind='events')
 ```
 
-### Shot freeze frames data
+### Data from one competition
 ```python
 from duckstatsbomb import Sbopen
 parser = Sbopen()
-df_frames = parser.match_data([3749052, 3749522], kind='frames')
+df_tactics = parser.competition_data(competition_id=16, kind='tactics')
 ```
 
-### Tactics data
+### Data from one competition/season
 ```python
 from duckstatsbomb import Sbopen
 parser = Sbopen()
-df_tactics = parser.match_data([3749052, 3749522], kind='tactics')
-```
-
-### Related events data
-```python
-from duckstatsbomb import Sbopen
-parser = Sbopen()
-df_related = parser.match_data([3749052, 3749522], kind='related_events')
-```
-
-### Three-sixty frames data
-```python
-from duckstatsbomb import Sbopen
-parser = Sbopen()
-df_frames_360 = parser.match_data([3788741, 3788742], kind='threesixty_frames')
-```
-
-### Three-sixty data
-```python
-from duckstatsbomb import Sbopen
-parser = Sbopen()
-df_360 = parser.match_data([3788741, 3788742], kind='threesixty')
+df_frames = parser.competition_data(competition_id=16, season_id=37, kind='frames')
 ```
