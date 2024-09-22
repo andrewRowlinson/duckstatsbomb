@@ -4,6 +4,7 @@ import duckdb
 from requests_cache import CachedSession
 import collections
 import pkgutil
+import os
 from abc import ABC, abstractmethod
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -18,7 +19,7 @@ class SbBase(ABC):
         competitions_version,
         matches_version,
         events_version,
-        lineups_version,
+        lineup_version,
         threesixty_version,
         database=':default:',
         output_format='dataframe',
@@ -34,7 +35,7 @@ class SbBase(ABC):
         self.competitions_version = competitions_version
         self.matches_version = matches_version
         self.events_version = events_version
-        self.lineups_version = lineups_version
+        self.lineup_version = lineup_version
         self.threesixty_version = threesixty_version
         self.output_format = output_format
         self._validation_value_error()
@@ -59,6 +60,7 @@ class SbBase(ABC):
         self.sql = None
         self.url_map = None
         self.valid_match_data = None
+        self.url_ending = None
         self.sql = {
             'competitions': self._get_sql(
                 f'sql/competitions/v{competitions_version}/competitions.sql'
@@ -66,8 +68,8 @@ class SbBase(ABC):
             'matches': self._get_sql(f'sql/matches/v{matches_version}/matches.sql'),
             'match_ids': self._get_sql(f'sql/matches/match_ids.sql'),
             'season_ids': self._get_sql(f'sql/competitions/season_ids.sql'),
-            'lineups_players': self._get_sql(
-                f'sql/lineups/v{lineups_version}/lineups_players.sql'
+            'lineup_players': self._get_sql(
+                f'sql/lineups/v{lineup_version}/lineup_players.sql'
             ),
             'events': self._get_sql(f'sql/events/v{events_version}/events.sql'),
             'frames': self._get_sql(f'sql/events/v{events_version}/freeze_frames.sql'),
@@ -83,7 +85,7 @@ class SbBase(ABC):
             ),
         }
         self.valid_match_data = [
-            'lineups_players',
+            'lineup_players',
             'events',
             'frames',
             'tactics',
@@ -110,9 +112,9 @@ class SbBase(ABC):
             raise ValueError(
                 f"Invalid argument: currently supported events_version are: [4, 8]"
             )
-        if self.lineups_version not in [2, 4]:
+        if self.lineup_version not in [2, 4]:
             raise ValueError(
-                f"Invalid argument: currently supported lineups_version are: [2, 4]"
+                f"Invalid argument: currently supported lineup_version are: [2, 4]"
             )
         if self.threesixty_version not in [1, 2]:
             raise ValueError(
@@ -150,8 +152,8 @@ class SbBase(ABC):
     def _urls(self, match_id, url_slug):
         """Build urls."""
         if isinstance(match_id, collections.abc.Iterable):
-            return [f'{url_slug}/{matchid}.json' for matchid in match_id]
-        return f'{url_slug}/{match_id}.json'
+            return [f'{url_slug}/{matchid}{self.url_ending}' for matchid in match_id]
+        return f'{url_slug}/{match_id}{self.url_ending}'
 
     def _validate_file_type(self, file_type):
         """TODO"""
@@ -173,7 +175,7 @@ class SbBase(ABC):
 
     def _competition_matchids(self, competition_id):
         """TODO"""
-        url = f'{self.url}/competitions.json'
+        url = f'{self.url}/competitions{self.url_ending}'
         filename = self._request_get(url)
         seasonids = self.con.execute(
             self.sql['season_ids'],
@@ -199,7 +201,7 @@ class SbBase(ABC):
         >>> parser = Sbopen()
         >>> competitions = parser.competitions()
         """
-        url = f'{self.url}/competitions.json'
+        url = f'{self.url}/competitions{self.url_ending}'
         filename = self._request_get(url)
         return self.con.execute(self.sql['competitions'], {'filename': filename}).df()
 
@@ -250,7 +252,7 @@ class SbBase(ABC):
             match_id = self._competition_matchids(competition_id)
         else:
             match_id = self._competition_season_matchids(competition_id, season_id)
-        urls = [f'{self.url_map[file_type]}/{matchid[0]}.json' for matchid in match_id]
+        urls = [f'{self.url_map[file_type]}/{matchid[0]}{self.url_ending}' for matchid in match_id]
         filename = self._request_get(urls)
         return self.con.execute(self.sql[file_type], {'filename': filename}).df()
 
@@ -278,7 +280,7 @@ class Sbopen(SbBase):
         competitions_version=4,
         matches_version=3,
         events_version=4,
-        lineups_version=2,
+        lineup_version=2,
         threesixty_version=1,
         database=':default:',
         output_format='dataframe',
@@ -295,7 +297,7 @@ class Sbopen(SbBase):
             competitions_version=competitions_version,
             matches_version=matches_version,
             events_version=events_version,
-            lineups_version=lineups_version,
+            lineup_version=lineup_version,
             threesixty_version=threesixty_version,
             database=database,
             output_format=output_format,
@@ -308,9 +310,10 @@ class Sbopen(SbBase):
             session_kws=session_kws,
             connection_kws=connection_kws,
         )
+        self.url_ending = '.json'
         self.url = 'https://raw.githubusercontent.com/statsbomb/open-data/master/data'
         self.url_map = {
-            'lineups_players': f'{self.url}/lineups',
+            'lineup_players': f'{self.url}/lineups',
             'events': f'{self.url}/events',
             'frames': f'{self.url}/events',
             'tactics': f'{self.url}/events',
@@ -321,7 +324,7 @@ class Sbopen(SbBase):
 
     def _match_url(self, competition_id, season_id):
         """TODO"""
-        return f'{self.url}/matches/{competition_id}/{season_id}.json'
+        return f'{self.url}/matches/{competition_id}/{season_id}{self.url_ending}'
 
 
 class Sbapi(SbBase):
@@ -332,7 +335,7 @@ class Sbapi(SbBase):
         competitions_version=4,
         matches_version=6,
         events_version=8,
-        lineups_version=4,
+        lineup_version=4,
         threesixty_version=2,
         database=':default:',
         output_format='dataframe',
@@ -351,7 +354,7 @@ class Sbapi(SbBase):
             competitions_version=competitions_version,
             matches_version=matches_version,
             events_version=events_version,
-            lineups_version=lineups_version,
+            lineup_version=lineup_version,
             threesixty_version=threesixty_version,
             database=database,
             output_format=output_format,
@@ -364,9 +367,13 @@ class Sbapi(SbBase):
             session_kws=session_kws,
             connection_kws=connection_kws,
         )
-        self.url = 'http://127.0.0.1:8080'
+        self.url_ending = ''
+        self.session.auth = (os.environ.get('SB_USERNAME', sb_username),
+                             os.environ.get('SB_PASSWORD', sb_password),
+                            )
+        self.url = 'https://data.statsbombservices.com/api'
         self.url_map = {
-            'lineups_players': f'{self.url}/v{lineups_version}/lineups',
+            'lineup_players': f'{self.url}/v{lineup_version}/lineups',
             'events': f'{self.url}/v{events_version}/events',
             'frames': f'{self.url}/v{events_version}/events',
             'tactics': f'{self.url}/v{events_version}/events',
@@ -375,23 +382,23 @@ class Sbapi(SbBase):
             'threesixty': f'{self.url}/v{threesixty_version}/360-frames',
         }
 
-        if lineups_version >= 4:
-            self.sql['lineups_events'] = self._get_sql(
-                f'sql/lineups/v{lineups_version}/lineups_events.sql'
+        if lineup_version >= 4:
+            self.sql['lineup_events'] = self._get_sql(
+                f'sql/lineups/v{lineup_version}/lineup_events.sql'
             )
-            self.sql['lineups_formations'] = self._get_sql(
-                f'sql/lineups/v{lineups_version}/lineups_formations.sql'
+            self.sql['lineup_formations'] = self._get_sql(
+                f'sql/lineups/v{lineup_version}/lineup_formations.sql'
             )
-            self.sql['lineups_positions'] = self._get_sql(
-                f'sql/lineups/v{lineups_version}/lineups_positions.sql'
+            self.sql['lineup_positions'] = self._get_sql(
+                f'sql/lineups/v{lineup_version}/lineup_positions.sql'
             )
-            self.url_map['lineups_events'] = f'{self.url}/v{lineups_version}/lineups'
-            self.url_map['lineups_formations'] = (
-                f'{self.url}/v{lineups_version}/lineups'
+            self.url_map['lineup_events'] = f'{self.url}/v{lineup_version}/lineups'
+            self.url_map['lineup_formations'] = (
+                f'{self.url}/v{lineup_version}/lineups'
             )
-            self.url_map['lineups_positions'] = f'{self.url}/v{lineups_version}/lineups'
+            self.url_map['lineup_positions'] = f'{self.url}/v{lineup_version}/lineups'
             self.valid_match_data.extend(
-                ['lineups_events', 'lineups_formations', 'lineups_positions']
+                ['lineup_events', 'lineup_formations', 'lineup_positions']
             )
 
         if threesixty_version >= 2:
@@ -413,4 +420,4 @@ class Sbapi(SbBase):
 
     def _match_url(self, competition_id, season_id):
         """TODO"""
-        return f'{self.url}/v{self.matches_version}/competitions/{competition_id}/seasons/{season_id}/matches.json'
+        return f'{self.url}/v{self.matches_version}/competitions/{competition_id}/seasons/{season_id}/{self.url_ending}'
