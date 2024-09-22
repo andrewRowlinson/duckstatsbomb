@@ -12,7 +12,36 @@ __all__ = ['Sbopen', 'Sbapi']
 
 
 class SbBase(ABC):
-    """TODO"""
+    """A base class for parsing StatsBomb open-data/ API data using requests-cache and duckdb.
+
+    Parameters
+    ----------
+    competitions_version, matches_version, events_version, lineup_version, threesixty_version : int
+        The StatsBomb data version.
+    database : str, default ':default:'
+        The name of the duckdb database. By default it creates an unnamed in-memory database that lives
+        inside the duckdb module. If the database is a file path, a connection to a persistent database is
+        established, which will be created if it doesn't already exist.
+    duckdb_threads, int, default None
+        The number of threads used by duckdb. The default uses the duckdb default
+    output_format : str, default 'pandas'
+        The format of data that is returned by match_data, competition_data, competitions, and match_data.
+    cache_name : str, default 'statsbomb_cache'
+        Base directory for cache files
+    cache_backend : str, default 'filesystem'
+        The requests-cache backend.
+    removed_expired_responses : bool, default True
+        If True, removes the expired cached responses when instantiating the class.
+    expire_after : int, default 360
+        The number of seconds to store cached responses.
+    requests_max_workers : default None
+        The number of threads to use for requests. The default uses the
+        concurrent.futures.ThreadPoolExecutor default.
+    session_kws : dict, default None
+        Additional keywords are passed to duckdb.connect.
+    connection_kws : dict, default None
+        Additional keywords are passed to requests_cache.CachedSession.
+    """
 
     def __init__(
         self,
@@ -22,13 +51,13 @@ class SbBase(ABC):
         lineup_version,
         threesixty_version,
         database=':default:',
-        output_format='dataframe',
+        duckdb_threads=None,
+        output_format='pandas',
         cache_name='statsbomb_cache',
+        cache_backend='filesystem',
         remove_expired_responses=True,
         expire_after=360,
-        backend='filesystem',
         requests_max_workers=None,
-        duckdb_threads=None,
         session_kws=None,
         connection_kws=None,
     ):
@@ -48,7 +77,7 @@ class SbBase(ABC):
             self.con.execute(f'set threads to {duckdb_threads}')
         self.session = CachedSession(
             cache_name=cache_name,
-            backend=backend,
+            backend=cache_backend,
             expire_after=expire_after,
             **session_kws,
         )
@@ -120,9 +149,9 @@ class SbBase(ABC):
             raise ValueError(
                 f"Invalid argument: currently supported threesixty_version are: [1, 2]"
             )
-        if self.output_format != 'dataframe':
+        if self.output_format != 'pandas':
             raise ValueError(
-                f"Invalid argument: currently supported output_formats are: 'dataframe'"
+                f"Invalid argument: currently supported output_formats are: 'pandas'"
             )
 
     def _request(self, url):
@@ -252,7 +281,10 @@ class SbBase(ABC):
             match_id = self._competition_matchids(competition_id)
         else:
             match_id = self._competition_season_matchids(competition_id, season_id)
-        urls = [f'{self.url_map[file_type]}/{matchid[0]}{self.url_ending}' for matchid in match_id]
+        urls = [
+            f'{self.url_map[file_type]}/{matchid[0]}{self.url_ending}'
+            for matchid in match_id
+        ]
         filename = self._request_get(urls)
         return self.con.execute(self.sql[file_type], {'filename': filename}).df()
 
@@ -270,9 +302,37 @@ class SbBase(ABC):
 
 
 class Sbopen(SbBase):
-    """Class for loading data from the StatsBomb open-data.
+    """A base class for loading data from the StatsBomb open-data.
     The data is available at: https://github.com/statsbomb/open-data under
     a non-commercial license.
+
+    Parameters
+    ----------
+    competitions_version, matches_version, events_version, lineup_version, threesixty_version : int, defaults 4, 3, 4, 2, 1
+        The StatsBomb data version.
+    database : str, default ':default:'
+        The name of the duckdb database. By default it creates an unnamed in-memory database that lives
+        inside the duckdb module. If the database is a file path, a connection to a persistent database is
+        established, which will be created if it doesn't already exist.
+    duckdb_threads, int, default None
+        The number of threads used by duckdb. The default uses the duckdb default
+    output_format : str, default 'pandas'
+        The format of data that is returned by match_data, competition_data, competitions, and match_data.
+    cache_name : str, default 'statsbomb_cache'
+        Base directory for cache files
+    cache_backend : str, default 'filesystem'
+        The requests-cache backend.
+    removed_expired_responses : bool, default True
+        If True, removes the expired cached responses when instantiating the class.
+    expire_after : int, default 360
+        The number of seconds to store cached responses.
+    requests_max_workers : default None
+        The number of threads to use for requests. The default uses the
+        concurrent.futures.ThreadPoolExecutor default.
+    session_kws : dict, default None
+        Additional keywords are passed to duckdb.connect.
+    connection_kws : dict, default None
+        Additional keywords are passed to requests_cache.CachedSession.
     """
 
     def __init__(
@@ -283,11 +343,11 @@ class Sbopen(SbBase):
         lineup_version=2,
         threesixty_version=1,
         database=':default:',
-        output_format='dataframe',
+        output_format='pandas',
         cache_name='statsbomb_cache',
+        cache_backend='filesystem',
         remove_expired_responses=True,
         expire_after=360,
-        backend='filesystem',
         requests_max_workers=None,
         duckdb_threads=None,
         session_kws=None,
@@ -302,9 +362,9 @@ class Sbopen(SbBase):
             database=database,
             output_format=output_format,
             cache_name=cache_name,
+            cache_backend=cache_backend,
             remove_expired_responses=remove_expired_responses,
             expire_after=expire_after,
-            backend=backend,
             requests_max_workers=requests_max_workers,
             duckdb_threads=duckdb_threads,
             session_kws=session_kws,
@@ -328,27 +388,61 @@ class Sbopen(SbBase):
 
 
 class Sbapi(SbBase):
-    """Class for loading data from the StatsBomb API."""
+    """A base class for loading data from the StatsBomb API.
+    You can either provide the username and password as arguments or set the SB_USERNAME and SB_PASSWORD
+    environmental variables.
+
+    Parameters
+    ----------
+    sb_username, sb_password, str, default None
+        Authentication for the StatsBomb API. The SB_USERNAME and SB_PASSWORD environmental variables are used if available.
+        Otherwise the credentials are set from the sb_username and sb_password arguments.
+    competitions_version, matches_version, events_version, lineup_version, threesixty_version : int, defaults 4, 6, 8, 4, 2
+        The StatsBomb data version.
+    database : str, default ':default:'
+        The name of the duckdb database. By default it creates an unnamed in-memory database that lives
+        inside the duckdb module. If the database is a file path, a connection to a persistent database is
+        established, which will be created if it doesn't already exist.
+    duckdb_threads, int, default None
+        The number of threads used by duckdb. The default uses the duckdb default
+    output_format : str, default 'pandas'
+        The format of data that is returned by match_data, competition_data, competitions, and match_data.
+    cache_name : str, default 'statsbomb_cache'
+        Base directory for cache files
+    cache_backend : str, default 'filesystem'
+        The requests-cache backend.
+    removed_expired_responses : bool, default True
+        If True, removes the expired cached responses when instantiating the class.
+    expire_after : int, default 360
+        The number of seconds to store cached responses.
+    requests_max_workers : default None
+        The number of threads to use for requests. The default uses the
+        concurrent.futures.ThreadPoolExecutor default.
+    session_kws : dict, default None
+        Additional keywords are passed to duckdb.connect.
+    connection_kws : dict, default None
+        Additional keywords are passed to requests_cache.CachedSession.
+    """
 
     def __init__(
         self,
+        sb_username=None,
+        sb_password=None,
         competitions_version=4,
         matches_version=6,
         events_version=8,
         lineup_version=4,
         threesixty_version=2,
         database=':default:',
-        output_format='dataframe',
+        duckdb_threads=None,
+        output_format='pandas',
         cache_name='statsbomb_cache',
+        cache_backend='filesystem',
         remove_expired_responses=True,
         expire_after=360,
-        backend='filesystem',
         requests_max_workers=None,
-        duckdb_threads=None,
         session_kws=None,
         connection_kws=None,
-        sb_username=None,
-        sb_password=None,
     ):
         super().__init__(
             competitions_version=competitions_version,
@@ -359,18 +453,19 @@ class Sbapi(SbBase):
             database=database,
             output_format=output_format,
             cache_name=cache_name,
+            cache_backend=cache_backend,
             remove_expired_responses=remove_expired_responses,
             expire_after=expire_after,
-            backend=backend,
             requests_max_workers=requests_max_workers,
             duckdb_threads=duckdb_threads,
             session_kws=session_kws,
             connection_kws=connection_kws,
         )
         self.url_ending = ''
-        self.session.auth = (os.environ.get('SB_USERNAME', sb_username),
-                             os.environ.get('SB_PASSWORD', sb_password),
-                            )
+        self.session.auth = (
+            os.environ.get('SB_USERNAME', sb_username),
+            os.environ.get('SB_PASSWORD', sb_password),
+        )
         self.url = 'https://data.statsbombservices.com/api'
         self.url_map = {
             'lineup_players': f'{self.url}/v{lineup_version}/lineups',
@@ -393,9 +488,7 @@ class Sbapi(SbBase):
                 f'sql/lineups/v{lineup_version}/lineup_positions.sql'
             )
             self.url_map['lineup_events'] = f'{self.url}/v{lineup_version}/lineups'
-            self.url_map['lineup_formations'] = (
-                f'{self.url}/v{lineup_version}/lineups'
-            )
+            self.url_map['lineup_formations'] = f'{self.url}/v{lineup_version}/lineups'
             self.url_map['lineup_positions'] = f'{self.url}/v{lineup_version}/lineups'
             self.valid_match_data.extend(
                 ['lineup_events', 'lineup_formations', 'lineup_positions']
