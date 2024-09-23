@@ -247,6 +247,11 @@ class SbBase(ABC):
         """Implement a method to create a match url from a competition and season identifier."""
         pass
 
+    @abstractmethod
+    def _competition_url(self):
+        """Implement a method to create a competition url."""
+        pass
+
     def _competition_season_matchids(self, competition_id=None, season_id=None):
         """Return a list of match identifiers for a given competition and season identifier.
 
@@ -279,7 +284,7 @@ class SbBase(ABC):
         matchids
             A list of tuples. The tuples contain a single match identifier integer.
         """
-        url = f'{self.url}/competitions{self.url_ending}'
+        url = self._competition_url()
         filename = self._request_get(url)
         seasonids = self.con.execute(
             self.sql['season_ids'],
@@ -304,7 +309,7 @@ class SbBase(ABC):
         >>> parser = Sbopen()
         >>> competitions = parser.competitions()
         """
-        url = f'{self.url}/competitions{self.url_ending}'
+        url = self._competition_url()
         filename = self._request_get(url)
         return self.con.execute(self.sql['competitions'], {'filename': filename}).df()
 
@@ -513,6 +518,15 @@ class Sbopen(SbBase):
         """
         return f'{self.url}/matches/{competition_id}/{season_id}{self.url_ending}'
 
+    def _competition_url(self):
+        """Creates a competition url string
+
+        Returns
+        -------
+        url : str
+        """
+        return f'{self.url}/competitions{self.url_ending}'
+
 
 class Sbapi(SbBase):
     """A class for loading data from the StatsBomb API.
@@ -650,4 +664,13 @@ class Sbapi(SbBase):
         -------
         url : str
         """
-        return f'{self.url}/v{self.matches_version}/competitions/{competition_id}/seasons/{season_id}/{self.url_ending}'
+        return f'{self.url}/v{self.matches_version}/competitions/{competition_id}/seasons/{season_id}/matches'
+
+    def _competition_url(self):
+        """Creates a competition url string
+
+        Returns
+        -------
+        url : str
+        """
+        return f'{self.url}/v{self.competitions_version}/competitions'
