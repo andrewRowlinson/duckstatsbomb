@@ -8,7 +8,7 @@ import os
 from abc import ABC, abstractmethod
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-__all__ = ['Sbopen', 'Sbapi']
+__all__ = ['Sbopen', 'Sbapi', 'Sblocal']
 
 
 class SbBase(ABC):
@@ -37,10 +37,13 @@ class SbBase(ABC):
     requests_max_workers : default None
         The number of threads to use for requests. The default uses the
         concurrent.futures.ThreadPoolExecutor default.
+    sql_dir : str, default None
+        Automatically set to change the SQL parsing depending on whether the data
+        has been cached by requests-cache ('sql/cache') or is in the original format ('sql/original')
     session_kws : dict, default None
-        Additional keywords are passed to duckdb.connect.
-    connection_kws : dict, default None
         Additional keywords are passed to requests_cache.CachedSession.
+    connection_kws : dict, default None
+        Additional keywords are passed to duckdb.connect.
     """
 
     def __init__(
@@ -58,6 +61,7 @@ class SbBase(ABC):
         remove_expired_responses=True,
         expire_after=360,
         requests_max_workers=None,
+        sql_dir=None,
         session_kws=None,
         connection_kws=None,
     ):
@@ -92,27 +96,62 @@ class SbBase(ABC):
         self.url_ending = None
         self.sql = {
             'competitions': self._get_sql(
-                f'sql/competitions/v{competitions_version}/competitions.sql'
+                f'{sql_dir}/competitions/v{competitions_version}/competitions.sql'
             ),
-            'matches': self._get_sql(f'sql/matches/v{matches_version}/matches.sql'),
-            'match_ids': self._get_sql(f'sql/matches/match_ids.sql'),
-            'season_ids': self._get_sql(f'sql/competitions/season_ids.sql'),
+            'matches': self._get_sql(f'{sql_dir}/matches/v{matches_version}/matches.sql'),
+            'match_ids': self._get_sql(f'{sql_dir}/matches/match_ids.sql'),
+            'season_ids': self._get_sql(f'{sql_dir}/competitions/season_ids.sql'),
             'lineup_players': self._get_sql(
-                f'sql/lineups/v{lineup_version}/lineup_players.sql'
+                f'{sql_dir}/lineups/v{lineup_version}/lineup_players.sql'
             ),
-            'events': self._get_sql(f'sql/events/v{events_version}/events.sql'),
-            'frames': self._get_sql(f'sql/events/v{events_version}/freeze_frames.sql'),
-            'tactics': self._get_sql(f'sql/events/v{events_version}/tactics.sql'),
+            'events': self._get_sql(f'{sql_dir}/events/v{events_version}/events.sql'),
+            'frames': self._get_sql(f'{sql_dir}/events/v{events_version}/freeze_frames.sql'),
+            'tactics': self._get_sql(f'{sql_dir}/events/v{events_version}/tactics.sql'),
             'related_events': self._get_sql(
-                f'sql/events/v{events_version}/related_events.sql'
+                f'{sql_dir}/events/v{events_version}/related_events.sql'
             ),
             'threesixty_frames': self._get_sql(
-                f'sql/threesixty/v{threesixty_version}/freeze_frames.sql'
+                f'{sql_dir}/threesixty/v{threesixty_version}/freeze_frames.sql'
             ),
             'threesixty': self._get_sql(
-                f'sql/threesixty/v{threesixty_version}/threesixty.sql'
+                f'{sql_dir}/threesixty/v{threesixty_version}/threesixty.sql'
             ),
         }
+
+        if lineup_version >= 4:
+            self.sql['lineup_events'] = self._get_sql(
+                f'{sql_dir}/lineups/v{lineup_version}/lineup_events.sql'
+            )
+            self.sql['lineup_formations'] = self._get_sql(
+                f'{sql_dir}/lineups/v{lineup_version}/lineup_formations.sql'
+            )
+            self.sql['lineup_positions'] = self._get_sql(
+                f'{sql_dir}/lineups/v{lineup_version}/lineup_positions.sql'
+            )
+            self.url_map['lineup_events'] = f'{self.url}/v{lineup_version}/lineups'
+            self.url_map['lineup_formations'] = f'{self.url}/v{lineup_version}/lineups'
+            self.url_map['lineup_positions'] = f'{self.url}/v{lineup_version}/lineups'
+            self.valid_match_data.extend(
+                ['lineup_events', 'lineup_formations', 'lineup_positions']
+            )
+
+        if threesixty_version >= 2:
+            self.sql['threesixty_visible_count'] = self._get_sql(
+                f'{sql_dir}/threesixty/v{threesixty_version}/visible_count.sql'
+            )
+            self.sql['threesixty_visible_distance'] = self._get_sql(
+                f'{sql_dir}/threesixty/v{threesixty_version}/visible_distance.sql'
+            )
+            self.url_map['threesixty_visible_count'] = (
+                f'{self.url}/v{threesixty_version}/360-frames'
+            )
+            self.url_map['threesixty_visible_distance'] = (
+                f'{self.url}/v{threesixty_version}/360-frames'
+            )
+            self.valid_match_data.extend(
+                ['threesixty_visible_count', 'threesixty_visible_distance']
+            )
+
         self.valid_match_data = [
             'lineup_players',
             'events',
@@ -452,9 +491,9 @@ class Sbopen(SbBase):
         The number of threads to use for requests. The default uses the
         concurrent.futures.ThreadPoolExecutor default.
     session_kws : dict, default None
-        Additional keywords are passed to duckdb.connect.
-    connection_kws : dict, default None
         Additional keywords are passed to requests_cache.CachedSession.
+    connection_kws : dict, default None
+        Additional keywords are passed to duckdb.connect.
     """
 
     def __init__(
@@ -489,6 +528,7 @@ class Sbopen(SbBase):
             expire_after=expire_after,
             requests_max_workers=requests_max_workers,
             duckdb_threads=duckdb_threads,
+            sql_dir='sql/cache',
             session_kws=session_kws,
             connection_kws=connection_kws,
         )
@@ -560,9 +600,9 @@ class Sbapi(SbBase):
         The number of threads to use for requests. The default uses the
         concurrent.futures.ThreadPoolExecutor default.
     session_kws : dict, default None
-        Additional keywords are passed to duckdb.connect.
-    connection_kws : dict, default None
         Additional keywords are passed to requests_cache.CachedSession.
+    connection_kws : dict, default None
+        Additional keywords are passed to duckdb.connect.
     """
 
     def __init__(
@@ -599,6 +639,7 @@ class Sbapi(SbBase):
             expire_after=expire_after,
             requests_max_workers=requests_max_workers,
             duckdb_threads=duckdb_threads,
+            sql_dir='sql/cache',
             session_kws=session_kws,
             connection_kws=connection_kws,
         )
@@ -617,40 +658,6 @@ class Sbapi(SbBase):
             'threesixty_frames': f'{self.url}/v{threesixty_version}/360-frames',
             'threesixty': f'{self.url}/v{threesixty_version}/360-frames',
         }
-
-        if lineup_version >= 4:
-            self.sql['lineup_events'] = self._get_sql(
-                f'sql/lineups/v{lineup_version}/lineup_events.sql'
-            )
-            self.sql['lineup_formations'] = self._get_sql(
-                f'sql/lineups/v{lineup_version}/lineup_formations.sql'
-            )
-            self.sql['lineup_positions'] = self._get_sql(
-                f'sql/lineups/v{lineup_version}/lineup_positions.sql'
-            )
-            self.url_map['lineup_events'] = f'{self.url}/v{lineup_version}/lineups'
-            self.url_map['lineup_formations'] = f'{self.url}/v{lineup_version}/lineups'
-            self.url_map['lineup_positions'] = f'{self.url}/v{lineup_version}/lineups'
-            self.valid_match_data.extend(
-                ['lineup_events', 'lineup_formations', 'lineup_positions']
-            )
-
-        if threesixty_version >= 2:
-            self.sql['threesixty_visible_count'] = self._get_sql(
-                f'sql/threesixty/v{threesixty_version}/visible_count.sql'
-            )
-            self.sql['threesixty_visible_distance'] = self._get_sql(
-                f'sql/threesixty/v{threesixty_version}/visible_distance.sql'
-            )
-            self.url_map['threesixty_visible_count'] = (
-                f'{self.url}/v{threesixty_version}/360-frames'
-            )
-            self.url_map['threesixty_visible_distance'] = (
-                f'{self.url}/v{threesixty_version}/360-frames'
-            )
-            self.valid_match_data.extend(
-                ['threesixty_visible_count', 'threesixty_visible_distance']
-            )
 
     def _match_url(self, competition_id, season_id):
         """Creates a matches url string for a given competition and season.
@@ -674,3 +681,120 @@ class Sbapi(SbBase):
         url : str
         """
         return f'{self.url}/v{self.competitions_version}/competitions'
+
+
+class Sblocal(SbBase):
+    """A class for loading local StatsBomb data
+
+    Parameters
+    ----------
+    competitions_version, matches_version, events_version, lineup_version, threesixty_version : int, defaults 4, 3, 4, 2, 1
+        The StatsBomb data version.
+    database : str, default ':default:'
+        The name of the duckdb database. By default it creates an unnamed in-memory database that lives
+        inside the duckdb module. If the database is a file path, a connection to a persistent database is
+        established, which will be created if it doesn't already exist.
+    duckdb_threads, int, default None
+        The number of threads used by duckdb. The default uses the duckdb default
+    output_format : str, default 'pandas'
+        The format of data that is returned by match_data, competition_data, competitions, and match_data.
+    connection_kws : dict, default None
+        Additional keywords are passed to duckdb.connect.
+    """
+
+    def __init__(
+        self,
+        competitions_version=4,
+        matches_version=3,
+        events_version=4,
+        lineup_version=2,
+        threesixty_version=1,
+        database=':default:',
+        duckdb_threads=None,
+        output_format='pandas',
+        connection_kws=None,
+    ):
+        super().__init__(
+            competitions_version=competitions_version,
+            matches_version=matches_version,
+            events_version=events_version,
+            lineup_version=lineup_version,
+            threesixty_version=threesixty_version,
+            database=database,
+            output_format=output_format,
+            duckdb_threads=duckdb_threads,
+            sql_dir='sql/original',
+            connection_kws=connection_kws,
+        )
+
+    def competitions(self, filename):
+        """StatsBomb competition data.
+
+        Parameters
+        ----------
+        filename : path or list of paths
+
+        Returns
+        -------
+        pandas.DataFrame
+
+        Examples
+        --------
+        >>> from duckstatsbomb import Sblocal
+        >>> parser = Sblocal()
+        >>> competitions = parser.competitions('competitions.json')
+        """
+        return self.con.execute(self.sql['competitions'], {'filename': filename}).df()
+
+    def matches(self, filename):
+        """StatsBomb match data.
+
+        Parameters
+        ----------
+        filename : path or list of paths
+
+        Returns
+        -------
+        pandas.DataFrame
+
+        Examples
+        --------
+        >>> from duckstatsbomb import Sblocal
+        >>> parser = Sblocal()
+        >>> matches = parser.matches('27.json')
+        """
+        return self.con.execute(self.sql['matches'], {'filename': filename}).df()
+
+    def match_data(self, filename, kind):
+        """StatsBomb match event data for the given match_id.
+
+        Parameters
+        ----------
+        filename : path or list of paths
+        kind : str
+            A data type, e.g. 'events'. For a list of valid kind values use the valid_data method.
+
+        Returns
+        -------
+        pandas.DataFrame
+
+        Examples
+        --------
+        >>> from duckstatsbomb import Sblocal
+        >>> parser = Sblocal()
+        >>> events = parser.match_data(['3788741.json', '3788742.json'], kind='events')
+        """
+        self._validate_kind(kind)
+        return self.con.execute(self.sql[kind], {'filename': filename}).df()
+
+    def _match_url(self, competition_id, season_id):
+        """No URLs for local data."""
+        pass
+
+    def _competition_url(self):
+        """No URLs for local data."""
+        pass
+
+    def competition_data(self, competition_id, season_id=None, kind='events'):
+        """Not implemented for Sblocal."""
+        raise NotImplementedError('competition_data has not been implemented for Sblocal')
