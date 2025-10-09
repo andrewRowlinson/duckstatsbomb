@@ -1,18 +1,16 @@
 """`duckstatsbomb.parser` is a python module for loading StatsBomb open-data / API data."""
 
 import duckdb
-from requests_cache import CachedSession
 import collections
 import pkgutil
 import os
 from abc import ABC, abstractmethod
-from concurrent.futures import ThreadPoolExecutor, as_completed
 
 __all__ = ['Sbopen', 'Sbapi', 'Sblocal']
 
 
 class SbBase(ABC):
-    """A base class for parsing StatsBomb open-data/ API data using requests-cache and duckdb.
+    """A base class for parsing StatsBomb open-data/ API data using duckdb.
 
     Parameters
     ----------
@@ -26,22 +24,19 @@ class SbBase(ABC):
         The number of threads used by duckdb. The default uses the duckdb default
     output_format : str, default 'pandas'
         The format of data that is returned by the methods: match_data, competition_data, competitions, and match_data.
-    cache_name : str, default 'statsbomb_cache'
-        Base directory for cache files
-    cache_backend : str, default 'filesystem'
-        The requests-cache backend.
-    removed_expired_responses : bool, default True
-        If True, removes the expired cached responses when instantiating the class.
-    expire_after : int, default 360
-        The number of seconds to store cached responses.
-    requests_max_workers : default None
-        The number of threads to use for requests. The default uses the
-        concurrent.futures.ThreadPoolExecutor default.
+    cache_path : str, default 'statsbomb_cache.bin'
+        The path to store the cache using the DuckDB QuackStore community extension.
+    cache_enabled : bool, default True
+        Enable caching  using the DuckDB QuackStore community extension.
+    cache_size : bool, default None
+        The default if None is 2GB. Set in bytes.
+    cache_mutable : bool, default True
+        If True files are assumed not to change once cached.
+        If false, the cache validates the file freshness on access.
     sql_dir : str, default None
         Automatically set to change the SQL parsing depending on whether the data
         has been cached by requests-cache ('sql/cache') or is in the original format ('sql/original')
-    session_kws : dict, default None
-        Additional keywords are passed to requests_cache.CachedSession.
+
     connection_kws : dict, default None
         Additional keywords are passed to duckdb.connect.
     """
@@ -56,13 +51,11 @@ class SbBase(ABC):
         database=':default:',
         duckdb_threads=None,
         output_format='pandas',
-        cache_name='statsbomb_cache',
-        cache_backend='filesystem',
-        remove_expired_responses=True,
-        expire_after=360,
-        requests_max_workers=None,
+        cache_path='statsbomb_cache.bin',
+        cache_enabled=True,
+        cache_size=None,
+        cache_mutable=False,
         sql_dir=None,
-        session_kws=None,
         connection_kws=None,
     ):
         self.competitions_version = competitions_version
@@ -72,22 +65,16 @@ class SbBase(ABC):
         self.threesixty_version = threesixty_version
         self.output_format = output_format
         self._validation_value_error()
-        if session_kws is None:
-            session_kws = {}
         if connection_kws is None:
             connection_kws = {}
         self.con = duckdb.connect(database=database, **connection_kws)
         if duckdb_threads is not None:
             self.con.execute(f'set threads to {duckdb_threads}')
-        self.session = CachedSession(
-            cache_name=cache_name,
-            backend=cache_backend,
-            expire_after=expire_after,
-            **session_kws,
-        )
-        self.requests_max_workers = requests_max_workers
-        if remove_expired_responses:
-            self.remove_expired_responses()
+        self.cache_path = cache_path
+        self.cache_enabled = cache_enabled
+        self.cache_size = cache_size
+        self.cache_mutable = cache_mutable
+
         # To complete in Sbopen/Sbapi
         self.url = None
         self.sql = None
@@ -95,6 +82,7 @@ class SbBase(ABC):
         self.valid_match_data = None
         self.url_ending = None
         self.sql = {
+            'authenticate': self._get_sql(f'{sql_dir}/authenticate.sql'),
             'competitions': self._get_sql(
                 f'{sql_dir}/competitions/v{competitions_version}/competitions.sql'
             ),
@@ -198,61 +186,6 @@ class SbBase(ABC):
                 f"Invalid argument: currently supported output_formats are: 'pandas'"
             )
 
-    def _request(self, url):
-        """Request and cache a url via requests-cache and return the file path string.
-
-        Parameters
-        ----------
-        url : str
-
-        Returns
-        -------
-        path : str
-        """
-        resp = self.session.get(url)
-        resp.raise_for_status()
-        return str(self.session.cache.cache_dir / f'{resp.cache_key}.json')
-
-    def _request_threaded(self, urls):
-        """Request and cache multiple urls in parallel using requests-cache and
-        ThreadPoolExecutor, and return a list of file path strings.
-
-        Parameters
-        ----------
-        urls : list of str
-
-        Returns
-        -------
-        paths : list of str
-        """
-        with ThreadPoolExecutor(max_workers=self.requests_max_workers) as executor:
-            future_list = [executor.submit(self.session.get, url) for url in urls]
-            filepaths = []
-            for future in as_completed(future_list):
-                resp = future.result()
-                resp.raise_for_status()
-                filepath = str(self.session.cache.cache_dir / f'{resp.cache_key}.json')
-                filepaths.append(filepath)
-            return filepaths
-
-    def _request_get(self, urls):
-        """Request a list of urls with requests-cache.
-        Requests are made in parallel using ThreadPoolExecutor if multiple urls are requested.
-
-
-        Parameters
-        ----------
-        urls : list of str
-
-        Returns
-        -------
-        paths : list of str
-            File paths of the cached responses.
-        """
-        if isinstance(urls, str):
-            return [self._request(urls)]
-        return self._request_threaded(urls)
-
     def _urls(self, match_id, url_slug):
         """Creates a url string from a base url path and a match identifier.
 
@@ -265,11 +198,11 @@ class SbBase(ABC):
 
         Returns
         -------
-        url : str
+        url : list of str
         """
         if isinstance(match_id, collections.abc.Iterable):
             return [f'{url_slug}/{matchid}{self.url_ending}' for matchid in match_id]
-        return f'{url_slug}/{match_id}{self.url_ending}'
+        return [f'{url_slug}/{match_id}{self.url_ending}']
 
     def _validate_kind(self, kind):
         """Validate that the kind of data e.g. 'events' is one of the valid StatsBomb data types.
@@ -305,9 +238,8 @@ class SbBase(ABC):
             A list of tuples. The tuples contain a single match identifier integer.
         """
         url = self._match_url(competition_id, season_id)
-        filename = self._request_get(url)
         return self.con.execute(
-            self.sql['match_ids'], {'filename': filename}
+            self.sql['match_ids'], {'filename': url}
         ).fetchall()
 
     def _competition_matchids(self, competition_id):
@@ -324,15 +256,13 @@ class SbBase(ABC):
             A list of tuples. The tuples contain a single match identifier integer.
         """
         url = self._competition_url()
-        filename = self._request_get(url)
         seasonids = self.con.execute(
             self.sql['season_ids'],
-            {'filename': filename, 'competition_id': competition_id},
+            {'filename': url, 'competition_id': competition_id},
         ).fetchall()
         urls = [self._match_url(row[0], row[1]) for row in seasonids]
-        filename = self._request_get(urls)
         return self.con.execute(
-            self.sql['match_ids'], {'filename': filename}
+            self.sql['match_ids'], {'filename': urls}
         ).fetchall()
 
     def competitions(self):
@@ -349,8 +279,36 @@ class SbBase(ABC):
         >>> competitions = parser.competitions()
         """
         url = self._competition_url()
-        filename = self._request_get(url)
-        return self.con.execute(self.sql['competitions'], {'filename': filename}).df()
+        return self.con.execute(self.sql['competitions'], {'filename': url}).df()
+
+    def clear_competition(self):
+        """Clear competition data from the cache.
+
+        Examples
+        --------
+        >>> from duckstatsbomb import Sbopen
+        >>> parser = Sbopen()
+        >>> events = parser.clear_competition()
+        """
+        url = self._competition_url()
+        return self.con.execute(f"call quackstore_evict_files(['{url}'])")
+
+
+    def _multi_match_url(self, competition_id, season_id):
+        """ Create match urls in a list if multiple competition or season identifiers."""
+        if isinstance(competition_id, collections.abc.Iterable):
+            if len(competition_id) != len(season_id):
+                raise ValueError(
+                    f'competition_id (len = {len(competition_id)}) '
+                    f'and season_id (len = {len(season_id)}) should be the same length'
+                )
+            urls = [
+                self._match_url(comp, season_id[idx])
+                for idx, comp in enumerate(competition_id)
+            ]
+        else:
+            urls = [self._match_url(competition_id, season_id)]
+        return urls
 
     def matches(self, competition_id, season_id):
         """StatsBomb match data.
@@ -369,20 +327,20 @@ class SbBase(ABC):
         >>> parser = Sbopen()
         >>> matches = parser.matches(11, 1)
         """
-        if isinstance(competition_id, collections.abc.Iterable):
-            if len(competition_id) != len(season_id):
-                raise ValueError(
-                    f'competition_id (len = {len(competition_id)}) '
-                    f'and season_id (len = {len(season_id)}) should be the same length'
-                )
-            urls = [
-                self._match_url(comp, season_id[idx])
-                for idx, comp in enumerate(competition_id)
-            ]
-        else:
-            urls = self._match_url(competition_id, season_id)
-        filename = self._request_get(urls)
-        return self.con.execute(self.sql['matches'], {'filename': filename}).df()
+        urls = self._multi_match_url(competition_id, season_id)
+        return self.con.execute(self.sql['matches'], {'filename': urls}).df()
+
+    def clear_matches(self, competition_id, season_id):
+        """Clear match data from the cache.
+
+        Examples
+        --------
+        >>> from duckstatsbomb import Sbopen
+        >>> parser = Sbopen()
+        >>> events = parser.clear_matches(11, 1)
+        """
+        urls = self._multi_match_url(competition_id, season_id)
+        return self.con.execute(f'call quackstore_evict_files({urls})')
 
     def valid_data(self):
         """Returns a list of valid data types
@@ -414,8 +372,26 @@ class SbBase(ABC):
         """
         self._validate_kind(kind)
         urls = self._urls(match_id, url_slug=self.url_map[kind])
-        filename = self._request_get(urls)
-        return self.con.execute(self.sql[kind], {'filename': filename}).df()
+        return self.con.execute(self.sql[kind], {'filename': urls}).df()
+
+    def clear_match_data(self, match_id, kind):
+        """Clear event data from the cache for a given match_id.
+
+        Parameters
+        ----------
+        match_id : int or list of int
+        kind : str
+            A data type, e.g. 'events'. For a list of valid kind values use the valid_data method.
+
+        Examples
+        --------
+        >>> from duckstatsbomb import Sbopen
+        >>> parser = Sbopen()
+        >>> events = parser.clear_match_data([3788741, 3788742], kind='events')
+        """
+        self._validate_kind(kind)
+        urls = self._urls(match_id, url_slug=self.url_map[kind])
+        return self.con.execute(f'call quackstore_evict_files({urls})')
 
     def competition_data(self, competition_id, season_id=None, kind='events'):
         """StatsBomb match event for all matches in a competitition.
@@ -446,20 +422,25 @@ class SbBase(ABC):
             f'{self.url_map[kind]}/{matchid[0]}{self.url_ending}'
             for matchid in match_id
         ]
-        filename = self._request_get(urls)
-        return self.con.execute(self.sql[kind], {'filename': filename}).df()
+        return self.con.execute(self.sql[kind], {'filename': urls}).df()
+
+    def setup_cache(self):
+        """ Setup the duckdb community extension quackstore for caching data."""
+        self.con.execute('install quackstore from community;')
+        self.con.execute('load quackstore;')
+        self.con.execute(f"set global quackstore_cache_path = '{self.cache_path}';")
+        self.con.execute('set global quackstore_cache_enabled = true;')
+        self.con.execute(f'set quackstore_data_mutable = {self.cache_mutable};')
+        if self.cache_size:
+            self.con.execute(f'set global quackstore_cache_size = {self.cache_size};')
+
+    def clear_cache(self):
+        """ Clear the quackstore community extension cache."""
+        self.con.execute('call quackstore_clear_cache();')
 
     def close_connection(self):
         """Close the duckdb connection."""
         self.con.close()
-
-    def remove_expired_responses(self):
-        """Remove expired responses from the cache."""
-        self.session.cache.remove_expired_responses()
-
-    def clear_cache(self):
-        """Clear the cache."""
-        self.session.cache.clear()
 
 
 class Sbopen(SbBase):
@@ -479,19 +460,15 @@ class Sbopen(SbBase):
         The number of threads used by duckdb. The default uses the duckdb default
     output_format : str, default 'pandas'
         The format of data that is returned by match_data, competition_data, competitions, and match_data.
-    cache_name : str, default 'statsbomb_cache'
-        Base directory for cache files
-    cache_backend : str, default 'filesystem'
-        The requests-cache backend.
-    removed_expired_responses : bool, default True
-        If True, removes the expired cached responses when instantiating the class.
-    expire_after : int, default 360
-        The number of seconds to store cached responses.
-    requests_max_workers : default None
-        The number of threads to use for requests. The default uses the
-        concurrent.futures.ThreadPoolExecutor default.
-    session_kws : dict, default None
-        Additional keywords are passed to requests_cache.CachedSession.
+    cache_path : str, default 'statsbomb_cache.bin'
+        The path to store the cache using the DuckDB QuackStore community extension.
+    cache_enabled : bool, default True
+        Enable caching  using the DuckDB QuackStore community extension.
+    cache_size : bool, default None
+        The default if None is 2GB. Set in bytes.
+    cache_mutable : bool, default True
+        If True files are assumed not to change once cached.
+        If false, the cache validates the file freshness on access.
     connection_kws : dict, default None
         Additional keywords are passed to duckdb.connect.
     """
@@ -506,12 +483,10 @@ class Sbopen(SbBase):
         database=':default:',
         duckdb_threads=None,
         output_format='pandas',
-        cache_name='statsbomb_cache',
-        cache_backend='filesystem',
-        remove_expired_responses=True,
-        expire_after=360,
-        requests_max_workers=None,
-        session_kws=None,
+        cache_path='statsbomb_cache.bin',
+        cache_enabled=True,
+        cache_size=None,
+        cache_mutable=False,
         connection_kws=None,
     ):
         super().__init__(
@@ -521,19 +496,21 @@ class Sbopen(SbBase):
             lineup_version=lineup_version,
             threesixty_version=threesixty_version,
             database=database,
-            output_format=output_format,
-            cache_name=cache_name,
-            cache_backend=cache_backend,
-            remove_expired_responses=remove_expired_responses,
-            expire_after=expire_after,
-            requests_max_workers=requests_max_workers,
             duckdb_threads=duckdb_threads,
-            sql_dir='sql/cache',
-            session_kws=session_kws,
+            output_format=output_format,
+            cache_path=cache_path,
+            cache_enabled=cache_enabled,
+            cache_size=cache_size,
+            cache_mutable=cache_mutable,
+            sql_dir='sql',
             connection_kws=connection_kws,
         )
         self.url_ending = '.json'
-        self.url = 'https://raw.githubusercontent.com/statsbomb/open-data/master/data'
+        if self.cache_enabled:
+            self.setup_cache()
+            self.url = 'quackstore://https://raw.githubusercontent.com/statsbomb/open-data/master/data'
+        else:
+            self.url = 'https://raw.githubusercontent.com/statsbomb/open-data/master/data'
         self.url_map = {
             'lineup_players': f'{self.url}/lineups',
             'events': f'{self.url}/events',
@@ -588,19 +565,15 @@ class Sbapi(SbBase):
         The number of threads used by duckdb. The default uses the duckdb default
     output_format : str, default 'pandas'
         The format of data that is returned by the methods: match_data, competition_data, competitions, and match_data.
-    cache_name : str, default 'statsbomb_cache'
-        Base directory for cache files
-    cache_backend : str, default 'filesystem'
-        The requests-cache backend.
-    removed_expired_responses : bool, default True
-        If True, removes the expired cached responses when instantiating the class.
-    expire_after : int, default 360
-        The number of seconds to store cached responses.
-    requests_max_workers : default None
-        The number of threads to use for requests. The default uses the
-        concurrent.futures.ThreadPoolExecutor default.
-    session_kws : dict, default None
-        Additional keywords are passed to requests_cache.CachedSession.
+    cache_path : str, default 'statsbomb_cache.bin'
+        The path to store the cache using the DuckDB QuackStore community extension.
+    cache_enabled : bool, default True
+        Enable caching  using the DuckDB QuackStore community extension.
+    cache_size : bool, default None
+        The default if None is 2GB. Set in bytes.
+    cache_mutable : bool, default True
+        If True files are assumed not to change once cached.
+        If false, the cache validates the file freshness on access.
     connection_kws : dict, default None
         Additional keywords are passed to duckdb.connect.
     """
@@ -617,12 +590,10 @@ class Sbapi(SbBase):
         database=':default:',
         duckdb_threads=None,
         output_format='pandas',
-        cache_name='statsbomb_cache',
-        cache_backend='filesystem',
-        remove_expired_responses=True,
-        expire_after=360,
-        requests_max_workers=None,
-        session_kws=None,
+        cache_path='statsbomb_cache.bin',
+        cache_enabled=True,
+        cache_size=None,
+        cache_mutable=False,
         connection_kws=None,
     ):
         super().__init__(
@@ -632,23 +603,26 @@ class Sbapi(SbBase):
             lineup_version=lineup_version,
             threesixty_version=threesixty_version,
             database=database,
-            output_format=output_format,
-            cache_name=cache_name,
-            cache_backend=cache_backend,
-            remove_expired_responses=remove_expired_responses,
-            expire_after=expire_after,
-            requests_max_workers=requests_max_workers,
             duckdb_threads=duckdb_threads,
-            sql_dir='sql/cache',
-            session_kws=session_kws,
+            output_format=output_format,
+            cache_path=cache_path,
+            cache_enabled=cache_enabled,
+            cache_size=cache_size,
+            cache_mutable=cache_mutable,
+            sql_dir='sql',
             connection_kws=connection_kws,
         )
         self.url_ending = ''
-        self.session.auth = (
-            os.environ.get('SB_USERNAME', sb_username),
-            os.environ.get('SB_PASSWORD', sb_password),
-        )
         self.url = 'https://data.statsbombservices.com/api'
+        self.con.execute(self.sql['authenticate'],
+                         {'url': self.url,
+                          'username': os.environ.get('SB_USERNAME', sb_username),
+                          'password': os.environ.get('SB_PASSWORD', sb_password)}
+                          )
+        if self.cache_enabled:
+            self.setup_cache()
+            self.url = f'quackstore://{self.url}'
+
         self.url_map = {
             'lineup_players': f'{self.url}/v{lineup_version}/lineups',
             'events': f'{self.url}/v{events_version}/events',
@@ -723,7 +697,7 @@ class Sblocal(SbBase):
             database=database,
             output_format=output_format,
             duckdb_threads=duckdb_threads,
-            sql_dir='sql/original',
+            sql_dir='sql',
             connection_kws=connection_kws,
         )
 
