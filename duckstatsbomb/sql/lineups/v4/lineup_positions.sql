@@ -1,31 +1,25 @@
 with raw_json as (
     select
-        url,
-        unnest(
-            from_json(
-                json(_decoded_content),
-                '[{"team_id": "integer",
+        *
+    from
+        read_json(
+            $filename,
+            filename = true,
+            format = 'array',
+            columns = {"team_id": "integer",
                    "team_name": "varchar",
                    "lineup": "struct(player_id ubigint, player_name varchar, positions struct(position_id ubigint, position varchar, \"from\" time, \"to\" time, from_period ubigint, to_period ubigint, start_reason varchar, end_reason varchar)[])[]"
-                   }]'
+                   }
             )
-        ) as json
-    from
-        (
-            select
-                *
-            from
-                read_json($filename)
-        )
 ),
 final as (
     select
         cast(split(split(url, '/') [-1], '.') [1] as integer) as match_id,
-        json.team_id,
-        json.team_name,
-        unnest(json.lineup).player_id as player_id,
-        unnest(json.lineup).player_name as player_name,
-        unnest(json.lineup).positions as positions
+        team_id,
+        team_name,
+        unnest(lineup).player_id as player_id,
+        unnest(lineup).player_name as player_name,
+        unnest(lineup).positions as positions
     from
         raw_json
 )
