@@ -106,8 +106,8 @@ class SbBase(ABC):
         self.cache_url = None
         self.url_map = None
         self.url_ending = None
+        self.sql_dir = sql_dir
         self.sql = {
-            'authenticate': self._get_sql(f'{sql_dir}/authenticate.sql'),
             'competitions': self._get_sql(
                 f'{sql_dir}/competitions/v{competitions_version}/competitions.sql'
             ),
@@ -366,6 +366,8 @@ class SbBase(ABC):
         list of str
         """
         if isinstance(competition_id, collections.abc.Iterable):
+            if not isinstance(season_id, collections.abc.Iterable):
+                raise ValueError('season_id should be a list when competition_id is a list')
             if len(competition_id) != len(season_id):
                 raise ValueError(
                     f'competition_id (len = {len(competition_id)}) '
@@ -451,7 +453,7 @@ class SbBase(ABC):
         """
         self._validate_kind(kind)
         urls = self._urls(match_id, url_slug=self.url_map[kind])
-        self.con.execute(f'call quackstore_evict_files({urls})')
+        self.con.execute('call quackstore_evict_files($urls)', {'urls': urls})
 
     def competition_data(self, competition_id, season_id=None, kind='events'):
         """Hudl StatsBomb match event for all matches in a competitition.
@@ -480,7 +482,7 @@ class SbBase(ABC):
             match_id = self._competition_matchids(competition_id)
         else:
             match_id = self._competition_season_matchids(competition_id, season_id)
-        urls = [f'{self.url_map[kind]}/{matchid[0]}{self.url_ending}' for matchid in match_id]
+        urls = self._urls([matchid[0] for matchid in match_id], url_slug=self.url_map[kind])
         relation = self._execute(self.sql[kind], urls)
         relation = self._with_loaded_at(relation)
         return self._format_output(relation)
@@ -551,11 +553,11 @@ class SbBase(ABC):
                 stacklevel=3,
             )
             return
-        self.con.execute(f"set global quackstore_cache_path = '{self.cache_path}';")
+        self.con.execute('set global quackstore_cache_path = $path;', {'path': self.cache_path})
         self.con.execute('set global quackstore_cache_enabled = true;')
-        self.con.execute(f'set quackstore_data_mutable = {self.cache_mutable};')
+        self.con.execute('set quackstore_data_mutable = $mutable;', {'mutable': self.cache_mutable})
         if self.cache_size:
-            self.con.execute(f'set global quackstore_cache_size = {self.cache_size};')
+            self.con.execute('set global quackstore_cache_size = $size;', {'size': self.cache_size})
 
     def _cache_url(self, url):
         """Setup the cache, and return the url to read through.
@@ -768,6 +770,7 @@ class Sbapi(SbBase):
         )
         self.url_ending = ''
         self.url = url
+        self.sql['authenticate'] = self._get_sql(f'{self.sql_dir}/authenticate.sql')
         self._authenticate(sb_username, sb_password)
         self.cache_url = self._cache_url(self.url)
 
@@ -1003,3 +1006,11 @@ class Sblocal(SbBase):
     def stale_matches(self, data, competition_id, season_id, kind='events'):
         """Not implemented for Sblocal, as local files carry no download time."""
         raise NotImplementedError('stale_matches has not been implemented for Sblocal')
+
+    def clear_match_data(self, match_id, kind):
+        """Not implemented for Sblocal, as local files are not cached."""
+        raise NotImplementedError('clear_match_data has not been implemented for Sblocal')
+
+    def clear_cache(self):
+        """Not implemented for Sblocal, as local files are not cached."""
+        raise NotImplementedError('clear_cache has not been implemented for Sblocal')
