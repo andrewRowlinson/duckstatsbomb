@@ -171,3 +171,4 @@ docs/source/sg_execution_times.rst
 example/
 
 .claude/
+*.ipynb
