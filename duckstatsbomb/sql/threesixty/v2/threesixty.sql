@@ -17,7 +17,7 @@ with raw_json as (
         )
 )
 select
-    cast(split(split(url, '/') [-1], '.') [1] as integer) as match_id,
+    cast(split(split(filename, '/') [-1], '.') [1] as integer) as match_id,
     event_uuid,
     visible_area,
     line_breaking_pass,

@@ -12,7 +12,7 @@ with raw_json as (
         )
 )
 select
-    cast(split(split(url, '/') [-1], '.') [1] as integer) as match_id,
+    cast(split(split(filename, '/') [-1], '.') [1] as integer) as match_id,
     event_uuid,
     unnest(visible_player_counts).team_id as team_id,
     unnest(visible_player_counts).count as visible_player_count,

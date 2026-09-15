@@ -13,7 +13,7 @@ with raw_json as (
 ),
 final as (
 select
-        cast(split(split(url, '/') [-1], '.') [1] as integer) as match_id,
+        cast(split(split(filename, '/') [-1], '.') [1] as integer) as match_id,
         event_uuid,
         unnest(freeze_frame).location[1] as x,
         unnest(freeze_frame).location[2] as y,

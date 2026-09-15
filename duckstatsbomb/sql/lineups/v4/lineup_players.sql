@@ -8,13 +8,13 @@ with raw_json as (
             format = 'array',
             columns = {"team_id": "integer",
                    "team_name": "varchar",
-                   "lineup": "struct(player_id ubigint, player_name varchar, player_nickname varchar, player_gender varchar, player_weight double, player_height double, birth_date date, jersey_number ubigint, country struct(id ubigint, name varchar), \"stats\" json)[]"
+                   "lineup": 'struct(player_id ubigint, player_name varchar, player_nickname varchar, player_gender varchar, player_weight double, player_height double, birth_date date, jersey_number ubigint, country struct(id ubigint, name varchar), "stats" json)[]'
                    }
             )
 ),
 final as (
     select
-        cast(split(split(url, '/') [-1], '.') [1] as integer) as match_id,
+        cast(split(split(filename, '/') [-1], '.') [1] as integer) as match_id,
         team_id,
         team_name,
         unnest(lineup).player_id as player_id,
