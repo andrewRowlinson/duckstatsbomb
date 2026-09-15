@@ -162,3 +162,10 @@ cython_debug/
 
 statsbomb_cache.bin
 uv.lock
+
+# sphinx-gallery generated output
+docs/source/gallery/
+docs/source/sg_execution_times.rst
+
+# StatsBomb data for the tests
+example/

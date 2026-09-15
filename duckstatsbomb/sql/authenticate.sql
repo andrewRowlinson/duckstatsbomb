@@ -1,6 +1,6 @@
-create secret http_proxy (
+create or replace secret statsbomb (
     type http,
-    http_proxy $url,
-    http_proxy_username $username,
-    http_proxy_password $password
+    scope getvariable('sb_scope'),
+    extra_http_headers map{'Authorization': getvariable('sb_authorization'),
+                           'User-Agent': getvariable('sb_user_agent')}
 );
