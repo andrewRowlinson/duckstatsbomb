@@ -160,7 +160,7 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-statsbomb_cache.bin
+statsbomb_cache/
 uv.lock
 
 # sphinx-gallery generated output
