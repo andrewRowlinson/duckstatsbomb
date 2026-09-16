@@ -8,7 +8,7 @@ with raw_json as (
             format = 'array',
             columns = {"team_id": "integer",
                    "team_name": "varchar",
-                   "lineup": 'struct(player_id ubigint, player_name varchar, player_nickname varchar, player_gender varchar, player_weight double, player_height double, birth_date date, jersey_number ubigint, country struct(id ubigint, name varchar), "stats" json)[]'
+                   "lineup": 'struct(player_id ubigint, player_name varchar, player_nickname varchar, player_gender varchar, player_weight double, player_height double, birth_date date, jersey_number ubigint, country struct(id ubigint, name varchar), "stats" json, "skills" json)[]'
                    }
             )
 ),
@@ -33,7 +33,10 @@ final as (
         cast(json_extract(unnest(lineup).stats, '/assists') as integer) as assists,
         cast(json_extract(unnest(lineup).stats, '/penalties_scored') as integer) as penalties_scored,
         cast(json_extract(unnest(lineup).stats, '/penalties_missed') as integer) as penalties_missed,
-        cast(json_extract(unnest(lineup).stats, '/penalties_saved') as integer) as penalties_saved
+        cast(json_extract(unnest(lineup).stats, '/penalties_saved') as integer) as penalties_saved,
+        -- skills is read as json for the same reason as stats
+        cast(json_extract(unnest(lineup).skills, '/HOPS/rating') as double) as hops_rating,
+        cast(json_extract(unnest(lineup).skills, '/HOPS/raw_rating') as double) as hops_raw_rating
     from
         raw_json
 )
