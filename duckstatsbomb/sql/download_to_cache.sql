@@ -1,7 +1,7 @@
--- Download files in parallel through duckdb as raw JSON.
--- the maximum object size is chosen as 128mb to be larger than the typical Hudl StatsBomb file.
+-- One row per file: its url and its JSON as raw text
+-- The maximum object size of 128mb is larger than any Hudl StatsBomb file.
 select
-    filename,
+    filename as url,
     json::varchar as content
 from
     read_json_objects(
