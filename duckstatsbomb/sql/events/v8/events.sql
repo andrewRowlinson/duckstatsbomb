@@ -121,7 +121,7 @@ final as (
         block.save_block as block_save_block,
         dribble.overrun as dribble_overrun,
         dribble.nutmeg as dribble_nutmeg,
-        coalesce(foul_committed.advantage, foul_won.advantage) as foul_advantage,
+        coalesce(foul_committed.advantage, foul_won.advantage) as advantage,
         coalesce(foul_committed.penalty, foul_won.penalty) as foul_penalty,
         foul_committed.card.id as foul_card_id,
         foul_committed.card.name as foul_card_name,
