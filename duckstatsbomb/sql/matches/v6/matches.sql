@@ -87,24 +87,8 @@ final as (
         match_week,
         competition_stage.id as competition_stage_id,
         competition_stage.name as competition_stage_name,
-        case
-            when last_updated is null then null
-            else cast(
-                left(
-                    concat(replace(last_updated, 'T', ' '), ':00'),
-                    19
-                ) as timestamp
-            )
-        end as last_updated,
-        case
-            when last_updated_360 is null then null
-            else cast(
-                left(
-                    concat(replace(last_updated_360, 'T', ' '), ':00'),
-                    19
-                ) as timestamp
-            )
-        end as last_updated_360,
+        cast(last_updated as timestamp) as last_updated,
+        cast(last_updated_360 as timestamp) as last_updated_360,
         metadata.data_version as metadata_data_version,
         metadata.shot_fidelity_version as metadata_shot_fidelity_version,
         metadata.xy_fidelity_version as metadata_xy_fidelity_version

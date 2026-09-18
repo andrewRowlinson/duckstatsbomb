@@ -40,12 +40,8 @@ parsed_json as (
 final as (
     select
         * replace(
-        case when match_updated is null then null else
-        cast(left(concat(replace(match_updated, 'T', ' '), ':00'), 19) as timestamp)
-        end as match_updated,
-        case when match_available is null then null
-        else cast(left(concat(replace(match_available, 'T', ' '), ':00'), 19) as timestamp)
-        end as match_available,
+        cast(match_updated as timestamp) as match_updated,
+        cast(match_available as timestamp) as match_available,
         cast(match_available_360 as timestamp) as match_available_360,
         cast(match_updated_360 as timestamp) as match_updated_360
         )
