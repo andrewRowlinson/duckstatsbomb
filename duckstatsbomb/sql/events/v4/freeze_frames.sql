@@ -15,7 +15,7 @@ with raw_json as (
 final as (
     select
         cast(
-            split(split(filename, '/') [-1], '.') [1] as integer
+            parse_filename(filename, true, 'both_slash') as integer
         ) as match_id,
         id as event_uuid,
         unnest(shot.freeze_frame).location [1] as x,

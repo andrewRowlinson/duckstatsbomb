@@ -14,7 +14,7 @@ with raw_json as (
 ),
 final as (
     select
-        cast(split(split(filename, '/') [-1], '.') [1] as integer) as match_id,
+        cast(parse_filename(filename, true, 'both_slash') as integer) as match_id,
         team_id,
         team_name,
         unnest(lineup).player_id as player_id,
