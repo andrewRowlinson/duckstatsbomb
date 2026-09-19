@@ -6,9 +6,10 @@ How a parser with cache_enabled=True loads match data:
 
 1. The parser turns each url into a key, e.g. 'v4/events/3788741.json', and
    asks the cache for the missing keys.
-2. The parser looks up the urls of the missing keys and passes them to DuckDB,
-   which downloads the files in parallel. DuckDB streams one row per file, with
-   a url column and a content column (JSON as a string), e.g.
+2. The parser looks up the urls of the missing keys and passes them to DuckDB
+   in batches of one file per thread, which DuckDB downloads in parallel. Each
+   batch returns one row per file, with a url column and a content column
+   (JSON as a string), e.g.
 
    ==================================  ===================================
    url                                 content
