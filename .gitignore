@@ -161,6 +161,7 @@ cython_debug/
 #.idea/
 
 statsbomb_cache/
+statsbomb_cache.bin
 uv.lock
 
 # sphinx-gallery generated output
