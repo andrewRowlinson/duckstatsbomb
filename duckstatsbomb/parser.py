@@ -1,4 +1,4 @@
-"""A module for loading Hudl StatsBomb open-data, local, or API data."""
+"""A module for loading Hudl StatsBomb open-data, files, or API data."""
 
 import base64
 import collections
@@ -36,8 +36,8 @@ SUPPORTED_VERSIONS = {
 }
 
 # Each kind of match data: the StatsBomb file it is parsed from ('events', 'lineups' or
-# 'threesixty'), the SQL file that parses it, and the first version of the source file
-# to carry it. A kind is only offered when the parser's version is at least min_version.
+# 'threesixty'), the SQL file that parses it, and the minimum version of the source file
+# to support it. A kind is only offered when the parser's version is at least min_version.
 Kind = collections.namedtuple('Kind', ['source', 'sql', 'min_version'])
 KINDS = {
     'lineup_players': Kind(source='lineups', sql='lineup_players', min_version=1),
@@ -74,11 +74,12 @@ class SbBase:
         The format of data that is returned: 'relation', 'pandas', 'polars' or 'arrow'.
     progress_bar : bool, default False
         Show DuckDB's progress bar for queries that take longer than two seconds.
-    sql_dir : str, default None
-        The directory of SQL files within the package. Set by the subclasses.
     connection_kws : dict, default None
         Additional keywords are passed to duckdb.connect.
     """
+
+    # the directory of SQL files within the package
+    sql_dir = 'sql'
 
     def __init__(
         self,
@@ -91,7 +92,6 @@ class SbBase:
         duckdb_threads=None,
         output_format='relation',
         progress_bar=False,
-        sql_dir=None,
         connection_kws=None,
     ):
         self.competitions_version = competitions_version
@@ -105,19 +105,18 @@ class SbBase:
             connection_kws = {}
         self.con = duckdb.connect(database=database, **connection_kws)
         if duckdb_threads is not None:
-            self.con.execute(f'set threads to {duckdb_threads}')
+            self.con.execute('set threads to $threads', {'threads': duckdb_threads})
         self.duckdb_threads = self.con.execute("select current_setting('threads')").fetchone()[0]
         self.progress_bar = bool(progress_bar)
         self.con.execute(f'set enable_progress_bar = {str(self.progress_bar).lower()}')
 
-        self.sql_dir = sql_dir
         self.sql = {
             'competitions': self._get_sql(
-                f'{sql_dir}/competitions/v{competitions_version}/competitions.sql'
+                f'{self.sql_dir}/competitions/v{competitions_version}/competitions.sql'
             ),
-            'matches': self._get_sql(f'{sql_dir}/matches/v{matches_version}/matches.sql'),
-            'match_ids': self._get_sql(f'{sql_dir}/matches/match_ids.sql'),
-            'season_ids': self._get_sql(f'{sql_dir}/competitions/season_ids.sql'),
+            'matches': self._get_sql(f'{self.sql_dir}/matches/v{matches_version}/matches.sql'),
+            'match_ids': self._get_sql(f'{self.sql_dir}/matches/match_ids.sql'),
+            'season_ids': self._get_sql(f'{self.sql_dir}/competitions/season_ids.sql'),
         }
 
         # the kinds of match data these versions carry, mapped to their source file
@@ -133,7 +132,9 @@ class SbBase:
         }
         for kind, source in self._kinds.items():
             version = self._source_versions[source]
-            self.sql[kind] = self._get_sql(f'{sql_dir}/{source}/v{version}/{KINDS[kind].sql}.sql')
+            self.sql[kind] = self._get_sql(
+                f'{self.sql_dir}/{source}/v{version}/{KINDS[kind].sql}.sql'
+            )
 
     def _validation_value_error(self):
         """Validates the data version numbers and the output format"""
@@ -310,8 +311,6 @@ class SbRemote(SbBase, ABC):
         CacheBase subclass to cache elsewhere, e.g. in an object store.
     progress_bar : bool, default False
         Show DuckDB's progress bar for queries that take longer than two seconds.
-    sql_dir : str, default None
-        The directory of SQL files within the package. Set by the subclasses.
     connection_kws : dict, default None
         Additional keywords are passed to duckdb.connect.
     """
@@ -330,7 +329,6 @@ class SbRemote(SbBase, ABC):
         cache_path='statsbomb_cache',
         cache=None,
         progress_bar=False,
-        sql_dir=None,
         connection_kws=None,
     ):
         super().__init__(
@@ -343,14 +341,13 @@ class SbRemote(SbBase, ABC):
             duckdb_threads=duckdb_threads,
             output_format=output_format,
             progress_bar=progress_bar,
-            sql_dir=sql_dir,
             connection_kws=connection_kws,
         )
         self.cache_enabled = cache_enabled
         self.cache_path = cache_path
         self.cache = LocalCache(cache_path) if cache is None else cache
-        self.sql['download_to_cache'] = self._get_sql(f'{sql_dir}/download_to_cache.sql')
-        self.sql['cached_files'] = self._get_sql(f'{sql_dir}/cached_files.sql')
+        self.sql['download_to_cache'] = self._get_sql(f'{self.sql_dir}/download_to_cache.sql')
+        self.sql['cached_files'] = self._get_sql(f'{self.sql_dir}/cached_files.sql')
 
         # To complete in Sbopen/Sbapi
         self.url = None
@@ -366,8 +363,9 @@ class SbRemote(SbBase, ABC):
             Maps each source file ('events', 'lineups' and 'threesixty') to its url
             path, e.g. 'v8/events'.
         """
-        # Called by the subclasses once self.url is known. Every kind gets the url of
-        # its source, so a kind added for a newer version needs no url of its own.
+        # Subclasses call this after setting self.url. Several kinds (e.g. events and
+        # related_events) come from the same source file, so they share its url rather
+        # than each needing one of their own.
         self.url_map = {kind: f'{self.url}/{slugs[source]}' for kind, source in self._kinds.items()}
 
     @abstractmethod
@@ -534,7 +532,7 @@ class SbRemote(SbBase, ABC):
         int
         """
         # must agree with parse_filename in the SQL, as loaded_at is joined on match_id
-        return int(Path(path).name.partition('.')[0])
+        return int(Path(path).stem)
 
     def _with_loaded_at(self, relation, keys=None):
         """Add a loaded_at column, the UTC time the data was fetched.
@@ -557,6 +555,8 @@ class SbRemote(SbBase, ABC):
         # a cached match keeps the loaded_at of its download rather than of this read,
         # as that is the time stale_matches compares with StatsBomb's last_updated
         modified = self.cache.modified_at(dict.fromkeys(keys))
+        # binding params materializes this relation, unlike _execute, but it is only
+        # one row per match so that is cheap. The match data it joins stays lazy.
         downloaded = self.con.sql(
             'select unnest($match_ids) as match_id, unnest($loaded_at) as loaded_at',
             params={
@@ -756,8 +756,8 @@ class SbRemote(SbBase, ABC):
         glob = self.cache.glob()
         if glob is None:
             relation = self.con.sql(
-                'select path, size, downloaded_at from (select null::varchar as path, '
-                'null::bigint as size, null::timestamp as downloaded_at) where false'
+                'select null::varchar as path, null::bigint as size, '
+                'null::timestamp as downloaded_at where false'
             )
         else:
             relation = self._execute(self.sql['cached_files'], glob)
@@ -825,7 +825,6 @@ class Sbopen(SbRemote):
             cache_path=cache_path,
             cache=cache,
             progress_bar=progress_bar,
-            sql_dir='sql',
             connection_kws=connection_kws,
         )
         self.url_ending = '.json'
@@ -926,7 +925,6 @@ class Sbapi(SbRemote):
             cache_path=cache_path,
             cache=cache,
             progress_bar=progress_bar,
-            sql_dir='sql',
             connection_kws=connection_kws,
         )
         self.url_ending = ''
@@ -1077,7 +1075,6 @@ class Sbfiles(SbBase):
             output_format=output_format,
             duckdb_threads=duckdb_threads,
             progress_bar=progress_bar,
-            sql_dir='sql',
             connection_kws=connection_kws,
         )
 
