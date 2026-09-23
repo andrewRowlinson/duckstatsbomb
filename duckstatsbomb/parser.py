@@ -72,8 +72,6 @@ class SbBase:
         The number of threads used by DuckDB. The default uses the DuckDB default.
     output_format : str, default 'relation'
         The format of data that is returned: 'relation', 'pandas', 'polars' or 'arrow'.
-    progress_bar : bool, default False
-        Show DuckDB's progress bar for queries that take longer than two seconds.
     connection_kws : dict, default None
         Additional keywords are passed to duckdb.connect.
     """
@@ -91,7 +89,6 @@ class SbBase:
         database=':memory:',
         duckdb_threads=None,
         output_format='relation',
-        progress_bar=False,
         connection_kws=None,
     ):
         self.competitions_version = competitions_version
@@ -107,8 +104,6 @@ class SbBase:
         if duckdb_threads is not None:
             self.con.execute('set threads to $threads', {'threads': duckdb_threads})
         self.duckdb_threads = self.con.execute("select current_setting('threads')").fetchone()[0]
-        self.progress_bar = bool(progress_bar)
-        self.con.execute(f'set enable_progress_bar = {str(self.progress_bar).lower()}')
 
         self.sql = {
             'competitions': self._get_sql(
@@ -309,8 +304,6 @@ class SbRemote(SbBase, ABC):
     cache : duckstatsbomb.cache.CacheBase, default None
         The cache backend. The default is a local cache at cache_path. Pass a
         CacheBase subclass to cache elsewhere, e.g. in an object store.
-    progress_bar : bool, default False
-        Show DuckDB's progress bar for queries that take longer than two seconds.
     connection_kws : dict, default None
         Additional keywords are passed to duckdb.connect.
     """
@@ -328,7 +321,6 @@ class SbRemote(SbBase, ABC):
         cache_enabled=True,
         cache_path='statsbomb_cache',
         cache=None,
-        progress_bar=False,
         connection_kws=None,
     ):
         super().__init__(
@@ -340,7 +332,6 @@ class SbRemote(SbBase, ABC):
             database=database,
             duckdb_threads=duckdb_threads,
             output_format=output_format,
-            progress_bar=progress_bar,
             connection_kws=connection_kws,
         )
         self.cache_enabled = cache_enabled
@@ -795,8 +786,6 @@ class Sbopen(SbRemote):
     cache : duckstatsbomb.cache.CacheBase, default None
         The cache backend. The default is a local cache at cache_path. Pass a
         CacheBase subclass to cache elsewhere, e.g. in an object store.
-    progress_bar : bool, default False
-        Show DuckDB's progress bar for queries that take longer than two seconds.
     connection_kws : dict, default None
         Additional keywords are passed to duckdb.connect.
     """
@@ -809,7 +798,6 @@ class Sbopen(SbRemote):
         cache_enabled=True,
         cache_path='statsbomb_cache',
         cache=None,
-        progress_bar=False,
         connection_kws=None,
     ):
         super().__init__(
@@ -824,7 +812,6 @@ class Sbopen(SbRemote):
             cache_enabled=cache_enabled,
             cache_path=cache_path,
             cache=cache,
-            progress_bar=progress_bar,
             connection_kws=connection_kws,
         )
         self.url_ending = '.json'
@@ -887,8 +874,6 @@ class Sbapi(SbRemote):
         CacheBase subclass to cache elsewhere, e.g. in an object store.
     url : str, default 'https://data.statsbombservices.com/api'
         The base url of the Hudl StatsBomb API.
-    progress_bar : bool, default False
-        Show DuckDB's progress bar for queries that take longer than two seconds.
     connection_kws : dict, default None
         Additional keywords are passed to duckdb.connect.
     """
@@ -909,7 +894,6 @@ class Sbapi(SbRemote):
         cache_path='statsbomb_cache',
         cache=None,
         url='https://data.statsbombservices.com/api',
-        progress_bar=False,
         connection_kws=None,
     ):
         super().__init__(
@@ -924,7 +908,6 @@ class Sbapi(SbRemote):
             cache_enabled=cache_enabled,
             cache_path=cache_path,
             cache=cache,
-            progress_bar=progress_bar,
             connection_kws=connection_kws,
         )
         self.url_ending = ''
@@ -1046,8 +1029,6 @@ class Sbfiles(SbBase):
         The number of threads used by DuckDB. The default uses the DuckDB default
     output_format : str, default 'relation'
         The format of data that is returned: 'relation', 'pandas', 'polars' or 'arrow'.
-    progress_bar : bool, default False
-        Show DuckDB's progress bar for queries that take longer than two seconds.
     connection_kws : dict, default None
         Additional keywords are passed to duckdb.connect.
     """
@@ -1062,7 +1043,6 @@ class Sbfiles(SbBase):
         database=':memory:',
         duckdb_threads=None,
         output_format='relation',
-        progress_bar=False,
         connection_kws=None,
     ):
         super().__init__(
@@ -1074,7 +1054,6 @@ class Sbfiles(SbBase):
             database=database,
             output_format=output_format,
             duckdb_threads=duckdb_threads,
-            progress_bar=progress_bar,
             connection_kws=connection_kws,
         )
 
