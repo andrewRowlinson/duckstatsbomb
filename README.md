@@ -46,9 +46,9 @@ top.show()
 
 You can also export to different formats:
 ```python
-df_pandas = shots.df()
-df_polars = shots.pl()
-arrow_table = shots.to_arrow_table()
+df_pandas = shots.df()  # pip install "duckstatsbomb[pandas]"
+df_polars = shots.pl()  # pip install "duckstatsbomb[polars]"
+arrow_table = shots.to_arrow_table()  # pip install "duckstatsbomb[arrow]"
 shots.to_csv('world_cup_2022_shots.csv')
 shots.to_parquet('world_cup_2022_shots.parquet')
 ```
@@ -113,8 +113,9 @@ particular matches, or delete the whole directory.
 from duckstatsbomb import Sbopen
 parser = Sbopen()
 parser.cached_files()  # path, size and UTC download time of each file
-parser.stale_matches(43, 106, kind='events')  # identify stale match IDs
-parser.clear_match_data([3857254, 3857255], kind='events')
+parser.sources  # the match files: ['events', 'lineups', 'threesixty']
+parser.stale_matches(43, 106, source='events')  # identify stale match IDs
+parser.clear_match_data([3857254, 3857255], source='events')
 parser.clear_cache()
 ```
 

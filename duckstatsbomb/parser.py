@@ -65,19 +65,20 @@ class SbBase:
     ----------
     competitions_version, matches_version, events_version, lineup_version, threesixty_version : int
         The Hudl StatsBomb data version.
-    database : str, default ':memory:'
+    database : str, default ``':memory:'``
         The name of the DuckDB database. The default is in-memory, which
         is not persisted to disk. Pass a file path for a persistent database.
     duckdb_threads : int, default None
         The number of threads used by DuckDB. The default uses the DuckDB default.
-    output_format : str, default 'relation'
-        The format of data that is returned: 'relation', 'pandas', 'polars' or 'arrow'.
+    output_format : str, default ``'relation'``
+        The format of data that is returned: ``'relation'``, ``'pandas'``,
+        ``'polars'`` or ``'arrow'``.
     connection_kws : dict, default None
         Additional keywords are passed to duckdb.connect.
     """
 
     # the directory of SQL files within the package
-    sql_dir = 'sql'
+    _sql_dir = 'sql'
 
     def __init__(
         self,
@@ -107,11 +108,10 @@ class SbBase:
 
         self.sql = {
             'competitions': self._get_sql(
-                f'{self.sql_dir}/competitions/v{competitions_version}/competitions.sql'
+                f'{self._sql_dir}/competitions/v{competitions_version}/competitions.sql'
             ),
-            'matches': self._get_sql(f'{self.sql_dir}/matches/v{matches_version}/matches.sql'),
-            'match_ids': self._get_sql(f'{self.sql_dir}/matches/match_ids.sql'),
-            'season_ids': self._get_sql(f'{self.sql_dir}/competitions/season_ids.sql'),
+            'matches': self._get_sql(f'{self._sql_dir}/matches/v{matches_version}/matches.sql'),
+            'match_ids': self._get_sql(f'{self._sql_dir}/matches/match_ids.sql'),
         }
 
         # the kinds of match data these versions carry, mapped to their source file
@@ -128,7 +128,7 @@ class SbBase:
         for kind, source in self._kinds.items():
             version = self._source_versions[source]
             self.sql[kind] = self._get_sql(
-                f'{self.sql_dir}/{source}/v{version}/{KINDS[kind].sql}.sql'
+                f'{self._sql_dir}/{source}/v{version}/{KINDS[kind].sql}.sql'
             )
 
     def _validation_value_error(self):
@@ -238,28 +238,13 @@ class SbBase:
 
     @property
     def kinds(self):
-        """The kinds of match data that can be passed as ``kind``, and the Hudl StatsBomb
-        file each one is parsed from.
-
-        Several kinds come from the same file: the events file also holds the shot
-        freeze frames, the tactics and the related events, and the lineups and 360
-        files each hold several kinds too. Which kinds are available depends on the
-        data versions, as the newer versions carry more.
+        """A dictionary mapping the values for the ``kind`` argument to
+        the source file (``'events'``, ``'lineups'`` or ``'threesixty'``).
 
         Returns
         -------
         dict
-            Maps each kind, e.g. 'tactics', to its source file: 'events', 'lineups'
-            or 'threesixty'.
-
-        Examples
-        --------
-        >>> from duckstatsbomb import Sbopen
-        >>> parser = Sbopen()
-        >>> parser.kinds
-        {'lineup_players': 'lineups', 'events': 'events', 'frames': 'events', ...}
-        >>> [kind for kind, source in parser.kinds.items() if source == 'events']
-        ['events', 'frames', 'tactics', 'related_events']
+            e.g. ``{'tactics': 'events', 'lineup_players': 'lineups', ...}``
         """
         return dict(self._kinds)
 
@@ -287,23 +272,25 @@ class SbRemote(SbBase, ABC):
     ----------
     competitions_version, matches_version, events_version, lineup_version, threesixty_version : int
         The Hudl StatsBomb data version.
-    database : str, default ':memory:'
+    database : str, default ``':memory:'``
         The name of the DuckDB database. The default is in-memory, which
         is not persisted to disk. Pass a file path for a persistent database.
         The JSON will still be saved to disk if cache_enabled=True.
     duckdb_threads : int, default None
         The number of threads used by DuckDB. The default uses the DuckDB default.
-        Also the number of files downloaded at once when filling the cache.
-    output_format : str, default 'relation'
-        The format of data that is returned: 'relation', 'pandas', 'polars' or 'arrow'.
+        Each thread can download a single file to the cache in parallel.
+    output_format : str, default ``'relation'``
+        The format of data that is returned: ``'relation'``, ``'pandas'``,
+        ``'polars'`` or ``'arrow'``.
     cache_enabled : bool, default True
         Save the downloaded events, lineups and threesixty files to cache_path,
         so they are only downloaded once. Does not cache competition or match data.
-    cache_path : str, default 'statsbomb_cache'
-        The directory the downloaded files are saved in. Ignored if cache is given.
+    cache_path : str, default ``'statsbomb_cache'``
+        The directory the downloaded files are saved in. Ignored if a cache is provided.
     cache : duckstatsbomb.cache.CacheBase, default None
         The cache backend. The default is a local cache at cache_path. Pass a
-        CacheBase subclass to cache elsewhere, e.g. in an object store.
+        :class:`~duckstatsbomb.cache.CacheBase` subclass to cache elsewhere, e.g. in
+        an object store.
     connection_kws : dict, default None
         Additional keywords are passed to duckdb.connect.
     """
@@ -337,16 +324,17 @@ class SbRemote(SbBase, ABC):
         self.cache_enabled = cache_enabled
         self.cache_path = cache_path
         self.cache = LocalCache(cache_path) if cache is None else cache
-        self.sql['download_to_cache'] = self._get_sql(f'{self.sql_dir}/download_to_cache.sql')
-        self.sql['cached_files'] = self._get_sql(f'{self.sql_dir}/cached_files.sql')
+        self.sql['download_to_cache'] = self._get_sql(f'{self._sql_dir}/download_to_cache.sql')
+        self.sql['cached_files'] = self._get_sql(f'{self._sql_dir}/cached_files.sql')
 
         # To complete in Sbopen/Sbapi
         self.url = None
         self.url_map = None
+        self._source_urls = None
         self.url_ending = None
 
     def _build_url_map(self, slugs):
-        """Map each kind of match data to the base url of the file it is parsed from.
+        """Map each source file, and each kind of match data, to its base url.
 
         Parameters
         ----------
@@ -355,9 +343,30 @@ class SbRemote(SbBase, ABC):
             path, e.g. 'v8/events'.
         """
         # Subclasses call this after setting self.url. Several kinds (e.g. events and
-        # related_events) come from the same source file, so they share its url rather
-        # than each needing one of their own.
-        self.url_map = {kind: f'{self.url}/{slugs[source]}' for kind, source in self._kinds.items()}
+        # related_events) come from the same source file, so they share its url.
+        self._source_urls = {source: f'{self.url}/{slugs[source]}' for source in self.sources}
+        self.url_map = {kind: self._source_urls[source] for kind, source in self._kinds.items()}
+
+    @property
+    def sources(self):
+        """A list of values for the ``source`` argument.
+
+        Returns
+        -------
+        list of str
+            ``['events', 'lineups', 'threesixty']``
+        """
+        return list(self._source_versions)
+
+    def _validate_source(self, source):
+        """Validate that the source e.g. 'lineups' is one of the match files.
+
+        Parameters
+        ----------
+        source : str
+        """
+        if source not in self._source_versions:
+            raise ValueError(f'source should be one of {self.sources}')
 
     @abstractmethod
     def _match_url(self, competition_id, season_id):
@@ -370,7 +379,7 @@ class SbRemote(SbBase, ABC):
         pass
 
     def competitions(self):
-        """Hudl StatsBomb competition data.
+        """One row for each season of every competition.
 
         Returns
         -------
@@ -398,23 +407,25 @@ class SbRemote(SbBase, ABC):
         -------
         list of str
         """
-        if isinstance(competition_id, collections.abc.Iterable):
-            if not isinstance(season_id, collections.abc.Iterable):
-                raise ValueError('season_id should be a list when competition_id is a list')
-            if len(competition_id) != len(season_id):
-                raise ValueError(
-                    f'competition_id (len = {len(competition_id)}) '
-                    f'and season_id (len = {len(season_id)}) should be the same length'
-                )
-            urls = [
-                self._match_url(comp, season_id[idx]) for idx, comp in enumerate(competition_id)
-            ]
-        else:
-            urls = [self._match_url(competition_id, season_id)]
-        return urls
+        competition_is_list = isinstance(competition_id, collections.abc.Iterable)
+        if competition_is_list != isinstance(season_id, collections.abc.Iterable):
+            raise ValueError(
+                'competition_id and season_id should both be lists, or both single ids'
+            )
+        if not competition_is_list:
+            return [self._match_url(competition_id, season_id)]
+        if len(competition_id) != len(season_id):
+            raise ValueError(
+                f'competition_id (len = {len(competition_id)}) '
+                f'and season_id (len = {len(season_id)}) should be the same length'
+            )
+        return [
+            self._match_url(competition, season)
+            for competition, season in zip(competition_id, season_id, strict=True)
+        ]
 
     def matches(self, competition_id, season_id):
-        """Hudl StatsBomb match data.
+        """One row for each match in one or more competition seasons.
 
         Parameters
         ----------
@@ -522,43 +533,10 @@ class SbRemote(SbBase, ABC):
         -------
         int
         """
-        # must agree with parse_filename in the SQL, as loaded_at is joined on match_id
         return int(Path(path).stem)
 
-    def _with_loaded_at(self, relation, keys=None):
-        """Add a loaded_at column, the UTC time the data was fetched.
-
-        Parameters
-        ----------
-        relation : duckdb.DuckDBPyRelation
-            Match data with a match_id column.
-        keys : list of str, default None
-            The cache keys the relation was read from, or None if it was read
-            straight from the urls.
-
-        Returns
-        -------
-        duckdb.DuckDBPyRelation
-        """
-        if keys is None:
-            # not cached, so the data was fetched just now
-            return relation.select("*, now() at time zone 'UTC' as loaded_at")
-        # a cached match keeps the loaded_at of its download rather than of this read,
-        # as that is the time stale_matches compares with StatsBomb's last_updated
-        modified = self.cache.modified_at(dict.fromkeys(keys))
-        # binding params materializes this relation, unlike _execute, but it is only
-        # one row per match so that is cheap. The match data it joins stays lazy.
-        downloaded = self.con.sql(
-            'select unnest($match_ids) as match_id, unnest($loaded_at) as loaded_at',
-            params={
-                'match_ids': [self._match_id(key) for key in modified],
-                'loaded_at': list(modified.values()),
-            },
-        )
-        return relation.join(downloaded, 'match_id')
-
     def _read_match_data(self, urls, kind):
-        """Read match files, through the cache if it is enabled, stamped with loaded_at.
+        """Read match files, through the cache if it is enabled.
 
         Parameters
         ----------
@@ -571,19 +549,19 @@ class SbRemote(SbBase, ABC):
         duckdb.DuckDBPyRelation
         """
         if not self.cache_enabled:
-            return self._with_loaded_at(self._execute(self.sql[kind], urls))
+            return self._execute(self.sql[kind], urls)
         keys = self._download(urls)
         paths = [self.cache.path(key) for key in keys]
-        return self._with_loaded_at(self._execute(self.sql[kind], paths), keys)
+        return self._execute(self.sql[kind], paths)
 
     def match_data(self, match_id, kind):
-        """Hudl StatsBomb match data (e.g. events, lineups) for one or more match ids.
+        """One kind of match data, e.g. events, for one or more match ids.
 
         Parameters
         ----------
         match_id : int or list of int
         kind : str
-            A kind of match data, e.g. 'events'. See the kinds property for the values.
+            A kind of match data, e.g. ``'events'``. See the :attr:`kinds` property for the values.
 
         Returns
         -------
@@ -598,54 +576,35 @@ class SbRemote(SbBase, ABC):
         """
         self._validate_kind(kind)
         urls = self._urls(match_id, url_slug=self.url_map[kind])
+        if not urls:
+            raise ValueError('match_id is empty, so there are no matches to read')
         return self._format_output(self._read_match_data(urls, kind))
 
-    def _competition_season_matchids(self, competition_id=None, season_id=None):
-        """Return a list of match identifiers for a given competition and season identifier.
+    def _match_ids(self, competition_id, season_id):
+        """The match identifiers in one or more competition/season pairs.
 
         Parameters
         ----------
-        competition_id, season_id : int
-            A Hudl StatsBomb competition or season identifier.
+        competition_id, season_id : int or list of int
+            Lists must be the same length, and are paired up in order.
 
         Returns
         -------
-        matchids
-            A list of tuples. The tuples contain a single match identifier integer.
+        list of int
         """
-        url = self._match_url(competition_id, season_id)
-        return self._execute(self.sql['match_ids'], url).fetchall()
+        urls = self._multi_match_url(competition_id, season_id)
+        return [row[0] for row in self._execute(self.sql['match_ids'], urls).fetchall()]
 
-    def _competition_matchids(self, competition_id):
-        """Return a list of match identifiers for a given competition identifier.
+    def competition_data(self, competition_id, season_id, kind='events'):
+        """One kind of match data, e.g. events, for every match in one or more seasons.
 
         Parameters
         ----------
-        competition_id : int
-            A Hudl StatsBomb competition identifier.
-
-        Returns
-        -------
-        matchids
-            A list of tuples. The tuples contain a single match identifier integer.
-        """
-        url = self._competition_url()
-        seasonids = self._execute(
-            self.sql['season_ids'], url, competition_id=competition_id
-        ).fetchall()
-        urls = [self._match_url(row[0], row[1]) for row in seasonids]
-        return self._execute(self.sql['match_ids'], urls).fetchall()
-
-    def competition_data(self, competition_id, season_id=None, kind='events'):
-        """Hudl StatsBomb match data for all matches in a competition.
-
-        Parameters
-        ----------
-        competition_id, season_id : int
-            If season_id is None, the method will return matches over multiple seasons
-            (if available).
-        kind : str
-            A kind of match data, e.g. 'events'. See the kinds property for the values.
+        competition_id, season_id : int or list of int
+            Lists must be the same length, and are paired up in order, so several
+            competition/season pairs can be read in one call.
+        kind : str, default ``'events'``
+            A kind of match data, e.g. ``'events'``. See the :attr:`kinds` property for the values.
 
         Returns
         -------
@@ -656,27 +615,31 @@ class SbRemote(SbBase, ABC):
         --------
         >>> from duckstatsbomb import Sbopen
         >>> parser = Sbopen()
-        >>> events = parser.competition_data(2, 44, kind='events') # the invincibles
+        >>> events = parser.competition_data(2, 44, kind='events')  # the invincibles
+        >>> lineups = parser.competition_data([2, 43], [44, 106], kind='lineup_players')
         """
         self._validate_kind(kind)
-        if season_id is None:
-            match_id = self._competition_matchids(competition_id)
-        else:
-            match_id = self._competition_season_matchids(competition_id, season_id)
-        urls = self._urls([matchid[0] for matchid in match_id], url_slug=self.url_map[kind])
+        urls = self._urls(self._match_ids(competition_id, season_id), url_slug=self.url_map[kind])
+        if not urls:
+            raise ValueError(
+                f'no matches found for competition_id {competition_id} and season_id {season_id}'
+            )
         return self._format_output(self._read_match_data(urls, kind))
 
-    def stale_matches(self, competition_id, season_id, kind='events'):
-        """Matches whose cached data is out of date with the latest from Hudl StatsBomb.
+    def stale_matches(self, competition_id, season_id, source='events'):
+        """The matches in the cache that are missing or out of date.
 
         Compares the time each match file was downloaded with the match's last_updated
-        timestamp in the matches file. Matches not yet cached are included.
+        timestamp in the matches file, or last_updated_360 for the 360 files. Matches
+        not yet cached are included.
 
         Parameters
         ----------
-        competition_id, season_id : int
-        kind : str, default 'events'
-            A kind of match data, e.g. 'events'. See the kinds property for the values.
+        competition_id, season_id : int or list of int
+            Lists must be the same length, and are paired up in order, as in matches.
+        source : str, default ``'events'``
+            The match file: ``'events'``, ``'lineups'`` or ``'threesixty'``. Every kind
+            parsed from the file, e.g. tactics from the events file, goes stale with it.
 
         Returns
         -------
@@ -688,14 +651,14 @@ class SbRemote(SbBase, ABC):
         >>> from duckstatsbomb import Sbopen
         >>> parser = Sbopen()
         >>> parser.competition_data(2, 44, kind='events')
-        >>> stale = parser.stale_matches(2, 44, kind='events')
-        >>> parser.clear_match_data(stale, kind='events')  # the next read downloads them again
+        >>> stale = parser.stale_matches(2, 44, source='events')
+        >>> parser.clear_match_data(stale, source='events')  # the next read downloads them again
         """
-        self._validate_kind(kind)
-        updated = 'last_updated_360' if kind.startswith('threesixty') else 'last_updated'
-        index = self._execute(self.sql['matches'], self._match_url(competition_id, season_id))
+        self._validate_source(source)
+        updated = 'last_updated_360' if source == 'threesixty' else 'last_updated'
+        index = self._execute(self.sql['matches'], self._multi_match_url(competition_id, season_id))
         last_updated = dict(index.select(f'match_id, {updated}').fetchall())
-        urls = self._urls(list(last_updated), url_slug=self.url_map[kind])
+        urls = self._urls(list(last_updated), url_slug=self._source_urls[source])
         keys = {self._match_id(url): self._cache_key(url) for url in urls}
         if not self.cache_enabled:
             # nothing is kept between reads, so nothing can be known to be current
@@ -710,23 +673,26 @@ class SbRemote(SbBase, ABC):
         ]
         return sorted(stale)
 
-    def clear_match_data(self, match_id, kind):
-        """Delete the cached files for the given match_id, so they are downloaded again.
+    def clear_match_data(self, match_id, source):
+        """Delete the cached source file for each match_id.
+
+        The next read of the match, e.g. with match_data, downloads the file again.
 
         Parameters
         ----------
         match_id : int or list of int
-        kind : str
-            A kind of match data, e.g. 'events'. See the kinds property for the values.
+        source : str
+            The match file: ``'events'``, ``'lineups'`` or ``'threesixty'``. This clears
+            every kind of data parsed from the file, e.g. the events file holds the tactics too.
 
         Examples
         --------
         >>> from duckstatsbomb import Sbopen
         >>> parser = Sbopen()
-        >>> parser.clear_match_data([3788741, 3788742], kind='events')
+        >>> parser.clear_match_data([3788741, 3788742], source='events')
         """
-        self._validate_kind(kind)
-        urls = self._urls(match_id, url_slug=self.url_map[kind])
+        self._validate_source(source)
+        urls = self._urls(match_id, url_slug=self._source_urls[source])
         self.cache.delete(self._cache_key(url) for url in urls)
 
     def cached_files(self):
@@ -769,23 +735,25 @@ class Sbopen(SbRemote):
 
     Parameters
     ----------
-    database : str, default ':memory:'
+    database : str, default ``':memory:'``
         The name of the DuckDB database. The default is in-memory, which
         is not persisted to disk. Pass a file path for a persistent database.
         The JSON will still be saved to disk if cache_enabled=True.
     duckdb_threads : int, default None
         The number of threads used by DuckDB. The default uses the DuckDB default.
-        Also the number of files downloaded at once when filling the cache.
-    output_format : str, default 'relation'
-        The format of data that is returned: 'relation', 'pandas', 'polars' or 'arrow'.
+        Each thread can download a single file to the cache in parallel.
+    output_format : str, default ``'relation'``
+        The format of data that is returned: ``'relation'``, ``'pandas'``,
+        ``'polars'`` or ``'arrow'``.
     cache_enabled : bool, default True
         Save the downloaded events, lineups and threesixty files to cache_path,
         so they are only downloaded once. Does not cache competition or match data.
-    cache_path : str, default 'statsbomb_cache'
-        The directory the downloaded files are saved in. Ignored if cache is given.
+    cache_path : str, default ``'statsbomb_cache'``
+        The directory the downloaded files are saved in. Ignored if a cache is provided.
     cache : duckstatsbomb.cache.CacheBase, default None
         The cache backend. The default is a local cache at cache_path. Pass a
-        CacheBase subclass to cache elsewhere, e.g. in an object store.
+        :class:`~duckstatsbomb.cache.CacheBase` subclass to cache elsewhere, e.g. in
+        an object store.
     connection_kws : dict, default None
         Additional keywords are passed to duckdb.connect.
     """
@@ -855,24 +823,26 @@ class Sbapi(SbRemote):
         set the SB_USERNAME and SB_PASSWORD environment variables.
     competitions_version, matches_version, events_version, lineup_version, threesixty_version : int
         The Hudl StatsBomb data version.
-    database : str, default ':memory:'
+    database : str, default ``':memory:'``
         The name of the DuckDB database. The default is in-memory, which
         is not persisted to disk. Pass a file path for a persistent database.
         The JSON will still be saved to disk if cache_enabled=True.
     duckdb_threads : int, default None
         The number of threads used by DuckDB. The default uses the DuckDB default.
-        Also the number of files downloaded at once when filling the cache.
-    output_format : str, default 'relation'
-        The format of data that is returned: 'relation', 'pandas', 'polars' or 'arrow'.
+        Each thread can download a single file to the cache in parallel.
+    output_format : str, default ``'relation'``
+        The format of data that is returned: ``'relation'``, ``'pandas'``,
+        ``'polars'`` or ``'arrow'``.
     cache_enabled : bool, default True
         Save the downloaded events, lineups and threesixty files to cache_path,
         so they are only downloaded once. Does not cache competition or match data.
-    cache_path : str, default 'statsbomb_cache'
-        The directory the downloaded files are saved in. Ignored if cache is given.
+    cache_path : str, default ``'statsbomb_cache'``
+        The directory the downloaded files are saved in. Ignored if a cache is provided.
     cache : duckstatsbomb.cache.CacheBase, default None
         The cache backend. The default is a local cache at cache_path. Pass a
-        CacheBase subclass to cache elsewhere, e.g. in an object store.
-    url : str, default 'https://data.statsbombservices.com/api'
+        :class:`~duckstatsbomb.cache.CacheBase` subclass to cache elsewhere, e.g. in
+        an object store.
+    url : str, default ``'https://data.statsbombservices.com/api'``
         The base url of the Hudl StatsBomb API.
     connection_kws : dict, default None
         Additional keywords are passed to duckdb.connect.
@@ -912,7 +882,7 @@ class Sbapi(SbRemote):
         )
         self.url_ending = ''
         self.url = url
-        self.sql['authenticate'] = self._get_sql(f'{self.sql_dir}/authenticate.sql')
+        self.sql['authenticate'] = self._get_sql(f'{self._sql_dir}/authenticate.sql')
         self._authenticate(sb_username, sb_password)
 
         self._build_url_map(
@@ -1008,10 +978,11 @@ class Sbfiles(SbBase):
     """A class for loading Hudl StatsBomb data from JSON files you already have,
     on disk or in an object store such as S3.
 
-    The events, lineups and 360 JSON do not contain the match identifier, so it is
-    taken from the file name. Name the match files {match_id}.json, e.g.
-    3788741.json, and the match_id column is filled in. The competitions and matches
-    files can keep any name, as their identifiers are in the JSON.
+    The events, lineups and 360 JSON do not contain the match identifier.
+    Name the match files {match_id}.json, e.g.
+    3788741.json, and the match_id column is filled in from the file name.
+    The naming of the competitions and matches files do
+    not matter as the identifiers are contained within the JSON.
 
     The methods take a file path, a list of paths, or a glob such as
     ``'events/*.json'``, which DuckDB resolves. DuckDB also reads urls, so
@@ -1022,13 +993,14 @@ class Sbfiles(SbBase):
     ----------
     competitions_version, matches_version, events_version, lineup_version, threesixty_version : int
         The Hudl StatsBomb data version.
-    database : str, default ':memory:'
+    database : str, default ``':memory:'``
         The name of the DuckDB database. The default is in-memory, which
         is not persisted to disk. Pass a file path for a persistent database.
     duckdb_threads : int, default None
         The number of threads used by DuckDB. The default uses the DuckDB default
-    output_format : str, default 'relation'
-        The format of data that is returned: 'relation', 'pandas', 'polars' or 'arrow'.
+    output_format : str, default ``'relation'``
+        The format of data that is returned: ``'relation'``, ``'pandas'``,
+        ``'polars'`` or ``'arrow'``.
     connection_kws : dict, default None
         Additional keywords are passed to duckdb.connect.
     """
@@ -1075,7 +1047,7 @@ class Sbfiles(SbBase):
         return list(dict.fromkeys(map(str, filename)))
 
     def competitions(self, filename):
-        """Hudl StatsBomb competition data.
+        """One row for each competition season in the competitions file(s).
 
         Parameters
         ----------
@@ -1096,7 +1068,7 @@ class Sbfiles(SbBase):
         return self._format_output(self._execute(self.sql['competitions'], self._unique(filename)))
 
     def matches(self, filename):
-        """Hudl StatsBomb match data.
+        """One row for each match in the matches file(s).
 
         Parameters
         ----------
@@ -1113,11 +1085,12 @@ class Sbfiles(SbBase):
         >>> from duckstatsbomb import Sbfiles
         >>> parser = Sbfiles()
         >>> matches = parser.matches('27.json')
+        >>> matches = parser.matches('matches/*/*.json')  # every competition and season
         """
         return self._format_output(self._execute(self.sql['matches'], self._unique(filename)))
 
     def match_data(self, filename, kind):
-        """Hudl StatsBomb match data (e.g. events, lineups).
+        """One kind of match data, e.g. events, from the match file(s).
 
         Parameters
         ----------
@@ -1125,7 +1098,7 @@ class Sbfiles(SbBase):
             The match JSON file(s) should be named {match_id}.json
             as the match_id is taken from the file name(s).
         kind : str
-            A kind of match data, e.g. 'events'. See the kinds property for the values.
+            A kind of match data, e.g. ``'events'``. See the :attr:`kinds` property for the values.
 
         Returns
         -------
@@ -1143,4 +1116,7 @@ class Sbfiles(SbBase):
         >>> frames = parser.match_data('three-sixty/*.json', kind='threesixty_frames')
         """
         self._validate_kind(kind)
-        return self._format_output(self._execute(self.sql[kind], self._unique(filename)))
+        filenames = self._unique(filename)
+        if not filenames:
+            raise ValueError('filename is empty, so there are no files to read')
+        return self._format_output(self._execute(self.sql[kind], filenames))

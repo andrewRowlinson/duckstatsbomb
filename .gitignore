@@ -167,6 +167,10 @@ uv.lock
 # sphinx-gallery generated output
 docs/source/gallery/
 docs/source/sg_execution_times.rst
+# written by running the examples
+examples/shots.csv
+examples/shots.parquet
+examples/statsbomb.duckdb
 
 # StatsBomb data for the tests
 example/

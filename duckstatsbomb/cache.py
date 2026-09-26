@@ -4,7 +4,7 @@ Currently supports a local cache, but could be expanded for cloud storage.
 
 How a parser with cache_enabled=True loads match data:
 
-1. The parser turns each url into a key, e.g. 'v4/events/3788741.json', and
+1. The parser turns each url into a key, e.g. ``'v4/events/3788741.json'``, and
    asks the cache for the missing keys.
 2. The parser looks up the urls of the missing keys and passes them to DuckDB
    in batches of one file per thread, which DuckDB downloads in parallel. Each
@@ -41,7 +41,7 @@ __all__ = ['CacheBase', 'LocalCache']
 
 
 class CacheBase(ABC):
-    """A cache backend stores files by key, e.g. 'v4/events/3788741.json', and
+    """A cache backend stores files by key, e.g. ``'v4/events/3788741.json'``, and
     gives the path of each key for DuckDB to read, e.g. a local path or an
     object store url.
     """
@@ -53,12 +53,12 @@ class CacheBase(ABC):
         Parameters
         ----------
         key : str
-            The file's location within the cache, e.g. 'v4/events/3788741.json'.
+            The file's location within the cache, e.g. ``'v4/events/3788741.json'``.
 
         Returns
         -------
         str
-            The cache file path, e.g. 'statsbomb_cache/v4/events/3788741.json'.
+            The cache file path, e.g. ``'statsbomb_cache/v4/events/3788741.json'``.
         """
 
     @abstractmethod
@@ -99,8 +99,9 @@ class CacheBase(ABC):
         Returns
         -------
         dict
-            Maps each key to a naive datetime.datetime in UTC. It must be naive, as
-            it is compared with the naive last_updated timestamps in the match data.
+            Maps each key to a naive datetime.datetime (i.e. tzinfo=None)
+            in UTC. It must be naive, as it is compared with the
+            naive last_updated timestamps in the match data.
         """
 
     @abstractmethod
@@ -137,7 +138,9 @@ class LocalCache(CacheBase):
     """
 
     def __init__(self, directory):
-        self.directory = directory
+        # absolute, as the relations are lazy: a relative path would be read against
+        # the working directory when the relation is evaluated, not when it was created
+        self.directory = Path(directory).absolute().as_posix()
 
     def path(self, key):
         return Path(self.directory, key).as_posix()

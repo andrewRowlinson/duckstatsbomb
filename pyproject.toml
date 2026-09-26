@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "duckstatsbomb"
-description = 'A data parser for StatsBomb soccer data using duckdb'
+description = 'A data parser for Hudl StatsBomb soccer data using duckdb'
 readme = "README.md"
 license = "MIT"
 keywords = [
@@ -40,6 +40,8 @@ all = ['pandas', 'polars', 'pyarrow']
 [dependency-groups]
 docs = ['numpydoc',
         'pandas',
+        'polars',
+        'pyarrow',
         'Sphinx',
         'sphinx-gallery',
         'sphinx-rtd-theme',
@@ -80,7 +82,7 @@ no-cov = "cov --no-cov"
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 markers = [
-  "network: reads the StatsBomb open-data over the network (deselect with '-m \"not network\"')",
+  "network: reads the Hudl StatsBomb open-data over the network (deselect with '-m \"not network\"')",
 ]
 
 [[tool.hatch.envs.test.matrix]]
