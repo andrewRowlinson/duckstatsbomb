@@ -340,7 +340,7 @@ class SbRemote(SbBase, ABC):
         ----------
         slugs : dict
             Maps each source file ('events', 'lineups' and 'threesixty') to its url
-            path, e.g. 'v8/events'.
+            path, e.g. 'v11/events'.
         """
         # Subclasses call this after setting self.url. Several kinds (e.g. events and
         # related_events) come from the same source file, so they share its url.
@@ -821,8 +821,16 @@ class Sbapi(SbRemote):
     sb_username, sb_password : str, default None
         Authentication for the Hudl StatsBomb API. Either use the arguments, or
         set the SB_USERNAME and SB_PASSWORD environment variables.
-    competitions_version, matches_version, events_version, lineup_version, threesixty_version : int
-        The Hudl StatsBomb data version.
+    competitions_version : int, default 4
+        The competitions data version: 4.
+    matches_version : int, default 6
+        The matches data version: 3 or 6.
+    events_version : int, default 11
+        The events data version: 4, 8 or 11.
+    lineup_version : int, default 5
+        The lineups data version: 2, 4 or 5.
+    threesixty_version : int, default 2
+        The 360 data version: 1 or 2.
     database : str, default ``':memory:'``
         The name of the DuckDB database. The default is in-memory, which
         is not persisted to disk. Pass a file path for a persistent database.
@@ -854,8 +862,8 @@ class Sbapi(SbRemote):
         sb_password=None,
         competitions_version=4,
         matches_version=6,
-        events_version=8,
-        lineup_version=4,
+        events_version=11,
+        lineup_version=5,
         threesixty_version=2,
         database=':memory:',
         duckdb_threads=None,
@@ -989,10 +997,21 @@ class Sbfiles(SbBase):
     ``'s3://bucket/events/*.json'`` works. A private bucket needs a DuckDB secret,
     e.g. ``parser.con.sql("CREATE SECRET (TYPE s3, PROVIDER credential_chain)")``.
 
+    The data versions default to the latest. Set them to match your files, as the
+    wrong version silently drops or nulls columns.
+
     Parameters
     ----------
-    competitions_version, matches_version, events_version, lineup_version, threesixty_version : int
-        The Hudl StatsBomb data version.
+    competitions_version : int, default 4
+        The competitions data version: 4.
+    matches_version : int, default 6
+        The matches data version: 3 or 6.
+    events_version : int, default 11
+        The events data version: 4, 8 or 11.
+    lineup_version : int, default 5
+        The lineups data version: 2, 4 or 5.
+    threesixty_version : int, default 2
+        The 360 data version: 1 or 2.
     database : str, default ``':memory:'``
         The name of the DuckDB database. The default is in-memory, which
         is not persisted to disk. Pass a file path for a persistent database.
@@ -1008,10 +1027,10 @@ class Sbfiles(SbBase):
     def __init__(
         self,
         competitions_version=4,
-        matches_version=3,
-        events_version=4,
-        lineup_version=2,
-        threesixty_version=1,
+        matches_version=6,
+        events_version=11,
+        lineup_version=5,
+        threesixty_version=2,
         database=':memory:',
         duckdb_threads=None,
         output_format='relation',

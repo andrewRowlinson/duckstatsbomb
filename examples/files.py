@@ -16,10 +16,24 @@ from pprint import pprint
 
 from duckstatsbomb import Sbfiles
 
-parser = Sbfiles()
 # your own folder, e.g. 'statsbomb/data', or an s3:// url. This page reads the
 # open-data on GitHub so it can run when the docs are built.
 data_dir = 'https://raw.githubusercontent.com/statsbomb/open-data/master/data'
+
+##############################################################################
+# Data versions
+# -------------
+# Sbfiles defaults to the latest data versions. The open-data uses older ones,
+# so set them to match your files.
+
+open_data_versions = {
+    'competitions_version': 4,  # 4 supported
+    'matches_version': 3,  # 3 or 6 supported
+    'events_version': 4,  # 4, 8 or 11 supported
+    'lineup_version': 2,  # 2, 4 or 5 supported
+    'threesixty_version': 1,  # 1 or 2 supported
+}
+parser = Sbfiles(**open_data_versions)
 
 ##############################################################################
 # Output formats
@@ -47,7 +61,10 @@ shots.to_csv('shots.csv')
 ##############################################################################
 # Or set the output format when creating the parser.
 
-pandas_parser = Sbfiles(output_format='pandas')  # 'relation', 'pandas', 'polars' or 'arrow'
+pandas_parser = Sbfiles(
+    output_format='pandas',  # 'relation', 'pandas', 'polars' or 'arrow'
+    **open_data_versions,
+)
 df_events = pandas_parser.match_data(f'{data_dir}/events/3749052.json', kind='events')
 
 ##############################################################################
@@ -132,18 +149,11 @@ parser.match_data(f'{data_dir}/three-sixty/3857254.json', kind='threesixty_frame
 ##############################################################################
 # Parser options
 # --------------
-# :class:`~duckstatsbomb.Sbfiles` takes a few more arguments. The data versions
-# default to the open-data versions, so set them to match your files, e.g. files
-# saved from the API.
+# :class:`~duckstatsbomb.Sbfiles` takes a few more arguments.
 
 parser = Sbfiles(
     database='statsbomb.duckdb',  # use a persistent DuckDB database, not in-memory
     duckdb_threads=8,  # set the number of DuckDB threads
     connection_kws={'config': {'memory_limit': '4GB'}},  # passed to duckdb.connect
-    competitions_version=4,  # 4 supported
-    matches_version=6,  # 3 or 6 supported
-    events_version=11,  # 4, 8 or 11 supported
-    lineup_version=5,  # 2, 4 or 5 supported
-    threesixty_version=2,  # 1 or 2 supported
 )
 parser.close_connection()  # close the DuckDB connection when you are done
