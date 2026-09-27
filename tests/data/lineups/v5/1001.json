@@ -1,0 +1,1113 @@
+[
+  {
+    "team_id": 101,
+    "team_name": "Mallard Town",
+    "lineup": [
+      {
+        "player_id": 10101,
+        "player_name": "Edie Reed",
+        "player_nickname": null,
+        "birth_date": "1993-10-31",
+        "player_gender": "male",
+        "player_height": 200.0,
+        "player_weight": 62.0,
+        "jersey_number": 1,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [
+          {
+            "position_id": 1,
+            "position": "Goalkeeper",
+            "from": "00:00:00.000",
+            "to": null,
+            "from_period": 1,
+            "to_period": null,
+            "start_reason": "Starting XI",
+            "end_reason": "Final Whistle"
+          }
+        ],
+        "stats": {
+          "own_goals": 0,
+          "goals": 1,
+          "assists": 1,
+          "penalties_scored": 0,
+          "penalties_missed": 0,
+          "penalties_saved": 0
+        },
+        "skills": {
+          "HOPS": {
+            "rating": 0.3377,
+            "raw_rating": 440.04
+          }
+        }
+      },
+      {
+        "player_id": 10102,
+        "player_name": "Ada Puddle",
+        "player_nickname": null,
+        "birth_date": "1999-03-04",
+        "player_gender": "male",
+        "player_height": 192.0,
+        "player_weight": 85.0,
+        "jersey_number": 2,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [
+          {
+            "position_id": 2,
+            "position": "Right Back",
+            "from": "00:00:00.000",
+            "to": null,
+            "from_period": 1,
+            "to_period": null,
+            "start_reason": "Starting XI",
+            "end_reason": "Final Whistle"
+          }
+        ],
+        "stats": {
+          "own_goals": 0,
+          "goals": 1,
+          "assists": 1,
+          "penalties_scored": 0,
+          "penalties_missed": 0,
+          "penalties_saved": 0
+        },
+        "skills": {
+          "HOPS": {
+            "rating": 0.1769,
+            "raw_rating": 411.9
+          }
+        }
+      },
+      {
+        "player_id": 10103,
+        "player_name": "Finn Waddle",
+        "player_nickname": null,
+        "birth_date": "1999-03-31",
+        "player_gender": "male",
+        "player_height": 194.0,
+        "player_weight": 62.0,
+        "jersey_number": 3,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [
+          {
+            "position_id": 3,
+            "position": "Right Center Back",
+            "from": "00:00:00.000",
+            "to": null,
+            "from_period": 1,
+            "to_period": null,
+            "start_reason": "Starting XI",
+            "end_reason": "Final Whistle"
+          }
+        ],
+        "stats": {
+          "own_goals": 0,
+          "goals": 0,
+          "assists": 0,
+          "penalties_scored": 0,
+          "penalties_missed": 0,
+          "penalties_saved": 0
+        },
+        "skills": {
+          "HOPS": {
+            "rating": 0.6624,
+            "raw_rating": 357.2
+          }
+        }
+      },
+      {
+        "player_id": 10104,
+        "player_name": "Bram Marsh",
+        "player_nickname": null,
+        "birth_date": "1992-10-15",
+        "player_gender": "male",
+        "player_height": 198.0,
+        "player_weight": 78.0,
+        "jersey_number": 4,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [
+          {
+            "position_id": 5,
+            "position": "Left Center Back",
+            "from": "00:00:00.000",
+            "to": null,
+            "from_period": 1,
+            "to_period": null,
+            "start_reason": "Starting XI",
+            "end_reason": "Final Whistle"
+          }
+        ],
+        "stats": {
+          "own_goals": 0,
+          "goals": 0,
+          "assists": 1,
+          "penalties_scored": 0,
+          "penalties_missed": 0,
+          "penalties_saved": 0
+        },
+        "skills": {
+          "HOPS": {
+            "rating": 0.1111,
+            "raw_rating": 454.7
+          }
+        }
+      },
+      {
+        "player_id": 10105,
+        "player_name": "Bram Quill",
+        "player_nickname": "Bram",
+        "birth_date": "1996-07-09",
+        "player_gender": "male",
+        "player_height": 200.0,
+        "player_weight": 61.0,
+        "jersey_number": 5,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [
+          {
+            "position_id": 6,
+            "position": "Left Back",
+            "from": "00:00:00.000",
+            "to": null,
+            "from_period": 1,
+            "to_period": null,
+            "start_reason": "Starting XI",
+            "end_reason": "Final Whistle"
+          }
+        ],
+        "stats": {
+          "own_goals": 0,
+          "goals": 1,
+          "assists": 0,
+          "penalties_scored": 0,
+          "penalties_missed": 0,
+          "penalties_saved": 0
+        },
+        "skills": {
+          "HOPS": {
+            "rating": 0.0659,
+            "raw_rating": 454.46
+          }
+        }
+      },
+      {
+        "player_id": 10106,
+        "player_name": "Finn Reed",
+        "player_nickname": "Finn",
+        "birth_date": "2002-05-23",
+        "player_gender": "male",
+        "player_height": 169.0,
+        "player_weight": 61.0,
+        "jersey_number": 6,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [
+          {
+            "position_id": 9,
+            "position": "Right Defensive Midfield",
+            "from": "00:00:00.000",
+            "to": null,
+            "from_period": 1,
+            "to_period": null,
+            "start_reason": "Starting XI",
+            "end_reason": "Final Whistle"
+          }
+        ],
+        "stats": {
+          "own_goals": 0,
+          "goals": 0,
+          "assists": 0,
+          "penalties_scored": 0,
+          "penalties_missed": 0,
+          "penalties_saved": 0
+        },
+        "skills": {
+          "HOPS": {
+            "rating": 0.2607,
+            "raw_rating": 322.37
+          }
+        }
+      },
+      {
+        "player_id": 10107,
+        "player_name": "Juno Feather",
+        "player_nickname": "Juno",
+        "birth_date": "1998-10-10",
+        "player_gender": "male",
+        "player_height": 182.0,
+        "player_weight": 77.0,
+        "jersey_number": 7,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [
+          {
+            "position_id": 11,
+            "position": "Left Defensive Midfield",
+            "from": "00:00:00.000",
+            "to": null,
+            "from_period": 1,
+            "to_period": null,
+            "start_reason": "Starting XI",
+            "end_reason": "Final Whistle"
+          }
+        ],
+        "stats": {
+          "own_goals": 0,
+          "goals": 0,
+          "assists": 1,
+          "penalties_scored": 0,
+          "penalties_missed": 0,
+          "penalties_saved": 0
+        },
+        "skills": {
+          "HOPS": {
+            "rating": 0.2705,
+            "raw_rating": 378.03
+          }
+        }
+      },
+      {
+        "player_id": 10108,
+        "player_name": "Finn Marsh",
+        "player_nickname": null,
+        "birth_date": "2003-08-07",
+        "player_gender": "male",
+        "player_height": 194.0,
+        "player_weight": 61.0,
+        "jersey_number": 8,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [
+          {
+            "position_id": 17,
+            "position": "Right Wing",
+            "from": "00:00:00.000",
+            "to": null,
+            "from_period": 1,
+            "to_period": null,
+            "start_reason": "Starting XI",
+            "end_reason": "Final Whistle"
+          }
+        ],
+        "stats": {
+          "own_goals": 0,
+          "goals": 1,
+          "assists": 1,
+          "penalties_scored": 0,
+          "penalties_missed": 0,
+          "penalties_saved": 0
+        },
+        "skills": {
+          "HOPS": {
+            "rating": 0.044,
+            "raw_rating": 484.94
+          }
+        }
+      },
+      {
+        "player_id": 10109,
+        "player_name": "Ivo Feather",
+        "player_nickname": null,
+        "birth_date": "1999-12-08",
+        "player_gender": "male",
+        "player_height": 198.0,
+        "player_weight": 73.0,
+        "jersey_number": 9,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [
+          {
+            "position_id": 19,
+            "position": "Center Attacking Midfield",
+            "from": "00:00:00.000",
+            "to": null,
+            "from_period": 1,
+            "to_period": null,
+            "start_reason": "Starting XI",
+            "end_reason": "Final Whistle"
+          }
+        ],
+        "stats": {
+          "own_goals": 0,
+          "goals": 0,
+          "assists": 0,
+          "penalties_scored": 0,
+          "penalties_missed": 0,
+          "penalties_saved": 0
+        },
+        "skills": {
+          "HOPS": {
+            "rating": 0.3577,
+            "raw_rating": 427.42
+          }
+        }
+      },
+      {
+        "player_id": 10110,
+        "player_name": "Ivo Quill",
+        "player_nickname": null,
+        "birth_date": "1994-07-01",
+        "player_gender": "male",
+        "player_height": 187.0,
+        "player_weight": 60.0,
+        "jersey_number": 10,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [
+          {
+            "position_id": 21,
+            "position": "Left Wing",
+            "from": "00:00:00.000",
+            "to": null,
+            "from_period": 1,
+            "to_period": null,
+            "start_reason": "Starting XI",
+            "end_reason": "Final Whistle"
+          }
+        ],
+        "stats": {
+          "own_goals": 0,
+          "goals": 1,
+          "assists": 0,
+          "penalties_scored": 0,
+          "penalties_missed": 0,
+          "penalties_saved": 0
+        },
+        "skills": {
+          "HOPS": {
+            "rating": 0.4572,
+            "raw_rating": 442.51
+          }
+        }
+      },
+      {
+        "player_id": 10111,
+        "player_name": "Ada Feather",
+        "player_nickname": null,
+        "birth_date": "1993-11-24",
+        "player_gender": "male",
+        "player_height": 189.0,
+        "player_weight": 61.0,
+        "jersey_number": 11,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [
+          {
+            "position_id": 23,
+            "position": "Striker",
+            "from": "00:00:00.000",
+            "to": "01:16:54.131",
+            "from_period": 1,
+            "to_period": 2,
+            "start_reason": "Starting XI",
+            "end_reason": "Substitution - Off (Tactical)",
+            "counterpart_id": 10112,
+            "counterpart_name": "Hana Feather"
+          }
+        ],
+        "stats": {
+          "own_goals": 0,
+          "goals": 0,
+          "assists": 0,
+          "penalties_scored": 0,
+          "penalties_missed": 0,
+          "penalties_saved": 0
+        },
+        "skills": {
+          "HOPS": {
+            "rating": 0.1469,
+            "raw_rating": 495.85
+          }
+        }
+      },
+      {
+        "player_id": 10112,
+        "player_name": "Hana Feather",
+        "player_nickname": null,
+        "birth_date": "1992-10-20",
+        "player_gender": "male",
+        "player_height": 200.0,
+        "player_weight": 64.0,
+        "jersey_number": 12,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [
+          {
+            "position_id": 23,
+            "position": "Striker",
+            "from": "01:16:54.131",
+            "to": null,
+            "from_period": 2,
+            "to_period": null,
+            "start_reason": "Substitution - On (Tactical)",
+            "end_reason": "Final Whistle",
+            "counterpart_id": 10111,
+            "counterpart_name": "Ada Feather"
+          }
+        ],
+        "stats": {
+          "own_goals": 0,
+          "goals": 1,
+          "assists": 0,
+          "penalties_scored": 0,
+          "penalties_missed": 0,
+          "penalties_saved": 0
+        },
+        "skills": {
+          "HOPS": {
+            "rating": 0.4335,
+            "raw_rating": 482.94
+          }
+        }
+      },
+      {
+        "player_id": 10113,
+        "player_name": "Bram Waddle",
+        "player_nickname": "Bram",
+        "birth_date": "2000-04-24",
+        "player_gender": "male",
+        "player_height": 199.0,
+        "player_weight": 79.0,
+        "jersey_number": 13,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [],
+        "stats": [],
+        "skills": []
+      },
+      {
+        "player_id": 10114,
+        "player_name": "Bram Reed",
+        "player_nickname": null,
+        "birth_date": "1999-05-20",
+        "player_gender": "male",
+        "player_height": 185.0,
+        "player_weight": 68.0,
+        "jersey_number": 14,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [],
+        "stats": [],
+        "skills": []
+      }
+    ],
+    "formations": [
+      {
+        "period": 1,
+        "timestamp": "00:00:00.000",
+        "reason": "Starting XI",
+        "formation": 4231
+      }
+    ],
+    "events": [
+      {
+        "period": 1,
+        "timestamp": "00:00:00.000",
+        "type": "Half Start"
+      },
+      {
+        "player_id": 10103,
+        "player_name": "Finn Waddle",
+        "period": 1,
+        "timestamp": "00:21:02.473",
+        "type": "Foul Committed",
+        "outcome": "Yellow Card"
+      },
+      {
+        "period": 1,
+        "timestamp": "00:47:39.471",
+        "type": "Half End"
+      },
+      {
+        "period": 2,
+        "timestamp": "00:45:00.000",
+        "type": "Half Start"
+      },
+      {
+        "player_id": 10102,
+        "player_name": "Ada Puddle",
+        "period": 2,
+        "timestamp": "01:01:25.433",
+        "type": "Shot",
+        "outcome": "Blocked"
+      },
+      {
+        "period": 2,
+        "timestamp": "01:32:00.036",
+        "type": "Half End"
+      }
+    ]
+  },
+  {
+    "team_id": 102,
+    "team_name": "Drake United",
+    "lineup": [
+      {
+        "player_id": 10201,
+        "player_name": "Cora Reed",
+        "player_nickname": "Cora",
+        "birth_date": "2000-09-26",
+        "player_gender": "male",
+        "player_height": 167.0,
+        "player_weight": 92.0,
+        "jersey_number": 1,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [
+          {
+            "position_id": 1,
+            "position": "Goalkeeper",
+            "from": "00:00:00.000",
+            "to": null,
+            "from_period": 1,
+            "to_period": null,
+            "start_reason": "Starting XI",
+            "end_reason": "Final Whistle"
+          }
+        ],
+        "stats": {
+          "own_goals": 0,
+          "goals": 0,
+          "assists": 1,
+          "penalties_scored": 0,
+          "penalties_missed": 0,
+          "penalties_saved": 0
+        },
+        "skills": {
+          "HOPS": {
+            "rating": 0.287,
+            "raw_rating": 329.73
+          }
+        }
+      },
+      {
+        "player_id": 10202,
+        "player_name": "Gus Paddle",
+        "player_nickname": null,
+        "birth_date": "2001-09-29",
+        "player_gender": "male",
+        "player_height": 184.0,
+        "player_weight": 77.0,
+        "jersey_number": 2,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [
+          {
+            "position_id": 2,
+            "position": "Right Back",
+            "from": "00:00:00.000",
+            "to": null,
+            "from_period": 1,
+            "to_period": null,
+            "start_reason": "Starting XI",
+            "end_reason": "Final Whistle"
+          }
+        ],
+        "stats": {
+          "own_goals": 0,
+          "goals": 0,
+          "assists": 1,
+          "penalties_scored": 0,
+          "penalties_missed": 0,
+          "penalties_saved": 0
+        },
+        "skills": {
+          "HOPS": {
+            "rating": 0.2755,
+            "raw_rating": 571.53
+          }
+        }
+      },
+      {
+        "player_id": 10203,
+        "player_name": "Finn Puddle",
+        "player_nickname": null,
+        "birth_date": "1996-02-27",
+        "player_gender": "male",
+        "player_height": 187.0,
+        "player_weight": 87.0,
+        "jersey_number": 3,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [
+          {
+            "position_id": 3,
+            "position": "Right Center Back",
+            "from": "00:00:00.000",
+            "to": null,
+            "from_period": 1,
+            "to_period": null,
+            "start_reason": "Starting XI",
+            "end_reason": "Final Whistle"
+          }
+        ],
+        "stats": {
+          "own_goals": 0,
+          "goals": 1,
+          "assists": 0,
+          "penalties_scored": 0,
+          "penalties_missed": 0,
+          "penalties_saved": 0
+        },
+        "skills": {
+          "HOPS": {
+            "rating": 0.8158,
+            "raw_rating": 367.86
+          }
+        }
+      },
+      {
+        "player_id": 10204,
+        "player_name": "Dex Puddle",
+        "player_nickname": null,
+        "birth_date": "1994-12-13",
+        "player_gender": "male",
+        "player_height": 187.0,
+        "player_weight": 69.0,
+        "jersey_number": 4,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [
+          {
+            "position_id": 5,
+            "position": "Left Center Back",
+            "from": "00:00:00.000",
+            "to": null,
+            "from_period": 1,
+            "to_period": null,
+            "start_reason": "Starting XI",
+            "end_reason": "Final Whistle"
+          }
+        ],
+        "stats": {
+          "own_goals": 0,
+          "goals": 1,
+          "assists": 0,
+          "penalties_scored": 0,
+          "penalties_missed": 0,
+          "penalties_saved": 0
+        },
+        "skills": {
+          "HOPS": {
+            "rating": 0.5463,
+            "raw_rating": 314.86
+          }
+        }
+      },
+      {
+        "player_id": 10205,
+        "player_name": "Dex Paddle",
+        "player_nickname": null,
+        "birth_date": "1997-06-11",
+        "player_gender": "male",
+        "player_height": 166.0,
+        "player_weight": 63.0,
+        "jersey_number": 5,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [
+          {
+            "position_id": 6,
+            "position": "Left Back",
+            "from": "00:00:00.000",
+            "to": null,
+            "from_period": 1,
+            "to_period": null,
+            "start_reason": "Starting XI",
+            "end_reason": "Final Whistle"
+          }
+        ],
+        "stats": {
+          "own_goals": 0,
+          "goals": 0,
+          "assists": 1,
+          "penalties_scored": 0,
+          "penalties_missed": 0,
+          "penalties_saved": 0
+        },
+        "skills": {
+          "HOPS": {
+            "rating": 0.5192,
+            "raw_rating": 534.55
+          }
+        }
+      },
+      {
+        "player_id": 10206,
+        "player_name": "Gus Feather",
+        "player_nickname": null,
+        "birth_date": "2000-03-19",
+        "player_gender": "male",
+        "player_height": 196.0,
+        "player_weight": 80.0,
+        "jersey_number": 6,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [
+          {
+            "position_id": 9,
+            "position": "Right Defensive Midfield",
+            "from": "00:00:00.000",
+            "to": null,
+            "from_period": 1,
+            "to_period": null,
+            "start_reason": "Starting XI",
+            "end_reason": "Final Whistle"
+          }
+        ],
+        "stats": {
+          "own_goals": 0,
+          "goals": 0,
+          "assists": 0,
+          "penalties_scored": 0,
+          "penalties_missed": 0,
+          "penalties_saved": 0
+        },
+        "skills": {
+          "HOPS": {
+            "rating": 0.931,
+            "raw_rating": 408.08
+          }
+        }
+      },
+      {
+        "player_id": 10207,
+        "player_name": "Cora Puddle",
+        "player_nickname": null,
+        "birth_date": "1992-10-22",
+        "player_gender": "male",
+        "player_height": 190.0,
+        "player_weight": 77.0,
+        "jersey_number": 7,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [
+          {
+            "position_id": 11,
+            "position": "Left Defensive Midfield",
+            "from": "00:00:00.000",
+            "to": null,
+            "from_period": 1,
+            "to_period": null,
+            "start_reason": "Starting XI",
+            "end_reason": "Final Whistle"
+          }
+        ],
+        "stats": {
+          "own_goals": 0,
+          "goals": 1,
+          "assists": 1,
+          "penalties_scored": 0,
+          "penalties_missed": 0,
+          "penalties_saved": 0
+        },
+        "skills": {
+          "HOPS": {
+            "rating": 0.0963,
+            "raw_rating": 379.73
+          }
+        }
+      },
+      {
+        "player_id": 10208,
+        "player_name": "Ada Reed",
+        "player_nickname": null,
+        "birth_date": "1998-02-23",
+        "player_gender": "male",
+        "player_height": 181.0,
+        "player_weight": 77.0,
+        "jersey_number": 8,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [
+          {
+            "position_id": 17,
+            "position": "Right Wing",
+            "from": "00:00:00.000",
+            "to": null,
+            "from_period": 1,
+            "to_period": null,
+            "start_reason": "Starting XI",
+            "end_reason": "Final Whistle"
+          }
+        ],
+        "stats": {
+          "own_goals": 0,
+          "goals": 1,
+          "assists": 1,
+          "penalties_scored": 0,
+          "penalties_missed": 0,
+          "penalties_saved": 0
+        },
+        "skills": {
+          "HOPS": {
+            "rating": 0.2654,
+            "raw_rating": 380.9
+          }
+        }
+      },
+      {
+        "player_id": 10209,
+        "player_name": "Bram Paddle",
+        "player_nickname": null,
+        "birth_date": "1992-10-07",
+        "player_gender": "male",
+        "player_height": 197.0,
+        "player_weight": 88.0,
+        "jersey_number": 9,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [
+          {
+            "position_id": 19,
+            "position": "Center Attacking Midfield",
+            "from": "00:00:00.000",
+            "to": null,
+            "from_period": 1,
+            "to_period": null,
+            "start_reason": "Starting XI",
+            "end_reason": "Final Whistle"
+          }
+        ],
+        "stats": {
+          "own_goals": 0,
+          "goals": 0,
+          "assists": 0,
+          "penalties_scored": 0,
+          "penalties_missed": 0,
+          "penalties_saved": 0
+        },
+        "skills": {
+          "HOPS": {
+            "rating": 0.2869,
+            "raw_rating": 450.45
+          }
+        }
+      },
+      {
+        "player_id": 10210,
+        "player_name": "Cora Paddle",
+        "player_nickname": "Cora",
+        "birth_date": "2000-02-21",
+        "player_gender": "male",
+        "player_height": 185.0,
+        "player_weight": 73.0,
+        "jersey_number": 10,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [
+          {
+            "position_id": 21,
+            "position": "Left Wing",
+            "from": "00:00:00.000",
+            "to": null,
+            "from_period": 1,
+            "to_period": null,
+            "start_reason": "Starting XI",
+            "end_reason": "Final Whistle"
+          }
+        ],
+        "stats": {
+          "own_goals": 0,
+          "goals": 1,
+          "assists": 1,
+          "penalties_scored": 0,
+          "penalties_missed": 0,
+          "penalties_saved": 0
+        },
+        "skills": {
+          "HOPS": {
+            "rating": 0.021,
+            "raw_rating": 527.13
+          }
+        }
+      },
+      {
+        "player_id": 10211,
+        "player_name": "Ada Webb",
+        "player_nickname": "Ada",
+        "birth_date": "1995-07-21",
+        "player_gender": "male",
+        "player_height": 188.0,
+        "player_weight": 63.0,
+        "jersey_number": 11,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [
+          {
+            "position_id": 23,
+            "position": "Striker",
+            "from": "00:00:00.000",
+            "to": null,
+            "from_period": 1,
+            "to_period": null,
+            "start_reason": "Starting XI",
+            "end_reason": "Final Whistle"
+          }
+        ],
+        "stats": {
+          "own_goals": 0,
+          "goals": 0,
+          "assists": 1,
+          "penalties_scored": 0,
+          "penalties_missed": 0,
+          "penalties_saved": 0
+        },
+        "skills": {
+          "HOPS": {
+            "rating": 0.5441,
+            "raw_rating": 599.66
+          }
+        }
+      },
+      {
+        "player_id": 10212,
+        "player_name": "Hana Waddle",
+        "player_nickname": null,
+        "birth_date": "2002-01-27",
+        "player_gender": "male",
+        "player_height": 187.0,
+        "player_weight": 60.0,
+        "jersey_number": 12,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [],
+        "stats": [],
+        "skills": []
+      },
+      {
+        "player_id": 10213,
+        "player_name": "Juno Marsh",
+        "player_nickname": null,
+        "birth_date": "1996-10-31",
+        "player_gender": "male",
+        "player_height": 191.0,
+        "player_weight": 85.0,
+        "jersey_number": 13,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [],
+        "stats": [],
+        "skills": []
+      },
+      {
+        "player_id": 10214,
+        "player_name": "Ivo Paddle",
+        "player_nickname": "Ivo",
+        "birth_date": "1992-10-22",
+        "player_gender": "male",
+        "player_height": 174.0,
+        "player_weight": 82.0,
+        "jersey_number": 14,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        },
+        "positions": [],
+        "stats": [],
+        "skills": []
+      }
+    ],
+    "formations": [
+      {
+        "period": 1,
+        "timestamp": "00:00:00.000",
+        "reason": "Starting XI",
+        "formation": 4231
+      },
+      {
+        "period": 2,
+        "timestamp": "01:06:55.653",
+        "reason": "Tactical Shift",
+        "formation": 4231
+      }
+    ],
+    "events": [
+      {
+        "period": 1,
+        "timestamp": "00:00:00.000",
+        "type": "Half Start"
+      },
+      {
+        "player_id": 10211,
+        "player_name": "Ada Webb",
+        "period": 1,
+        "timestamp": "00:21:03.596",
+        "type": "Bad Behaviour",
+        "outcome": "Second Yellow"
+      },
+      {
+        "period": 1,
+        "timestamp": "00:47:39.471",
+        "type": "Half End"
+      },
+      {
+        "period": 2,
+        "timestamp": "00:45:00.000",
+        "type": "Half Start"
+      },
+      {
+        "period": 2,
+        "timestamp": "01:32:00.036",
+        "type": "Half End"
+      }
+    ]
+  }
+]

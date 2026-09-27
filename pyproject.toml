@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "duckstatsbomb"
-description = 'A data parser for StatsBomb soccer data using duckdb'
+description = 'A data parser for Hudl StatsBomb soccer data using duckdb'
 readme = "README.md"
 license = "MIT"
 keywords = [
@@ -16,18 +16,59 @@ authors = [
   { name = "Andrew Rowlinson", email = "rowlinsonandy@gmail.com" },
 ]
 classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
   "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Scientific/Engineering :: Information Analysis",
 ]
-dependencies = ['duckdb >= 0.8', 'pandas', 'requests-cache']
+requires-python = ">=3.11"
+dependencies = ['duckdb >= 1.4.1']
 dynamic = ["version"]
 
+[project.optional-dependencies]
+pandas = ['pandas']
+polars = ['polars', 'pyarrow']
+arrow = ['pyarrow']
+all = ['pandas', 'polars', 'pyarrow']
+
+[dependency-groups]
+docs = ['numpydoc',
+        'pandas',
+        'polars',
+        'pyarrow',
+        'Sphinx',
+        'sphinx-gallery',
+        'sphinx-rtd-theme',
+]
+dev = ['hatch',
+       'jupyterlab',
+       'pytest',
+       'ruff',
+]
+
+[tool.uv]
+default-groups = ['docs']
+
 [project.urls]
-Documentation = "https://github.com/andrewRowlinson/duckstatsbomb/blob/main/README.md"
+Documentation = "https://duckstatsbomb.readthedocs.io"
 Issues = "https://github.com/andrewRowlinson/duckstatsbomb/issues"
 Source = "https://github.com/andrewRowlinson/duckstatsbomb"
 
 [tool.hatch.version]
 path = "duckstatsbomb/__about__.py"
+
+# example/ has StatsBomb data that can't be published
+[tool.hatch.build.targets.sdist]
+exclude = ["/example", ".claude", "*.ipynb"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["duckstatsbomb"]
 
 [tool.hatch.envs.default]
 dependencies = [
@@ -35,11 +76,17 @@ dependencies = [
   "pytest-cov",
 ]
 [tool.hatch.envs.default.scripts]
-cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=temporary --cov=tests"
+cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=duckstatsbomb --cov=tests"
 no-cov = "cov --no-cov"
 
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+  "network: reads the Hudl StatsBomb open-data over the network (deselect with '-m \"not network\"')",
+]
+
 [[tool.hatch.envs.test.matrix]]
-python = ["37", "38", "39", "310", "311"]
+python = ["311", "312", "313", "314"]
 
 [tool.coverage.run]
 branch = true
@@ -54,3 +101,20 @@ exclude_lines = [
   "if __name__ == .__main__.:",
   "if TYPE_CHECKING:",
 ]
+
+[tool.ruff]
+line-length = 100
+extend-exclude = ["*.ipynb", "*.md"]
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.ruff.lint]
+select = ["E", "F", "UP", "B", "SIM", "I",]
+
+[tool.ruff.lint.isort]
+known-first-party = ["duckstatsbomb", "conftest", "dummy_api"]
+
+[tool.ruff.lint.per-file-ignores]
+# exclude this rule as the examples deliberately output values without using the values
+"examples/**" = ["B018"]

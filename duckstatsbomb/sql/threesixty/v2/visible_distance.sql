@@ -1,0 +1,20 @@
+with raw_json as (
+    select
+        *
+    from
+        read_json(
+            $filename,
+            filename = true,
+            format = 'array',
+            columns = {"event_uuid": "varchar",
+                   "distances_from_edge_of_visible_area": "struct(point_id ubigint, distance double)[]"
+                   }
+        )
+)
+select
+    cast(parse_filename(filename, true, 'both_slash') as integer) as match_id,
+    event_uuid,
+    unnest(distances_from_edge_of_visible_area).point_id as point_id,
+    unnest(distances_from_edge_of_visible_area).distance as distance
+from
+    raw_json
