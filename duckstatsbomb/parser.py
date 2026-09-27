@@ -255,9 +255,14 @@ class SbBase:
         Parameters
         ----------
         kind : str
+            A kind of match data, e.g. ``'events'``. Required; see the :attr:`kinds`
+            property for the values.
         """
+        valid = f'one of {list(self._kinds)}, see the kinds property'
+        if kind is None:
+            raise ValueError(f'kind is required and should be {valid}')
         if kind not in self._kinds:
-            raise ValueError(f'kind should be one of {list(self._kinds)}')
+            raise ValueError(f'kind should be {valid}')
 
     def close_connection(self):
         """Close the DuckDB connection."""
@@ -542,7 +547,8 @@ class SbRemote(SbBase, ABC):
         ----------
         urls : list of str
         kind : str
-            A data type, e.g. 'events'.
+            A kind of match data, e.g. ``'events'``. Required; see the :attr:`kinds`
+            property for the values.
 
         Returns
         -------
@@ -554,14 +560,15 @@ class SbRemote(SbBase, ABC):
         paths = [self.cache.path(key) for key in keys]
         return self._execute(self.sql[kind], paths)
 
-    def match_data(self, match_id, kind):
+    def match_data(self, match_id, kind=None):
         """One kind of match data, e.g. events, for one or more match ids.
 
         Parameters
         ----------
         match_id : int or list of int
         kind : str
-            A kind of match data, e.g. ``'events'``. See the :attr:`kinds` property for the values.
+            A kind of match data, e.g. ``'events'``. Required; see the :attr:`kinds`
+            property for the values.
 
         Returns
         -------
@@ -595,7 +602,7 @@ class SbRemote(SbBase, ABC):
         urls = self._multi_match_url(competition_id, season_id)
         return [row[0] for row in self._execute(self.sql['match_ids'], urls).fetchall()]
 
-    def competition_data(self, competition_id, season_id, kind='events'):
+    def competition_data(self, competition_id, season_id, kind=None):
         """One kind of match data, e.g. events, for every match in one or more seasons.
 
         Parameters
@@ -603,8 +610,9 @@ class SbRemote(SbBase, ABC):
         competition_id, season_id : int or list of int
             Lists must be the same length, and are paired up in order, so several
             competition/season pairs can be read in one call.
-        kind : str, default ``'events'``
-            A kind of match data, e.g. ``'events'``. See the :attr:`kinds` property for the values.
+        kind : str
+            A kind of match data, e.g. ``'events'``. Required; see the :attr:`kinds`
+            property for the values.
 
         Returns
         -------
@@ -1108,7 +1116,7 @@ class Sbfiles(SbBase):
         """
         return self._format_output(self._execute(self.sql['matches'], self._unique(filename)))
 
-    def match_data(self, filename, kind):
+    def match_data(self, filename, kind=None):
         """One kind of match data, e.g. events, from the match file(s).
 
         Parameters
@@ -1117,7 +1125,8 @@ class Sbfiles(SbBase):
             The match JSON file(s) should be named {match_id}.json
             as the match_id is taken from the file name(s).
         kind : str
-            A kind of match data, e.g. ``'events'``. See the :attr:`kinds` property for the values.
+            A kind of match data, e.g. ``'events'``. Required; see the :attr:`kinds`
+            property for the values.
 
         Returns
         -------

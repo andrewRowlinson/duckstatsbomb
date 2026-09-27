@@ -28,7 +28,7 @@ which you can filter, aggregate, or query.
 ```python
 from duckstatsbomb import Sbopen
 parser = Sbopen()
-events = parser.competition_data(competition_id=43, season_id=106)
+events = parser.competition_data(competition_id=43, season_id=106, kind='events')
 shots = events.filter("type_name = 'Shot'")
 # top 4 goal scorers at the 2022 World Cup
 top = (

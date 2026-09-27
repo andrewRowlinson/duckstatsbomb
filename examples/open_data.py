@@ -100,9 +100,9 @@ lineups.aggregate('count(distinct match_id) as matches, count(*) as players').sh
 
 ##############################################################################
 # duckstatsbomb splits the nested JSON structure into several flat tables.
-# You can set the ``kind`` argument in match_data and competition_data
-# to return different tables. The :attr:`~duckstatsbomb.Sbopen.kinds`
-# property lists the available tables.
+# The ``kind`` argument in match_data and competition_data chooses which
+# table to return. The :attr:`~duckstatsbomb.Sbopen.kinds` property lists
+# the available tables.
 
 pprint(list(parser.kinds))
 
