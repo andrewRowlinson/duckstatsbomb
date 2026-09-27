@@ -218,11 +218,22 @@ def test_sources(parser):
 
 
 def test_invalid_kind(parser):
-    with pytest.raises(ValueError, match='kind should be one of'):
+    with pytest.raises(ValueError, match='kind should be one of .* see the kinds property'):
         parser.match_data(MATCH_ID, kind='not_a_kind')
 
 
-SEASON_METHODS = ['matches', 'competition_data', 'stale_matches']
+def test_missing_kind(parser):
+    with pytest.raises(ValueError, match='kind is required .* see the kinds property'):
+        parser.match_data(MATCH_ID)
+
+
+def test_competition_data_missing_kind(parser):
+    with pytest.raises(ValueError, match='kind is required .* see the kinds property'):
+        parser.competition_data(COMPETITION_ID, SEASON_ID)
+
+
+# the season methods and the keyword arguments they need besides the ids
+SEASON_METHODS = {'matches': {}, 'competition_data': {'kind': 'events'}, 'stale_matches': {}}
 
 
 @pytest.mark.parametrize('method', SEASON_METHODS)
@@ -231,13 +242,15 @@ SEASON_METHODS = ['matches', 'competition_data', 'stale_matches']
 )
 def test_ids_are_both_lists_or_neither(parser, method, competition_id, season_id):
     with pytest.raises(ValueError, match='should both be lists, or both single ids'):
-        getattr(parser, method)(competition_id, season_id)
+        getattr(parser, method)(competition_id, season_id, **SEASON_METHODS[method])
 
 
 @pytest.mark.parametrize('method', SEASON_METHODS)
 def test_id_lists_must_be_the_same_length(parser, method):
     with pytest.raises(ValueError, match='should be the same length'):
-        getattr(parser, method)([COMPETITION_ID, COMPETITION_ID], [SEASON_ID])
+        getattr(parser, method)(
+            [COMPETITION_ID, COMPETITION_ID], [SEASON_ID], **SEASON_METHODS[method]
+        )
 
 
 def test_match_data_with_no_match_ids(parser):

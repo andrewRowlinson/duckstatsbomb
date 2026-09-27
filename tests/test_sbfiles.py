@@ -137,6 +137,12 @@ def test_match_data_with_no_files():
         Sbfiles(**versions).match_data([], kind='events')
 
 
+def test_missing_kind():
+    path, versions = events_file()
+    with pytest.raises(ValueError, match='kind is required .* see the kinds property'):
+        Sbfiles(**versions).match_data(path)
+
+
 @pytest.mark.skipif(os.name == 'nt', reason='a backslash already separates directories')
 def test_match_id_comes_from_a_windows_path(tmp_path):
     """Windows separates directories with a backslash. Elsewhere a backslash can be part
