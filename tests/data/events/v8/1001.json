@@ -1,0 +1,2432 @@
+[
+  {
+    "id": "40956286-2982-5769-8af3-5c711c20cac4",
+    "index": 1,
+    "period": 1,
+    "timestamp": "00:00:00.000",
+    "minute": 0,
+    "second": 0,
+    "type": {
+      "id": 35,
+      "name": "Starting XI"
+    },
+    "possession": 1,
+    "possession_team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "play_pattern": {
+      "id": 2,
+      "name": "From Corner"
+    },
+    "obv_for_after": null,
+    "obv_for_before": null,
+    "obv_for_net": null,
+    "obv_against_after": null,
+    "obv_against_before": null,
+    "obv_against_net": null,
+    "obv_total_net": null,
+    "team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "duration": 0.0,
+    "tactics": {
+      "formation": 4231,
+      "lineup": [
+        {
+          "player": {
+            "id": 10101,
+            "name": "Edie Reed"
+          },
+          "position": {
+            "id": 1,
+            "name": "Goalkeeper"
+          },
+          "jersey_number": 1
+        },
+        {
+          "player": {
+            "id": 10102,
+            "name": "Ada Puddle"
+          },
+          "position": {
+            "id": 2,
+            "name": "Right Back"
+          },
+          "jersey_number": 2
+        },
+        {
+          "player": {
+            "id": 10103,
+            "name": "Finn Waddle"
+          },
+          "position": {
+            "id": 3,
+            "name": "Right Center Back"
+          },
+          "jersey_number": 3
+        },
+        {
+          "player": {
+            "id": 10104,
+            "name": "Bram Marsh"
+          },
+          "position": {
+            "id": 5,
+            "name": "Left Center Back"
+          },
+          "jersey_number": 4
+        },
+        {
+          "player": {
+            "id": 10105,
+            "name": "Bram Quill"
+          },
+          "position": {
+            "id": 6,
+            "name": "Left Back"
+          },
+          "jersey_number": 5
+        },
+        {
+          "player": {
+            "id": 10106,
+            "name": "Finn Reed"
+          },
+          "position": {
+            "id": 9,
+            "name": "Right Defensive Midfield"
+          },
+          "jersey_number": 6
+        },
+        {
+          "player": {
+            "id": 10107,
+            "name": "Juno Feather"
+          },
+          "position": {
+            "id": 11,
+            "name": "Left Defensive Midfield"
+          },
+          "jersey_number": 7
+        },
+        {
+          "player": {
+            "id": 10108,
+            "name": "Finn Marsh"
+          },
+          "position": {
+            "id": 17,
+            "name": "Right Wing"
+          },
+          "jersey_number": 8
+        },
+        {
+          "player": {
+            "id": 10109,
+            "name": "Ivo Feather"
+          },
+          "position": {
+            "id": 19,
+            "name": "Center Attacking Midfield"
+          },
+          "jersey_number": 9
+        },
+        {
+          "player": {
+            "id": 10110,
+            "name": "Ivo Quill"
+          },
+          "position": {
+            "id": 21,
+            "name": "Left Wing"
+          },
+          "jersey_number": 10
+        },
+        {
+          "player": {
+            "id": 10111,
+            "name": "Ada Feather"
+          },
+          "position": {
+            "id": 23,
+            "name": "Striker"
+          },
+          "jersey_number": 11
+        }
+      ]
+    }
+  },
+  {
+    "id": "804b6d7d-f03f-5e7d-9a1f-05795d3d1204",
+    "index": 2,
+    "period": 1,
+    "timestamp": "00:00:00.000",
+    "minute": 0,
+    "second": 0,
+    "type": {
+      "id": 35,
+      "name": "Starting XI"
+    },
+    "possession": 1,
+    "possession_team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "play_pattern": {
+      "id": 4,
+      "name": "From Throw In"
+    },
+    "obv_for_after": null,
+    "obv_for_before": null,
+    "obv_for_net": null,
+    "obv_against_after": null,
+    "obv_against_before": null,
+    "obv_against_net": null,
+    "obv_total_net": null,
+    "team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "duration": 0.0,
+    "tactics": {
+      "formation": 4231,
+      "lineup": [
+        {
+          "player": {
+            "id": 10201,
+            "name": "Cora Reed"
+          },
+          "position": {
+            "id": 1,
+            "name": "Goalkeeper"
+          },
+          "jersey_number": 1
+        },
+        {
+          "player": {
+            "id": 10202,
+            "name": "Gus Paddle"
+          },
+          "position": {
+            "id": 2,
+            "name": "Right Back"
+          },
+          "jersey_number": 2
+        },
+        {
+          "player": {
+            "id": 10203,
+            "name": "Finn Puddle"
+          },
+          "position": {
+            "id": 3,
+            "name": "Right Center Back"
+          },
+          "jersey_number": 3
+        },
+        {
+          "player": {
+            "id": 10204,
+            "name": "Dex Puddle"
+          },
+          "position": {
+            "id": 5,
+            "name": "Left Center Back"
+          },
+          "jersey_number": 4
+        },
+        {
+          "player": {
+            "id": 10205,
+            "name": "Dex Paddle"
+          },
+          "position": {
+            "id": 6,
+            "name": "Left Back"
+          },
+          "jersey_number": 5
+        },
+        {
+          "player": {
+            "id": 10206,
+            "name": "Gus Feather"
+          },
+          "position": {
+            "id": 9,
+            "name": "Right Defensive Midfield"
+          },
+          "jersey_number": 6
+        },
+        {
+          "player": {
+            "id": 10207,
+            "name": "Cora Puddle"
+          },
+          "position": {
+            "id": 11,
+            "name": "Left Defensive Midfield"
+          },
+          "jersey_number": 7
+        },
+        {
+          "player": {
+            "id": 10208,
+            "name": "Ada Reed"
+          },
+          "position": {
+            "id": 17,
+            "name": "Right Wing"
+          },
+          "jersey_number": 8
+        },
+        {
+          "player": {
+            "id": 10209,
+            "name": "Bram Paddle"
+          },
+          "position": {
+            "id": 19,
+            "name": "Center Attacking Midfield"
+          },
+          "jersey_number": 9
+        },
+        {
+          "player": {
+            "id": 10210,
+            "name": "Cora Paddle"
+          },
+          "position": {
+            "id": 21,
+            "name": "Left Wing"
+          },
+          "jersey_number": 10
+        },
+        {
+          "player": {
+            "id": 10211,
+            "name": "Ada Webb"
+          },
+          "position": {
+            "id": 23,
+            "name": "Striker"
+          },
+          "jersey_number": 11
+        }
+      ]
+    }
+  },
+  {
+    "id": "a22d9752-63b3-57a0-b1bd-7bc57e278e62",
+    "index": 3,
+    "period": 1,
+    "timestamp": "00:00:00.000",
+    "minute": 0,
+    "second": 0,
+    "type": {
+      "id": 18,
+      "name": "Half Start"
+    },
+    "possession": 2,
+    "possession_team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "play_pattern": {
+      "id": 8,
+      "name": "From Keeper"
+    },
+    "obv_for_after": null,
+    "obv_for_before": null,
+    "obv_for_net": null,
+    "obv_against_after": null,
+    "obv_against_before": null,
+    "obv_against_net": null,
+    "obv_total_net": null,
+    "team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "duration": 0.0,
+    "related_events": [
+      "e3cb5059-0ccf-598e-8298-77882c9e49d0"
+    ],
+    "half_start": {
+      "late_video_start": true
+    }
+  },
+  {
+    "id": "e3cb5059-0ccf-598e-8298-77882c9e49d0",
+    "index": 4,
+    "period": 1,
+    "timestamp": "00:00:00.000",
+    "minute": 0,
+    "second": 0,
+    "type": {
+      "id": 18,
+      "name": "Half Start"
+    },
+    "possession": 2,
+    "possession_team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "play_pattern": {
+      "id": 6,
+      "name": "From Counter"
+    },
+    "obv_for_after": null,
+    "obv_for_before": null,
+    "obv_for_net": null,
+    "obv_against_after": null,
+    "obv_against_before": null,
+    "obv_against_net": null,
+    "obv_total_net": null,
+    "team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "duration": 0.0,
+    "related_events": [
+      "a22d9752-63b3-57a0-b1bd-7bc57e278e62"
+    ],
+    "half_start": {
+      "late_video_start": true
+    }
+  },
+  {
+    "id": "4aab6e43-d16c-55b3-a09b-099a3e1bb638",
+    "index": 5,
+    "period": 1,
+    "timestamp": "00:02:45.719",
+    "minute": 2,
+    "second": 45,
+    "type": {
+      "id": 22,
+      "name": "Foul Committed"
+    },
+    "possession": 2,
+    "possession_team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "play_pattern": {
+      "id": 3,
+      "name": "From Free Kick"
+    },
+    "obv_for_after": -0.024661,
+    "obv_for_before": -0.025656,
+    "obv_for_net": 0.045219,
+    "obv_against_after": -0.003317,
+    "obv_against_before": -0.030054,
+    "obv_against_net": 0.014059,
+    "obv_total_net": -0.038395,
+    "team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "player": {
+      "id": 10211,
+      "name": "Ada Webb"
+    },
+    "position": {
+      "id": 23,
+      "name": "Striker"
+    },
+    "location": [
+      98.5,
+      2.7
+    ],
+    "duration": 1.749467,
+    "related_events": [
+      "fb1644b3-d8c9-58be-ae2d-a16fdc7f6fb2"
+    ],
+    "foul_committed": {
+      "counterpress": true,
+      "offensive": true,
+      "type": {
+        "id": 23,
+        "name": "Foul Out"
+      },
+      "advantage": true,
+      "penalty": true,
+      "card": {
+        "id": 7,
+        "name": "Yellow Card"
+      }
+    }
+  },
+  {
+    "id": "754c0920-f4b1-5b46-ba74-103f15aa3385",
+    "index": 6,
+    "period": 1,
+    "timestamp": "00:06:49.659",
+    "minute": 6,
+    "second": 49,
+    "type": {
+      "id": 42,
+      "name": "Ball Receipt*"
+    },
+    "possession": 3,
+    "possession_team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "play_pattern": {
+      "id": 8,
+      "name": "From Keeper"
+    },
+    "obv_for_after": 0.003071,
+    "obv_for_before": 0.042667,
+    "obv_for_net": -0.037538,
+    "obv_against_after": -0.046931,
+    "obv_against_before": 0.048861,
+    "obv_against_net": 0.025071,
+    "obv_total_net": -3e-06,
+    "team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "player": {
+      "id": 10109,
+      "name": "Ivo Feather"
+    },
+    "position": {
+      "id": 19,
+      "name": "Center Attacking Midfield"
+    },
+    "location": [
+      63.1,
+      22.3
+    ],
+    "duration": 0.107279,
+    "related_events": [
+      "e3a71658-1b1b-5561-96f5-7f10181782e8"
+    ],
+    "ball_receipt": {
+      "outcome": {
+        "id": 9,
+        "name": "Incomplete"
+      }
+    }
+  },
+  {
+    "id": "dbc68cda-4ebd-5db2-a42d-57bd9ead861b",
+    "index": 7,
+    "period": 1,
+    "timestamp": "00:09:02.191",
+    "minute": 9,
+    "second": 2,
+    "type": {
+      "id": 40,
+      "name": "Injury Stoppage"
+    },
+    "possession": 3,
+    "possession_team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "play_pattern": {
+      "id": 8,
+      "name": "From Keeper"
+    },
+    "obv_for_after": null,
+    "obv_for_before": null,
+    "obv_for_net": null,
+    "obv_against_after": null,
+    "obv_against_before": null,
+    "obv_against_net": null,
+    "obv_total_net": null,
+    "team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "player": {
+      "id": 10208,
+      "name": "Ada Reed"
+    },
+    "position": {
+      "id": 17,
+      "name": "Right Wing"
+    },
+    "duration": 0.291615,
+    "injury_stoppage": {
+      "in_chain": true
+    }
+  },
+  {
+    "id": "5be740f6-c3da-58f3-a23c-419b470c449d",
+    "index": 8,
+    "period": 1,
+    "timestamp": "00:09:16.715",
+    "minute": 9,
+    "second": 16,
+    "type": {
+      "id": 25,
+      "name": "Own Goal For"
+    },
+    "possession": 3,
+    "possession_team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "play_pattern": {
+      "id": 4,
+      "name": "From Throw In"
+    },
+    "obv_for_after": -0.02512,
+    "obv_for_before": 0.038795,
+    "obv_for_net": -0.04634,
+    "obv_against_after": 0.002889,
+    "obv_against_before": 0.035231,
+    "obv_against_net": -0.018457,
+    "obv_total_net": 0.037882,
+    "team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "player": {
+      "id": 10211,
+      "name": "Ada Webb"
+    },
+    "position": {
+      "id": 23,
+      "name": "Striker"
+    },
+    "location": [
+      105.9,
+      69.1
+    ],
+    "duration": 0.714247
+  },
+  {
+    "id": "95acca7c-f99c-5e39-b1b1-fe321bc65240",
+    "index": 9,
+    "period": 1,
+    "timestamp": "00:14:27.095",
+    "minute": 14,
+    "second": 27,
+    "type": {
+      "id": 10,
+      "name": "Interception"
+    },
+    "possession": 4,
+    "possession_team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "play_pattern": {
+      "id": 8,
+      "name": "From Keeper"
+    },
+    "obv_for_after": 0.044468,
+    "obv_for_before": 0.042039,
+    "obv_for_net": -0.0113,
+    "obv_against_after": 0.001794,
+    "obv_against_before": 0.022856,
+    "obv_against_net": -0.011242,
+    "obv_total_net": -0.041873,
+    "team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "player": {
+      "id": 10205,
+      "name": "Dex Paddle"
+    },
+    "position": {
+      "id": 6,
+      "name": "Left Back"
+    },
+    "location": [
+      106.9,
+      42.6
+    ],
+    "duration": 0.617957,
+    "interception": {
+      "outcome": {
+        "id": 17,
+        "name": "Success Out"
+      }
+    }
+  },
+  {
+    "id": "42f5b570-0cea-546f-a7a1-8907d0af63d0",
+    "index": 10,
+    "period": 1,
+    "timestamp": "00:14:56.899",
+    "minute": 14,
+    "second": 56,
+    "type": {
+      "id": 37,
+      "name": "Error"
+    },
+    "possession": 4,
+    "possession_team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "play_pattern": {
+      "id": 5,
+      "name": "Other"
+    },
+    "obv_for_after": 0.001917,
+    "obv_for_before": 0.007742,
+    "obv_for_net": 0.034897,
+    "obv_against_after": 0.030664,
+    "obv_against_before": 0.027108,
+    "obv_against_net": 0.010888,
+    "obv_total_net": -0.04297,
+    "team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "player": {
+      "id": 10206,
+      "name": "Gus Feather"
+    },
+    "position": {
+      "id": 9,
+      "name": "Right Defensive Midfield"
+    },
+    "location": [
+      14.3,
+      25.6
+    ],
+    "duration": 2.554329
+  },
+  {
+    "id": "0145c517-bd37-5472-acb3-ebef3bc52264",
+    "index": 11,
+    "period": 1,
+    "timestamp": "00:21:43.817",
+    "minute": 21,
+    "second": 43,
+    "type": {
+      "id": 20,
+      "name": "Own Goal Against"
+    },
+    "possession": 4,
+    "possession_team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "play_pattern": {
+      "id": 4,
+      "name": "From Throw In"
+    },
+    "obv_for_after": 0.04431,
+    "obv_for_before": 0.009262,
+    "obv_for_net": -0.004179,
+    "obv_against_after": -0.045004,
+    "obv_against_before": 0.046545,
+    "obv_against_net": 0.036278,
+    "obv_total_net": 0.044432,
+    "team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "player": {
+      "id": 10108,
+      "name": "Finn Marsh"
+    },
+    "position": {
+      "id": 17,
+      "name": "Right Wing"
+    },
+    "location": [
+      44.3,
+      13.4
+    ],
+    "duration": 2.677281
+  },
+  {
+    "id": "d66154a9-8f7b-5491-a1ff-e7fa7d59312e",
+    "index": 12,
+    "period": 1,
+    "timestamp": "00:22:03.877",
+    "minute": 22,
+    "second": 3,
+    "type": {
+      "id": 26,
+      "name": "Player On"
+    },
+    "possession": 5,
+    "possession_team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "play_pattern": {
+      "id": 1,
+      "name": "Regular Play"
+    },
+    "obv_for_after": null,
+    "obv_for_before": null,
+    "obv_for_net": null,
+    "obv_against_after": null,
+    "obv_against_before": null,
+    "obv_against_net": null,
+    "obv_total_net": null,
+    "team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "player": {
+      "id": 10108,
+      "name": "Finn Marsh"
+    },
+    "position": {
+      "id": 17,
+      "name": "Right Wing"
+    },
+    "duration": 0.414476
+  },
+  {
+    "id": "e7d98a21-6b83-59f2-a7e7-6b27aff631fb",
+    "index": 13,
+    "period": 1,
+    "timestamp": "00:27:48.971",
+    "minute": 27,
+    "second": 48,
+    "type": {
+      "id": 16,
+      "name": "Shot"
+    },
+    "possession": 5,
+    "possession_team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "play_pattern": {
+      "id": 8,
+      "name": "From Keeper"
+    },
+    "obv_for_after": -0.040042,
+    "obv_for_before": 0.029389,
+    "obv_for_net": 0.049421,
+    "obv_against_after": 0.022587,
+    "obv_against_before": 0.022205,
+    "obv_against_net": 0.016019,
+    "obv_total_net": 0.014189,
+    "team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "player": {
+      "id": 10206,
+      "name": "Gus Feather"
+    },
+    "position": {
+      "id": 9,
+      "name": "Right Defensive Midfield"
+    },
+    "location": [
+      46.1,
+      71.9,
+      1.2
+    ],
+    "duration": 1.490539,
+    "related_events": [
+      "46a4024c-c6e1-513c-8934-532443c5cfee",
+      "9d76932d-c14b-588b-add6-d8f89637bd56"
+    ],
+    "shot": {
+      "key_pass_id": "e3a71658-1b1b-5561-96f5-7f10181782e8",
+      "end_location": [
+        40.8,
+        36.3,
+        1.4
+      ],
+      "aerial_won": true,
+      "follows_dribble": true,
+      "first_time": true,
+      "freeze_frame": [
+        {
+          "location": [
+            30.0,
+            55.0
+          ],
+          "player": {
+            "id": 10205,
+            "name": "Dex Paddle"
+          },
+          "position": {
+            "id": 6,
+            "name": "Left Back"
+          },
+          "teammate": true
+        },
+        {
+          "location": [
+            103.4,
+            76.4
+          ],
+          "player": {
+            "id": 10107,
+            "name": "Juno Feather"
+          },
+          "position": {
+            "id": 11,
+            "name": "Left Defensive Midfield"
+          },
+          "teammate": false
+        },
+        {
+          "location": [
+            92.0,
+            35.1
+          ],
+          "player": {
+            "id": 10207,
+            "name": "Cora Puddle"
+          },
+          "position": {
+            "id": 11,
+            "name": "Left Defensive Midfield"
+          },
+          "teammate": true
+        },
+        {
+          "location": [
+            35.4,
+            24.4
+          ],
+          "player": {
+            "id": 10111,
+            "name": "Ada Feather"
+          },
+          "position": {
+            "id": 23,
+            "name": "Striker"
+          },
+          "teammate": false
+        },
+        {
+          "location": [
+            51.6,
+            0.2
+          ],
+          "player": {
+            "id": 10204,
+            "name": "Dex Puddle"
+          },
+          "position": {
+            "id": 5,
+            "name": "Left Center Back"
+          },
+          "teammate": true
+        },
+        {
+          "location": [
+            11.1,
+            56.8
+          ],
+          "player": {
+            "id": 10103,
+            "name": "Finn Waddle"
+          },
+          "position": {
+            "id": 3,
+            "name": "Right Center Back"
+          },
+          "teammate": false
+        }
+      ],
+      "open_goal": true,
+      "one_on_one": true,
+      "statsbomb_xg": 0.901704,
+      "gk_save_difficulty_xg": 0.615511,
+      "shot_execution_xg": 0.766592,
+      "shot_execution_xg_uplift": -0.02374,
+      "gk_positioning_xg_suppression": 0.152279,
+      "gk_shot_stopping_xg_suppression": -0.052939,
+      "deflected": true,
+      "technique": {
+        "id": 92,
+        "name": "Lob"
+      },
+      "shot_shot_assist": true,
+      "shot_goal_assist": true,
+      "body_part": {
+        "id": 37,
+        "name": "Head"
+      },
+      "type": {
+        "id": 87,
+        "name": "Open Play"
+      },
+      "outcome": {
+        "id": 101,
+        "name": "Wayward"
+      },
+      "redirect": true
+    }
+  },
+  {
+    "id": "4933c2fa-2438-52f7-a7b0-fc9d4ce01e05",
+    "index": 14,
+    "period": 1,
+    "timestamp": "00:29:23.318",
+    "minute": 29,
+    "second": 23,
+    "type": {
+      "id": 4,
+      "name": "Duel"
+    },
+    "possession": 5,
+    "possession_team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "play_pattern": {
+      "id": 3,
+      "name": "From Free Kick"
+    },
+    "obv_for_after": -0.001768,
+    "obv_for_before": -0.017342,
+    "obv_for_net": 0.033495,
+    "obv_against_after": -0.01917,
+    "obv_against_before": 0.049338,
+    "obv_against_net": -0.030861,
+    "obv_total_net": 0.000577,
+    "team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "player": {
+      "id": 10207,
+      "name": "Cora Puddle"
+    },
+    "position": {
+      "id": 11,
+      "name": "Left Defensive Midfield"
+    },
+    "location": [
+      51.0,
+      66.2
+    ],
+    "duration": 1.00851,
+    "related_events": [
+      "9b591122-d8b9-5108-b7aa-a415fd1d812f"
+    ],
+    "duel": {
+      "counterpress": true,
+      "type": {
+        "id": 11,
+        "name": "Tackle"
+      },
+      "outcome": {
+        "id": 15,
+        "name": "Success"
+      }
+    }
+  },
+  {
+    "id": "253b142a-3f76-5cfe-b90e-fb4d4543ca06",
+    "index": 15,
+    "period": 1,
+    "timestamp": "00:35:24.553",
+    "minute": 35,
+    "second": 24,
+    "type": {
+      "id": 33,
+      "name": "50/50"
+    },
+    "possession": 6,
+    "possession_team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "play_pattern": {
+      "id": 9,
+      "name": "From Kick Off"
+    },
+    "obv_for_after": -0.047257,
+    "obv_for_before": -0.001162,
+    "obv_for_net": 0.038397,
+    "obv_against_after": -0.031208,
+    "obv_against_before": -0.044725,
+    "obv_against_net": -0.002143,
+    "obv_total_net": 0.032022,
+    "team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "player": {
+      "id": 10111,
+      "name": "Ada Feather"
+    },
+    "position": {
+      "id": 23,
+      "name": "Striker"
+    },
+    "location": [
+      39.6,
+      65.8
+    ],
+    "duration": 1.788226,
+    "50_50": {
+      "outcome": {
+        "id": 148,
+        "name": "Success To Opposition"
+      },
+      "counterpress": true
+    }
+  },
+  {
+    "id": "b4a7bc70-4a22-5187-b6e2-9eb11d0b9ca3",
+    "index": 16,
+    "period": 1,
+    "timestamp": "00:37:05.957",
+    "minute": 37,
+    "second": 5,
+    "type": {
+      "id": 27,
+      "name": "Player Off"
+    },
+    "possession": 6,
+    "possession_team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "play_pattern": {
+      "id": 4,
+      "name": "From Throw In"
+    },
+    "obv_for_after": null,
+    "obv_for_before": null,
+    "obv_for_net": null,
+    "obv_against_after": null,
+    "obv_against_before": null,
+    "obv_against_net": null,
+    "obv_total_net": null,
+    "team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "player": {
+      "id": 10105,
+      "name": "Bram Quill"
+    },
+    "position": {
+      "id": 6,
+      "name": "Left Back"
+    },
+    "duration": 0.025831,
+    "player_off": {
+      "permanent": true
+    }
+  },
+  {
+    "id": "fb1644b3-d8c9-58be-ae2d-a16fdc7f6fb2",
+    "index": 17,
+    "period": 1,
+    "timestamp": "00:41:31.708",
+    "minute": 41,
+    "second": 31,
+    "type": {
+      "id": 21,
+      "name": "Foul Won"
+    },
+    "possession": 6,
+    "possession_team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "play_pattern": {
+      "id": 9,
+      "name": "From Kick Off"
+    },
+    "obv_for_after": 0.026693,
+    "obv_for_before": -0.015749,
+    "obv_for_net": -0.002066,
+    "obv_against_after": -0.045,
+    "obv_against_before": 0.008939,
+    "obv_against_net": -0.019118,
+    "obv_total_net": -0.002917,
+    "team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "player": {
+      "id": 10205,
+      "name": "Dex Paddle"
+    },
+    "position": {
+      "id": 6,
+      "name": "Left Back"
+    },
+    "location": [
+      116.3,
+      67.0
+    ],
+    "duration": 2.491939,
+    "off_camera": true,
+    "related_events": [
+      "4aab6e43-d16c-55b3-a09b-099a3e1bb638"
+    ],
+    "foul_won": {
+      "defensive": true,
+      "advantage": true,
+      "penalty": true
+    }
+  },
+  {
+    "id": "9b591122-d8b9-5108-b7aa-a415fd1d812f",
+    "index": 18,
+    "period": 1,
+    "timestamp": "00:41:46.678",
+    "minute": 41,
+    "second": 46,
+    "type": {
+      "id": 14,
+      "name": "Dribble"
+    },
+    "possession": 7,
+    "possession_team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "play_pattern": {
+      "id": 3,
+      "name": "From Free Kick"
+    },
+    "obv_for_after": 0.040162,
+    "obv_for_before": 0.011248,
+    "obv_for_net": 0.032509,
+    "obv_against_after": -0.024149,
+    "obv_against_before": -0.020643,
+    "obv_against_net": 0.047038,
+    "obv_total_net": 0.036922,
+    "team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "player": {
+      "id": 10205,
+      "name": "Dex Paddle"
+    },
+    "position": {
+      "id": 6,
+      "name": "Left Back"
+    },
+    "location": [
+      88.6,
+      69.1
+    ],
+    "duration": 2.630933,
+    "related_events": [
+      "13d41fff-38ff-5a0c-b571-f043f39f40b2",
+      "4933c2fa-2438-52f7-a7b0-fc9d4ce01e05"
+    ],
+    "dribble": {
+      "overrun": true,
+      "nutmeg": true,
+      "outcome": {
+        "id": 9,
+        "name": "Incomplete"
+      },
+      "no_touch": true
+    }
+  },
+  {
+    "id": "c4a26bd5-3948-5d1f-aaeb-12d45f4db637",
+    "index": 19,
+    "period": 1,
+    "timestamp": "00:42:39.887",
+    "minute": 42,
+    "second": 39,
+    "type": {
+      "id": 28,
+      "name": "Shield"
+    },
+    "possession": 7,
+    "possession_team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "play_pattern": {
+      "id": 5,
+      "name": "Other"
+    },
+    "obv_for_after": 0.027133,
+    "obv_for_before": 0.028762,
+    "obv_for_net": 0.043392,
+    "obv_against_after": 0.043421,
+    "obv_against_before": -0.00672,
+    "obv_against_net": -0.027831,
+    "obv_total_net": -0.002112,
+    "team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "player": {
+      "id": 10206,
+      "name": "Gus Feather"
+    },
+    "position": {
+      "id": 9,
+      "name": "Right Defensive Midfield"
+    },
+    "location": [
+      81.5,
+      12.2
+    ],
+    "duration": 1.83481
+  },
+  {
+    "id": "4d0452ff-adbc-5891-b49b-e0851bad130d",
+    "index": 20,
+    "period": 1,
+    "timestamp": "00:44:01.753",
+    "minute": 44,
+    "second": 1,
+    "type": {
+      "id": 43,
+      "name": "Carry"
+    },
+    "possession": 7,
+    "possession_team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "play_pattern": {
+      "id": 1,
+      "name": "Regular Play"
+    },
+    "obv_for_after": -0.002647,
+    "obv_for_before": 0.048263,
+    "obv_for_net": 0.032199,
+    "obv_against_after": -0.015355,
+    "obv_against_before": 0.023071,
+    "obv_against_net": 0.021055,
+    "obv_total_net": 0.049609,
+    "team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "player": {
+      "id": 10102,
+      "name": "Ada Puddle"
+    },
+    "position": {
+      "id": 2,
+      "name": "Right Back"
+    },
+    "location": [
+      49.9,
+      16.3
+    ],
+    "duration": 2.492986,
+    "related_events": [
+      "e3a71658-1b1b-5561-96f5-7f10181782e8"
+    ],
+    "carry": {
+      "end_location": [
+        82.3,
+        42.4
+      ]
+    }
+  },
+  {
+    "id": "a6902f12-080d-538c-b6f4-592533390e59",
+    "index": 21,
+    "period": 1,
+    "timestamp": "00:49:04.789",
+    "minute": 49,
+    "second": 4,
+    "type": {
+      "id": 34,
+      "name": "Half End"
+    },
+    "possession": 8,
+    "possession_team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "play_pattern": {
+      "id": 2,
+      "name": "From Corner"
+    },
+    "obv_for_after": null,
+    "obv_for_before": null,
+    "obv_for_net": null,
+    "obv_against_after": null,
+    "obv_against_before": null,
+    "obv_against_net": null,
+    "obv_total_net": null,
+    "team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "duration": 0.0,
+    "related_events": [
+      "c5591153-6ce5-55b5-9eec-644ce2cecd8e"
+    ],
+    "half_end": {
+      "early_video_end": true,
+      "match_suspended": true
+    }
+  },
+  {
+    "id": "c5591153-6ce5-55b5-9eec-644ce2cecd8e",
+    "index": 22,
+    "period": 1,
+    "timestamp": "00:49:04.789",
+    "minute": 49,
+    "second": 4,
+    "type": {
+      "id": 34,
+      "name": "Half End"
+    },
+    "possession": 8,
+    "possession_team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "play_pattern": {
+      "id": 3,
+      "name": "From Free Kick"
+    },
+    "obv_for_after": null,
+    "obv_for_before": null,
+    "obv_for_net": null,
+    "obv_against_after": null,
+    "obv_against_before": null,
+    "obv_against_net": null,
+    "obv_total_net": null,
+    "team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "duration": 0.0,
+    "related_events": [
+      "a6902f12-080d-538c-b6f4-592533390e59"
+    ],
+    "half_end": {
+      "early_video_end": true,
+      "match_suspended": true
+    }
+  },
+  {
+    "id": "e6e1a20f-5ff0-5711-829b-f9d29215fdf6",
+    "index": 23,
+    "period": 2,
+    "timestamp": "00:00:00.000",
+    "minute": 45,
+    "second": 0,
+    "type": {
+      "id": 18,
+      "name": "Half Start"
+    },
+    "possession": 8,
+    "possession_team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "play_pattern": {
+      "id": 4,
+      "name": "From Throw In"
+    },
+    "obv_for_after": null,
+    "obv_for_before": null,
+    "obv_for_net": null,
+    "obv_against_after": null,
+    "obv_against_before": null,
+    "obv_against_net": null,
+    "obv_total_net": null,
+    "team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "duration": 0.0,
+    "related_events": [
+      "d446b6bb-1837-5b85-8e6f-fef77228dd7b"
+    ],
+    "half_start": {
+      "late_video_start": true
+    }
+  },
+  {
+    "id": "d446b6bb-1837-5b85-8e6f-fef77228dd7b",
+    "index": 24,
+    "period": 2,
+    "timestamp": "00:00:00.000",
+    "minute": 45,
+    "second": 0,
+    "type": {
+      "id": 18,
+      "name": "Half Start"
+    },
+    "possession": 9,
+    "possession_team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "play_pattern": {
+      "id": 5,
+      "name": "Other"
+    },
+    "obv_for_after": null,
+    "obv_for_before": null,
+    "obv_for_net": null,
+    "obv_against_after": null,
+    "obv_against_before": null,
+    "obv_against_net": null,
+    "obv_total_net": null,
+    "team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "duration": 0.0,
+    "related_events": [
+      "e6e1a20f-5ff0-5711-829b-f9d29215fdf6"
+    ],
+    "half_start": {
+      "late_video_start": true
+    }
+  },
+  {
+    "id": "e3a71658-1b1b-5561-96f5-7f10181782e8",
+    "index": 25,
+    "period": 2,
+    "timestamp": "00:04:15.353",
+    "minute": 49,
+    "second": 15,
+    "type": {
+      "id": 30,
+      "name": "Pass"
+    },
+    "possession": 9,
+    "possession_team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "play_pattern": {
+      "id": 4,
+      "name": "From Throw In"
+    },
+    "obv_for_after": 0.020092,
+    "obv_for_before": -0.032233,
+    "obv_for_net": 0.021009,
+    "obv_against_after": -0.036808,
+    "obv_against_before": -0.014857,
+    "obv_against_net": -0.039135,
+    "obv_total_net": 0.032455,
+    "team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "player": {
+      "id": 10106,
+      "name": "Finn Reed"
+    },
+    "position": {
+      "id": 9,
+      "name": "Right Defensive Midfield"
+    },
+    "location": [
+      46.0,
+      15.8
+    ],
+    "duration": 0.440718,
+    "under_pressure": true,
+    "related_events": [
+      "754c0920-f4b1-5b46-ba74-103f15aa3385"
+    ],
+    "pass": {
+      "recipient": {
+        "id": 10106,
+        "name": "Finn Reed"
+      },
+      "length": 4.034113,
+      "angle": 2.167795,
+      "aerial_won": true,
+      "height": {
+        "id": 3,
+        "name": "High Pass"
+      },
+      "end_location": [
+        115.7,
+        10.9
+      ],
+      "assisted_shot_id": "e7d98a21-6b83-59f2-a7e7-6b27aff631fb",
+      "backheel": true,
+      "deflected": true,
+      "miscommunication": true,
+      "cross": true,
+      "cut_back": true,
+      "switch": true,
+      "shot_assist": true,
+      "goal_assist": true,
+      "body_part": {
+        "id": 40,
+        "name": "Right Foot"
+      },
+      "type": {
+        "id": 63,
+        "name": "Goal Kick"
+      },
+      "outcome": {
+        "id": 74,
+        "name": "Injury Clearance"
+      },
+      "technique": {
+        "id": 108,
+        "name": "Through Ball"
+      },
+      "pass_cluster_id": 14,
+      "pass_cluster_label": "Attacking third - Left - To left - Long - Ground Pass",
+      "pass_cluster_probability": 0.113138,
+      "pass_success_probability": 0.923347,
+      "no_touch": true,
+      "xclaim": 0.439828
+    }
+  },
+  {
+    "id": "bb3bde72-e2e2-5d77-b9dd-019849cbd3be",
+    "index": 26,
+    "period": 2,
+    "timestamp": "00:06:57.140",
+    "minute": 51,
+    "second": 57,
+    "type": {
+      "id": 8,
+      "name": "Offside"
+    },
+    "possession": 9,
+    "possession_team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "play_pattern": {
+      "id": 5,
+      "name": "Other"
+    },
+    "obv_for_after": 0.031609,
+    "obv_for_before": 0.024844,
+    "obv_for_net": 0.005098,
+    "obv_against_after": 0.036025,
+    "obv_against_before": -0.023887,
+    "obv_against_net": -0.033827,
+    "obv_total_net": 0.027941,
+    "team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "player": {
+      "id": 10209,
+      "name": "Bram Paddle"
+    },
+    "position": {
+      "id": 19,
+      "name": "Center Attacking Midfield"
+    },
+    "location": [
+      103.3,
+      19.7
+    ],
+    "duration": 0.813642
+  },
+  {
+    "id": "13d41fff-38ff-5a0c-b571-f043f39f40b2",
+    "index": 27,
+    "period": 2,
+    "timestamp": "00:08:57.925",
+    "minute": 53,
+    "second": 57,
+    "type": {
+      "id": 39,
+      "name": "Dribbled Past"
+    },
+    "possession": 10,
+    "possession_team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "play_pattern": {
+      "id": 8,
+      "name": "From Keeper"
+    },
+    "obv_for_after": -0.024281,
+    "obv_for_before": 0.031909,
+    "obv_for_net": -0.016682,
+    "obv_against_after": -0.037371,
+    "obv_against_before": 0.040874,
+    "obv_against_net": 0.018387,
+    "obv_total_net": 0.007448,
+    "team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "player": {
+      "id": 10209,
+      "name": "Bram Paddle"
+    },
+    "position": {
+      "id": 19,
+      "name": "Center Attacking Midfield"
+    },
+    "location": [
+      51.4,
+      71.5
+    ],
+    "duration": 2.264172,
+    "related_events": [
+      "9b591122-d8b9-5108-b7aa-a415fd1d812f"
+    ],
+    "dribbled_past": {
+      "counterpress": true
+    }
+  },
+  {
+    "id": "a6af2875-7c69-5920-91a9-f2a10ed23ea5",
+    "index": 28,
+    "period": 2,
+    "timestamp": "00:09:56.301",
+    "minute": 54,
+    "second": 56,
+    "type": {
+      "id": 2,
+      "name": "Ball Recovery"
+    },
+    "possession": 10,
+    "possession_team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "play_pattern": {
+      "id": 8,
+      "name": "From Keeper"
+    },
+    "obv_for_after": 0.020637,
+    "obv_for_before": 0.000822,
+    "obv_for_net": -0.030761,
+    "obv_against_after": 0.039706,
+    "obv_against_before": 0.023302,
+    "obv_against_net": -0.036142,
+    "obv_total_net": 0.028657,
+    "team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "player": {
+      "id": 10108,
+      "name": "Finn Marsh"
+    },
+    "position": {
+      "id": 17,
+      "name": "Right Wing"
+    },
+    "location": [
+      41.2,
+      40.8
+    ],
+    "duration": 0.72189,
+    "ball_recovery": {
+      "offensive": true,
+      "recovery_failure": true
+    }
+  },
+  {
+    "id": "46a4024c-c6e1-513c-8934-532443c5cfee",
+    "index": 29,
+    "period": 2,
+    "timestamp": "00:11:27.192",
+    "minute": 56,
+    "second": 27,
+    "type": {
+      "id": 23,
+      "name": "Goal Keeper"
+    },
+    "possession": 10,
+    "possession_team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "play_pattern": {
+      "id": 6,
+      "name": "From Counter"
+    },
+    "obv_for_after": 0.025252,
+    "obv_for_before": 0.016708,
+    "obv_for_net": -0.038341,
+    "obv_against_after": 0.047216,
+    "obv_against_before": 0.038942,
+    "obv_against_net": 0.025249,
+    "obv_total_net": 0.044581,
+    "team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "player": {
+      "id": 10203,
+      "name": "Finn Puddle"
+    },
+    "position": {
+      "id": 3,
+      "name": "Right Center Back"
+    },
+    "location": [
+      75.4,
+      22.6
+    ],
+    "duration": 2.484632,
+    "related_events": [
+      "e7d98a21-6b83-59f2-a7e7-6b27aff631fb"
+    ],
+    "goalkeeper": {
+      "position": {
+        "id": 43,
+        "name": "Prone"
+      },
+      "technique": {
+        "id": 45,
+        "name": "Diving"
+      },
+      "body_part": {
+        "id": 41,
+        "name": "Right Hand"
+      },
+      "type": {
+        "id": 31,
+        "name": "Save"
+      },
+      "outcome": {
+        "id": 51,
+        "name": "In Play"
+      },
+      "end_location": [
+        78.9,
+        26.6
+      ]
+    }
+  },
+  {
+    "id": "23b03acb-b8e5-5444-8968-8d9a331222a2",
+    "index": 30,
+    "period": 2,
+    "timestamp": "00:13:45.621",
+    "minute": 58,
+    "second": 45,
+    "type": {
+      "id": 3,
+      "name": "Dispossessed"
+    },
+    "possession": 11,
+    "possession_team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "play_pattern": {
+      "id": 1,
+      "name": "Regular Play"
+    },
+    "obv_for_after": 0.043856,
+    "obv_for_before": 0.042706,
+    "obv_for_net": -0.003543,
+    "obv_against_after": 0.009513,
+    "obv_against_before": 0.01216,
+    "obv_against_net": -0.009709,
+    "obv_total_net": -0.012483,
+    "team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "player": {
+      "id": 10204,
+      "name": "Dex Puddle"
+    },
+    "position": {
+      "id": 5,
+      "name": "Left Center Back"
+    },
+    "location": [
+      111.9,
+      63.8
+    ],
+    "duration": 2.744132
+  },
+  {
+    "id": "00d8a983-b26a-5255-b231-1911816bf0fd",
+    "index": 31,
+    "period": 2,
+    "timestamp": "00:21:00.433",
+    "minute": 66,
+    "second": 0,
+    "type": {
+      "id": 38,
+      "name": "Miscontrol"
+    },
+    "possession": 11,
+    "possession_team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "play_pattern": {
+      "id": 9,
+      "name": "From Kick Off"
+    },
+    "obv_for_after": 0.048537,
+    "obv_for_before": -0.035416,
+    "obv_for_net": 0.001618,
+    "obv_against_after": -0.010317,
+    "obv_against_before": 0.031314,
+    "obv_against_net": 0.00813,
+    "obv_total_net": -0.006431,
+    "team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "player": {
+      "id": 10106,
+      "name": "Finn Reed"
+    },
+    "position": {
+      "id": 9,
+      "name": "Right Defensive Midfield"
+    },
+    "location": [
+      108.9,
+      73.8
+    ],
+    "duration": 0.017464,
+    "miscontrol": {
+      "aerial_won": true
+    }
+  },
+  {
+    "id": "f51204c0-92eb-5d5f-9b5a-ba9249af537e",
+    "index": 32,
+    "period": 2,
+    "timestamp": "00:22:12.300",
+    "minute": 67,
+    "second": 12,
+    "type": {
+      "id": 41,
+      "name": "Referee Ball-Drop"
+    },
+    "possession": 11,
+    "possession_team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "play_pattern": {
+      "id": 7,
+      "name": "From Goal Kick"
+    },
+    "obv_for_after": 0.02933,
+    "obv_for_before": -0.006963,
+    "obv_for_net": 0.023631,
+    "obv_against_after": 0.034601,
+    "obv_against_before": -0.024497,
+    "obv_against_net": 0.035234,
+    "obv_total_net": 0.021528,
+    "team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "location": [
+      111.5,
+      7.0
+    ],
+    "duration": 1.791452
+  },
+  {
+    "id": "d1a2e974-439e-5daf-adaa-6e31f8cca96a",
+    "index": 33,
+    "period": 2,
+    "timestamp": "00:29:26.365",
+    "minute": 74,
+    "second": 26,
+    "type": {
+      "id": 9,
+      "name": "Clearance"
+    },
+    "possession": 12,
+    "possession_team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "play_pattern": {
+      "id": 4,
+      "name": "From Throw In"
+    },
+    "obv_for_after": 0.0241,
+    "obv_for_before": 0.016292,
+    "obv_for_net": -0.040349,
+    "obv_against_after": -0.009788,
+    "obv_against_before": -0.033041,
+    "obv_against_net": 0.049351,
+    "obv_total_net": -0.029716,
+    "team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "player": {
+      "id": 10209,
+      "name": "Bram Paddle"
+    },
+    "position": {
+      "id": 19,
+      "name": "Center Attacking Midfield"
+    },
+    "location": [
+      23.1,
+      58.6
+    ],
+    "duration": 2.281168,
+    "out": true,
+    "clearance": {
+      "aerial_won": true,
+      "body_part": {
+        "id": 40,
+        "name": "Right Foot"
+      }
+    }
+  },
+  {
+    "id": "f20637fd-4ab7-5cb0-aa6a-afe3d429caf4",
+    "index": 34,
+    "period": 2,
+    "timestamp": "00:33:54.026",
+    "minute": 78,
+    "second": 54,
+    "type": {
+      "id": 17,
+      "name": "Pressure"
+    },
+    "possession": 12,
+    "possession_team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "play_pattern": {
+      "id": 8,
+      "name": "From Keeper"
+    },
+    "obv_for_after": 0.043105,
+    "obv_for_before": 0.037129,
+    "obv_for_net": 0.015559,
+    "obv_against_after": -0.046088,
+    "obv_against_before": 0.024843,
+    "obv_against_net": -0.000999,
+    "obv_total_net": -0.001776,
+    "team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "player": {
+      "id": 10208,
+      "name": "Ada Reed"
+    },
+    "position": {
+      "id": 17,
+      "name": "Right Wing"
+    },
+    "location": [
+      18.8,
+      17.6
+    ],
+    "duration": 1.558426,
+    "counterpress": true,
+    "related_events": [
+      "4d0452ff-adbc-5891-b49b-e0851bad130d"
+    ],
+    "pressure": {
+      "counterpress": true
+    }
+  },
+  {
+    "id": "9d76932d-c14b-588b-add6-d8f89637bd56",
+    "index": 35,
+    "period": 2,
+    "timestamp": "00:35:05.183",
+    "minute": 80,
+    "second": 5,
+    "type": {
+      "id": 6,
+      "name": "Block"
+    },
+    "possession": 12,
+    "possession_team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "play_pattern": {
+      "id": 1,
+      "name": "Regular Play"
+    },
+    "obv_for_after": 0.044939,
+    "obv_for_before": -0.038922,
+    "obv_for_net": 0.039812,
+    "obv_against_after": 0.025116,
+    "obv_against_before": -0.024852,
+    "obv_against_net": 0.042154,
+    "obv_total_net": 0.023221,
+    "team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "player": {
+      "id": 10106,
+      "name": "Finn Reed"
+    },
+    "position": {
+      "id": 9,
+      "name": "Right Defensive Midfield"
+    },
+    "location": [
+      49.3,
+      31.7
+    ],
+    "duration": 2.481403,
+    "related_events": [
+      "e7d98a21-6b83-59f2-a7e7-6b27aff631fb"
+    ],
+    "block": {
+      "deflection": true,
+      "offensive": true,
+      "save_block": true,
+      "counterpress": true
+    }
+  },
+  {
+    "id": "1a24b154-08d1-5608-b3e3-1d047e020bb5",
+    "index": 36,
+    "period": 2,
+    "timestamp": "00:38:06.789",
+    "minute": 83,
+    "second": 6,
+    "type": {
+      "id": 19,
+      "name": "Substitution"
+    },
+    "possession": 13,
+    "possession_team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "play_pattern": {
+      "id": 7,
+      "name": "From Goal Kick"
+    },
+    "obv_for_after": null,
+    "obv_for_before": null,
+    "obv_for_net": null,
+    "obv_against_after": null,
+    "obv_against_before": null,
+    "obv_against_net": null,
+    "obv_total_net": null,
+    "team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "player": {
+      "id": 10111,
+      "name": "Ada Feather"
+    },
+    "position": {
+      "id": 23,
+      "name": "Striker"
+    },
+    "duration": 1.213208,
+    "substitution": {
+      "replacement": {
+        "id": 10112,
+        "name": "Hana Feather"
+      },
+      "outcome": {
+        "id": 102,
+        "name": "Injury"
+      }
+    }
+  },
+  {
+    "id": "de41166c-5289-5bd3-85cb-0f9cbc0cbfb6",
+    "index": 37,
+    "period": 2,
+    "timestamp": "00:39:46.733",
+    "minute": 84,
+    "second": 46,
+    "type": {
+      "id": 36,
+      "name": "Tactical Shift"
+    },
+    "possession": 13,
+    "possession_team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "play_pattern": {
+      "id": 5,
+      "name": "Other"
+    },
+    "obv_for_after": null,
+    "obv_for_before": null,
+    "obv_for_net": null,
+    "obv_against_after": null,
+    "obv_against_before": null,
+    "obv_against_net": null,
+    "obv_total_net": null,
+    "team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "duration": 0.732921,
+    "tactics": {
+      "formation": 4231,
+      "lineup": [
+        {
+          "player": {
+            "id": 10201,
+            "name": "Cora Reed"
+          },
+          "position": {
+            "id": 1,
+            "name": "Goalkeeper"
+          },
+          "jersey_number": 1
+        },
+        {
+          "player": {
+            "id": 10202,
+            "name": "Gus Paddle"
+          },
+          "position": {
+            "id": 2,
+            "name": "Right Back"
+          },
+          "jersey_number": 2
+        },
+        {
+          "player": {
+            "id": 10203,
+            "name": "Finn Puddle"
+          },
+          "position": {
+            "id": 3,
+            "name": "Right Center Back"
+          },
+          "jersey_number": 3
+        },
+        {
+          "player": {
+            "id": 10204,
+            "name": "Dex Puddle"
+          },
+          "position": {
+            "id": 5,
+            "name": "Left Center Back"
+          },
+          "jersey_number": 4
+        },
+        {
+          "player": {
+            "id": 10205,
+            "name": "Dex Paddle"
+          },
+          "position": {
+            "id": 6,
+            "name": "Left Back"
+          },
+          "jersey_number": 5
+        },
+        {
+          "player": {
+            "id": 10206,
+            "name": "Gus Feather"
+          },
+          "position": {
+            "id": 9,
+            "name": "Right Defensive Midfield"
+          },
+          "jersey_number": 6
+        },
+        {
+          "player": {
+            "id": 10207,
+            "name": "Cora Puddle"
+          },
+          "position": {
+            "id": 11,
+            "name": "Left Defensive Midfield"
+          },
+          "jersey_number": 7
+        },
+        {
+          "player": {
+            "id": 10208,
+            "name": "Ada Reed"
+          },
+          "position": {
+            "id": 17,
+            "name": "Right Wing"
+          },
+          "jersey_number": 8
+        },
+        {
+          "player": {
+            "id": 10209,
+            "name": "Bram Paddle"
+          },
+          "position": {
+            "id": 19,
+            "name": "Center Attacking Midfield"
+          },
+          "jersey_number": 9
+        },
+        {
+          "player": {
+            "id": 10210,
+            "name": "Cora Paddle"
+          },
+          "position": {
+            "id": 21,
+            "name": "Left Wing"
+          },
+          "jersey_number": 10
+        },
+        {
+          "player": {
+            "id": 10211,
+            "name": "Ada Webb"
+          },
+          "position": {
+            "id": 23,
+            "name": "Striker"
+          },
+          "jersey_number": 11
+        }
+      ]
+    }
+  },
+  {
+    "id": "1585ff36-09f4-53c7-89a3-f250dbd733ce",
+    "index": 38,
+    "period": 2,
+    "timestamp": "00:43:33.933",
+    "minute": 88,
+    "second": 33,
+    "type": {
+      "id": 24,
+      "name": "Bad Behaviour"
+    },
+    "possession": 13,
+    "possession_team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "play_pattern": {
+      "id": 5,
+      "name": "Other"
+    },
+    "obv_for_after": null,
+    "obv_for_before": null,
+    "obv_for_net": null,
+    "obv_against_after": null,
+    "obv_against_before": null,
+    "obv_against_net": null,
+    "obv_total_net": null,
+    "team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "player": {
+      "id": 10107,
+      "name": "Juno Feather"
+    },
+    "position": {
+      "id": 11,
+      "name": "Left Defensive Midfield"
+    },
+    "duration": 0.623817,
+    "bad_behaviour": {
+      "card": {
+        "id": 7,
+        "name": "Yellow Card"
+      }
+    }
+  },
+  {
+    "id": "0f55a806-3711-5ef8-b889-af24b33d4b36",
+    "index": 39,
+    "period": 2,
+    "timestamp": "00:46:20.267",
+    "minute": 91,
+    "second": 20,
+    "type": {
+      "id": 34,
+      "name": "Half End"
+    },
+    "possession": 14,
+    "possession_team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "play_pattern": {
+      "id": 2,
+      "name": "From Corner"
+    },
+    "obv_for_after": null,
+    "obv_for_before": null,
+    "obv_for_net": null,
+    "obv_against_after": null,
+    "obv_against_before": null,
+    "obv_against_net": null,
+    "obv_total_net": null,
+    "team": {
+      "id": 101,
+      "name": "Mallard Town"
+    },
+    "duration": 0.0,
+    "related_events": [
+      "47b2bdcc-4250-55d8-9b6c-cb4492a6028a"
+    ],
+    "half_end": {
+      "early_video_end": true,
+      "match_suspended": true
+    }
+  },
+  {
+    "id": "47b2bdcc-4250-55d8-9b6c-cb4492a6028a",
+    "index": 40,
+    "period": 2,
+    "timestamp": "00:46:20.267",
+    "minute": 91,
+    "second": 20,
+    "type": {
+      "id": 34,
+      "name": "Half End"
+    },
+    "possession": 14,
+    "possession_team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "play_pattern": {
+      "id": 2,
+      "name": "From Corner"
+    },
+    "obv_for_after": null,
+    "obv_for_before": null,
+    "obv_for_net": null,
+    "obv_against_after": null,
+    "obv_against_before": null,
+    "obv_against_net": null,
+    "obv_total_net": null,
+    "team": {
+      "id": 102,
+      "name": "Drake United"
+    },
+    "duration": 0.0,
+    "related_events": [
+      "0f55a806-3711-5ef8-b889-af24b33d4b36"
+    ],
+    "half_end": {
+      "early_video_end": true,
+      "match_suspended": true
+    }
+  }
+]

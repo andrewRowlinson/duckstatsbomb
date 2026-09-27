@@ -1,0 +1,294 @@
+[
+  {
+    "team_id": 101,
+    "team_name": "Mallard Town",
+    "lineup": [
+      {
+        "player_id": 10101,
+        "player_name": "Edie Reed",
+        "player_nickname": null,
+        "jersey_number": 1,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10102,
+        "player_name": "Ada Puddle",
+        "player_nickname": null,
+        "jersey_number": 2,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10103,
+        "player_name": "Finn Waddle",
+        "player_nickname": null,
+        "jersey_number": 3,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10104,
+        "player_name": "Bram Marsh",
+        "player_nickname": null,
+        "jersey_number": 4,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10105,
+        "player_name": "Bram Quill",
+        "player_nickname": "Bram",
+        "jersey_number": 5,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10106,
+        "player_name": "Finn Reed",
+        "player_nickname": "Finn",
+        "jersey_number": 6,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10107,
+        "player_name": "Juno Feather",
+        "player_nickname": "Juno",
+        "jersey_number": 7,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10108,
+        "player_name": "Finn Marsh",
+        "player_nickname": null,
+        "jersey_number": 8,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10109,
+        "player_name": "Ivo Feather",
+        "player_nickname": null,
+        "jersey_number": 9,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10110,
+        "player_name": "Ivo Quill",
+        "player_nickname": null,
+        "jersey_number": 10,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10111,
+        "player_name": "Ada Feather",
+        "player_nickname": null,
+        "jersey_number": 11,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10112,
+        "player_name": "Hana Feather",
+        "player_nickname": null,
+        "jersey_number": 12,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10113,
+        "player_name": "Bram Waddle",
+        "player_nickname": "Bram",
+        "jersey_number": 13,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10114,
+        "player_name": "Bram Reed",
+        "player_nickname": null,
+        "jersey_number": 14,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      }
+    ]
+  },
+  {
+    "team_id": 102,
+    "team_name": "Drake United",
+    "lineup": [
+      {
+        "player_id": 10201,
+        "player_name": "Cora Reed",
+        "player_nickname": "Cora",
+        "jersey_number": 1,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10202,
+        "player_name": "Gus Paddle",
+        "player_nickname": null,
+        "jersey_number": 2,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10203,
+        "player_name": "Finn Puddle",
+        "player_nickname": null,
+        "jersey_number": 3,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10204,
+        "player_name": "Dex Puddle",
+        "player_nickname": null,
+        "jersey_number": 4,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10205,
+        "player_name": "Dex Paddle",
+        "player_nickname": null,
+        "jersey_number": 5,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10206,
+        "player_name": "Gus Feather",
+        "player_nickname": null,
+        "jersey_number": 6,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10207,
+        "player_name": "Cora Puddle",
+        "player_nickname": null,
+        "jersey_number": 7,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10208,
+        "player_name": "Ada Reed",
+        "player_nickname": null,
+        "jersey_number": 8,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10209,
+        "player_name": "Bram Paddle",
+        "player_nickname": null,
+        "jersey_number": 9,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10210,
+        "player_name": "Cora Paddle",
+        "player_nickname": "Cora",
+        "jersey_number": 10,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10211,
+        "player_name": "Ada Webb",
+        "player_nickname": "Ada",
+        "jersey_number": 11,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10212,
+        "player_name": "Hana Waddle",
+        "player_nickname": null,
+        "jersey_number": 12,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10213,
+        "player_name": "Juno Marsh",
+        "player_nickname": null,
+        "jersey_number": 13,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      },
+      {
+        "player_id": 10214,
+        "player_name": "Ivo Paddle",
+        "player_nickname": "Ivo",
+        "jersey_number": 14,
+        "country": {
+          "id": 1,
+          "name": "Pondland"
+        }
+      }
+    ]
+  }
+]

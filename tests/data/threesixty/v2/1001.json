@@ -1,0 +1,4324 @@
+[
+  {
+    "event_uuid": "9fcd4600-7ce9-5001-aea6-913499f2c487",
+    "visible_area": [
+      27.700052,
+      60.542423,
+      77.282282,
+      50.896985,
+      36.67466,
+      71.75725,
+      8.475151,
+      10.397965,
+      113.482691,
+      58.46351,
+      27.700052,
+      60.542423
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          74.7,
+          17.7
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          36.498556,
+          47.312885
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          38.537498,
+          10.230916
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          111.607839,
+          12.104997
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          17.552487,
+          59.158236
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          24.324949,
+          67.695222
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          23.798158,
+          77.721135
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          112.36399,
+          13.793975
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          49.950228,
+          42.763362
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          106.578356,
+          57.797512
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          106.763821,
+          16.372518
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          91.98149,
+          25.727405
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          71.278851,
+          21.971916
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          111.682254,
+          8.396481
+        ]
+      }
+    ],
+    "line_breaking_pass": null,
+    "num_defenders_on_goal_side_of_actor": 0,
+    "distance_to_nearest_defender": 14.405215,
+    "ball_receipt_in_space": null,
+    "ball_receipt_exceeds_distance": null,
+    "visible_player_counts": [
+      {
+        "team_id": 102,
+        "count": 9
+      },
+      {
+        "team_id": 101,
+        "count": 5
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 15.718063
+      },
+      {
+        "point_id": 2,
+        "distance": 5.546554
+      },
+      {
+        "point_id": 3,
+        "distance": 18.784073
+      },
+      {
+        "point_id": 4,
+        "distance": 6.087121
+      },
+      {
+        "point_id": 5,
+        "distance": 6.85777
+      },
+      {
+        "point_id": 6,
+        "distance": 1.825069
+      },
+      {
+        "point_id": 7,
+        "distance": 10.923153
+      },
+      {
+        "point_id": 8,
+        "distance": 16.332204
+      },
+      {
+        "point_id": 9,
+        "distance": 18.732803
+      },
+      {
+        "point_id": 10,
+        "distance": 3.631991
+      },
+      {
+        "point_id": 11,
+        "distance": 15.596345
+      },
+      {
+        "point_id": 12,
+        "distance": 18.963799
+      },
+      {
+        "point_id": 13,
+        "distance": 12.617058
+      },
+      {
+        "point_id": 14,
+        "distance": 10.12135
+      }
+    ]
+  },
+  {
+    "event_uuid": "2e7b6235-3ca1-5fa7-a0f5-5e74173653e4",
+    "visible_area": [
+      11.516473,
+      29.425009,
+      23.018086,
+      78.292586,
+      27.064502,
+      11.497106,
+      23.579036,
+      76.484349,
+      70.668565,
+      12.560676,
+      11.516473,
+      29.425009
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          29.9,
+          34.7
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          118.00585,
+          44.084824
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          62.145394,
+          69.456206
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          40.300027,
+          31.168883
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          66.469601,
+          48.911384
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          11.77956,
+          36.676846
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          104.321912,
+          51.083731
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          92.727176,
+          1.59599
+        ]
+      }
+    ],
+    "line_breaking_pass": null,
+    "num_defenders_on_goal_side_of_actor": 3,
+    "distance_to_nearest_defender": 11.950621,
+    "ball_receipt_in_space": null,
+    "ball_receipt_exceeds_distance": null,
+    "visible_player_counts": [
+      {
+        "team_id": 101,
+        "count": 4
+      },
+      {
+        "team_id": 102,
+        "count": 4
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 3.540324
+      },
+      {
+        "point_id": 2,
+        "distance": 4.247119
+      },
+      {
+        "point_id": 3,
+        "distance": 14.686035
+      },
+      {
+        "point_id": 4,
+        "distance": 5.222058
+      },
+      {
+        "point_id": 5,
+        "distance": 18.830695
+      },
+      {
+        "point_id": 6,
+        "distance": 7.292757
+      },
+      {
+        "point_id": 7,
+        "distance": 4.25537
+      },
+      {
+        "point_id": 8,
+        "distance": 8.681779
+      }
+    ]
+  },
+  {
+    "event_uuid": "2f6ccb9d-981d-587d-8438-d9f5cfa40312",
+    "visible_area": [
+      61.923029,
+      30.636642,
+      49.701486,
+      14.908787,
+      110.388726,
+      65.341131,
+      77.05075,
+      6.611672,
+      16.453845,
+      56.469861,
+      61.923029,
+      30.636642
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          0.8,
+          5.7
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          113.444821,
+          55.874952
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          84.654263,
+          23.691875
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          93.702532,
+          67.070681
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          60.280236,
+          40.440174
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          33.421961,
+          59.644007
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          118.570129,
+          72.774361
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          75.756972,
+          29.790037
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          20.952369,
+          12.690378
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          41.858753,
+          14.290686
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          96.163752,
+          67.713252
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          70.588806,
+          21.860077
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          99.236921,
+          9.661982
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          30.035048,
+          37.630664
+        ]
+      }
+    ],
+    "line_breaking_pass": null,
+    "num_defenders_on_goal_side_of_actor": 1,
+    "distance_to_nearest_defender": 11.051025,
+    "ball_receipt_in_space": null,
+    "ball_receipt_exceeds_distance": null,
+    "visible_player_counts": [
+      {
+        "team_id": 102,
+        "count": 11
+      },
+      {
+        "team_id": 101,
+        "count": 3
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 17.025023
+      },
+      {
+        "point_id": 2,
+        "distance": 18.055506
+      },
+      {
+        "point_id": 3,
+        "distance": 19.937248
+      },
+      {
+        "point_id": 4,
+        "distance": 8.544393
+      },
+      {
+        "point_id": 5,
+        "distance": 2.92605
+      },
+      {
+        "point_id": 6,
+        "distance": 0.292254
+      },
+      {
+        "point_id": 7,
+        "distance": 8.788949
+      },
+      {
+        "point_id": 8,
+        "distance": 16.218689
+      },
+      {
+        "point_id": 9,
+        "distance": 0.977339
+      },
+      {
+        "point_id": 10,
+        "distance": 0.221265
+      },
+      {
+        "point_id": 11,
+        "distance": 6.778331
+      },
+      {
+        "point_id": 12,
+        "distance": 19.86923
+      },
+      {
+        "point_id": 13,
+        "distance": 3.76734
+      },
+      {
+        "point_id": 14,
+        "distance": 6.112285
+      }
+    ]
+  },
+  {
+    "event_uuid": "a594ccd4-2b7d-59fd-aba4-3127ee38558b",
+    "visible_area": [
+      102.762483,
+      17.260884,
+      33.241211,
+      25.138265,
+      118.822984,
+      63.1275,
+      100.084567,
+      2.473472,
+      103.160817,
+      32.610611,
+      102.762483,
+      17.260884
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          42.9,
+          72.2
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          34.963813,
+          35.68273
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          12.732795,
+          5.098774
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          82.440216,
+          62.613485
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          66.31105,
+          11.259776
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          8.102047,
+          21.051757
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          77.905774,
+          75.766059
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          55.190094,
+          66.492849
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          65.234443,
+          51.390385
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          73.589626,
+          52.553073
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          69.130439,
+          58.507874
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          43.767789,
+          74.133574
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          107.935537,
+          53.648484
+        ]
+      }
+    ],
+    "line_breaking_pass": null,
+    "num_defenders_on_goal_side_of_actor": 1,
+    "distance_to_nearest_defender": 11.163975,
+    "ball_receipt_in_space": null,
+    "ball_receipt_exceeds_distance": null,
+    "visible_player_counts": [
+      {
+        "team_id": 101,
+        "count": 7
+      },
+      {
+        "team_id": 102,
+        "count": 6
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 14.265185
+      },
+      {
+        "point_id": 2,
+        "distance": 4.690785
+      },
+      {
+        "point_id": 3,
+        "distance": 9.805857
+      },
+      {
+        "point_id": 4,
+        "distance": 17.125128
+      },
+      {
+        "point_id": 5,
+        "distance": 7.860298
+      },
+      {
+        "point_id": 6,
+        "distance": 11.905902
+      },
+      {
+        "point_id": 7,
+        "distance": 9.708647
+      },
+      {
+        "point_id": 8,
+        "distance": 9.694
+      },
+      {
+        "point_id": 9,
+        "distance": 7.8002
+      },
+      {
+        "point_id": 10,
+        "distance": 13.297552
+      },
+      {
+        "point_id": 11,
+        "distance": 18.60193
+      },
+      {
+        "point_id": 12,
+        "distance": 5.422011
+      },
+      {
+        "point_id": 13,
+        "distance": 5.422722
+      }
+    ]
+  },
+  {
+    "event_uuid": "f6440365-b42b-5e89-af7d-dc5269b00b89",
+    "visible_area": [
+      38.755455,
+      70.850783,
+      107.938122,
+      20.503102,
+      76.764055,
+      62.264098,
+      49.50094,
+      52.201707,
+      119.529773,
+      47.3561,
+      38.755455,
+      70.850783
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          119.0,
+          8.4
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          96.195204,
+          25.649867
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          105.526676,
+          21.637032
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          24.221887,
+          57.753134
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          70.860326,
+          3.354087
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          94.442829,
+          2.146004
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          106.076955,
+          18.125689
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          80.40519,
+          39.904444
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          85.866838,
+          32.682089
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          89.758495,
+          19.18938
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          6.002207,
+          13.01901
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          23.120962,
+          25.910444
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          31.076368,
+          44.514237
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          97.494864,
+          55.973998
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          48.137682,
+          17.724712
+        ]
+      }
+    ],
+    "line_breaking_pass": null,
+    "num_defenders_on_goal_side_of_actor": 1,
+    "distance_to_nearest_defender": 10.186849,
+    "ball_receipt_in_space": null,
+    "ball_receipt_exceeds_distance": null,
+    "visible_player_counts": [
+      {
+        "team_id": 101,
+        "count": 8
+      },
+      {
+        "team_id": 102,
+        "count": 7
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 11.608546
+      },
+      {
+        "point_id": 2,
+        "distance": 3.549469
+      },
+      {
+        "point_id": 3,
+        "distance": 19.646981
+      },
+      {
+        "point_id": 4,
+        "distance": 14.41905
+      },
+      {
+        "point_id": 5,
+        "distance": 5.909506
+      },
+      {
+        "point_id": 6,
+        "distance": 18.135755
+      },
+      {
+        "point_id": 7,
+        "distance": 9.880541
+      },
+      {
+        "point_id": 8,
+        "distance": 13.039011
+      },
+      {
+        "point_id": 9,
+        "distance": 5.335501
+      },
+      {
+        "point_id": 10,
+        "distance": 18.666622
+      },
+      {
+        "point_id": 11,
+        "distance": 8.982886
+      },
+      {
+        "point_id": 12,
+        "distance": 4.085154
+      },
+      {
+        "point_id": 13,
+        "distance": 15.746364
+      },
+      {
+        "point_id": 14,
+        "distance": 10.187329
+      },
+      {
+        "point_id": 15,
+        "distance": 0.947585
+      }
+    ]
+  },
+  {
+    "event_uuid": "53136185-50be-5fbf-88e3-0d91ef954ee4",
+    "visible_area": [
+      31.737712,
+      44.34335,
+      79.726742,
+      64.11559,
+      106.200639,
+      28.615931,
+      40.329369,
+      27.489496,
+      65.285278,
+      24.535027,
+      31.737712,
+      44.34335
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          37.1,
+          47.0
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          28.494644,
+          38.885365
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          8.439646,
+          29.151117
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          73.245807,
+          29.379121
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          21.746931,
+          12.658518
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          59.154259,
+          77.932306
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          31.902537,
+          11.066265
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          75.654916,
+          20.301135
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          105.575651,
+          16.577414
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          25.704495,
+          40.65693
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          96.874184,
+          26.600382
+        ]
+      }
+    ],
+    "line_breaking_pass": null,
+    "num_defenders_on_goal_side_of_actor": 6,
+    "distance_to_nearest_defender": 5.234506,
+    "ball_receipt_in_space": null,
+    "ball_receipt_exceeds_distance": null,
+    "visible_player_counts": [
+      {
+        "team_id": 101,
+        "count": 8
+      },
+      {
+        "team_id": 102,
+        "count": 3
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 0.62687
+      },
+      {
+        "point_id": 2,
+        "distance": 2.463973
+      },
+      {
+        "point_id": 3,
+        "distance": 3.883665
+      },
+      {
+        "point_id": 4,
+        "distance": 8.779346
+      },
+      {
+        "point_id": 5,
+        "distance": 13.517474
+      },
+      {
+        "point_id": 6,
+        "distance": 8.010666
+      },
+      {
+        "point_id": 7,
+        "distance": 8.859098
+      },
+      {
+        "point_id": 8,
+        "distance": 15.72833
+      },
+      {
+        "point_id": 9,
+        "distance": 15.521196
+      },
+      {
+        "point_id": 10,
+        "distance": 15.751148
+      },
+      {
+        "point_id": 11,
+        "distance": 13.232975
+      }
+    ]
+  },
+  {
+    "event_uuid": "b53c5eda-08d3-509a-9bce-2164b6936b26",
+    "visible_area": [
+      44.564149,
+      43.152106,
+      3.461486,
+      50.888294,
+      76.859743,
+      21.55858,
+      69.448964,
+      31.069471,
+      50.409863,
+      64.249333,
+      44.564149,
+      43.152106
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          35.0,
+          28.1
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          63.90242,
+          57.920157
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          100.493466,
+          69.410801
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          9.66656,
+          70.318934
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          57.153685,
+          78.09804
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          89.7609,
+          62.297377
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          18.430083,
+          52.055437
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          27.492137,
+          5.890571
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          86.750944,
+          67.112864
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          85.33992,
+          27.88833
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          64.886363,
+          10.92559
+        ]
+      }
+    ],
+    "line_breaking_pass": null,
+    "num_defenders_on_goal_side_of_actor": 10,
+    "distance_to_nearest_defender": 6.204489,
+    "ball_receipt_in_space": null,
+    "ball_receipt_exceeds_distance": null,
+    "visible_player_counts": [
+      {
+        "team_id": 101,
+        "count": 6
+      },
+      {
+        "team_id": 102,
+        "count": 5
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 4.885093
+      },
+      {
+        "point_id": 2,
+        "distance": 7.009841
+      },
+      {
+        "point_id": 3,
+        "distance": 14.165043
+      },
+      {
+        "point_id": 4,
+        "distance": 14.840362
+      },
+      {
+        "point_id": 5,
+        "distance": 7.480238
+      },
+      {
+        "point_id": 6,
+        "distance": 14.715687
+      },
+      {
+        "point_id": 7,
+        "distance": 2.472779
+      },
+      {
+        "point_id": 8,
+        "distance": 5.914542
+      },
+      {
+        "point_id": 9,
+        "distance": 9.73742
+      },
+      {
+        "point_id": 10,
+        "distance": 15.625361
+      },
+      {
+        "point_id": 11,
+        "distance": 16.107213
+      }
+    ]
+  },
+  {
+    "event_uuid": "216d54a5-a1f3-56b6-929a-1f30d745362f",
+    "visible_area": [
+      5.746614,
+      57.130886,
+      7.059328,
+      43.683414,
+      77.892415,
+      76.366373,
+      36.512958,
+      48.694012,
+      50.061982,
+      34.651132,
+      5.746614,
+      57.130886
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          71.6,
+          55.9
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          104.924489,
+          42.134954
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          62.363243,
+          59.591626
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          98.200204,
+          34.360794
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          11.112738,
+          23.136866
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          117.362065,
+          71.036115
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          79.72356,
+          42.579824
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          107.413302,
+          57.121648
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          27.172219,
+          46.503716
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          115.841741,
+          2.963319
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          69.834178,
+          13.901623
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          48.209494,
+          54.886335
+        ]
+      }
+    ],
+    "line_breaking_pass": null,
+    "num_defenders_on_goal_side_of_actor": 1,
+    "distance_to_nearest_defender": 10.387889,
+    "ball_receipt_in_space": null,
+    "ball_receipt_exceeds_distance": null,
+    "visible_player_counts": [
+      {
+        "team_id": 101,
+        "count": 9
+      },
+      {
+        "team_id": 102,
+        "count": 3
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 7.067373
+      },
+      {
+        "point_id": 2,
+        "distance": 9.640643
+      },
+      {
+        "point_id": 3,
+        "distance": 14.344045
+      },
+      {
+        "point_id": 4,
+        "distance": 6.26677
+      },
+      {
+        "point_id": 5,
+        "distance": 18.31227
+      },
+      {
+        "point_id": 6,
+        "distance": 13.59775
+      },
+      {
+        "point_id": 7,
+        "distance": 0.93338
+      },
+      {
+        "point_id": 8,
+        "distance": 18.902905
+      },
+      {
+        "point_id": 9,
+        "distance": 5.53634
+      },
+      {
+        "point_id": 10,
+        "distance": 18.224974
+      },
+      {
+        "point_id": 11,
+        "distance": 18.903194
+      },
+      {
+        "point_id": 12,
+        "distance": 16.563005
+      }
+    ]
+  },
+  {
+    "event_uuid": "e3a71658-1b1b-5561-96f5-7f10181782e8",
+    "visible_area": [
+      62.111923,
+      10.752931,
+      21.496708,
+      14.607693,
+      3.374431,
+      74.638247,
+      13.27383,
+      57.613189,
+      82.560419,
+      21.707951,
+      62.111923,
+      10.752931
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          27.0,
+          0.7
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          62.73016,
+          6.150283
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          64.880517,
+          12.755373
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          37.735983,
+          0.749923
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          100.657291,
+          60.530678
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          71.583839,
+          64.762882
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          102.785852,
+          6.659041
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          37.951693,
+          60.307081
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          114.136308,
+          9.208787
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          44.26652,
+          26.072594
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          4.077564,
+          43.307523
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          104.061921,
+          15.091331
+        ]
+      }
+    ],
+    "line_breaking_pass": false,
+    "num_defenders_on_goal_side_of_actor": 8,
+    "distance_to_nearest_defender": 4.935576,
+    "ball_receipt_in_space": null,
+    "ball_receipt_exceeds_distance": null,
+    "visible_player_counts": [
+      {
+        "team_id": 101,
+        "count": 6
+      },
+      {
+        "team_id": 102,
+        "count": 6
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 18.527498
+      },
+      {
+        "point_id": 2,
+        "distance": 10.882913
+      },
+      {
+        "point_id": 3,
+        "distance": 10.742334
+      },
+      {
+        "point_id": 4,
+        "distance": 8.903575
+      },
+      {
+        "point_id": 5,
+        "distance": 10.935362
+      },
+      {
+        "point_id": 6,
+        "distance": 14.758693
+      },
+      {
+        "point_id": 7,
+        "distance": 19.6851
+      },
+      {
+        "point_id": 8,
+        "distance": 6.780327
+      },
+      {
+        "point_id": 9,
+        "distance": 5.930948
+      },
+      {
+        "point_id": 10,
+        "distance": 18.946446
+      },
+      {
+        "point_id": 11,
+        "distance": 0.715582
+      },
+      {
+        "point_id": 12,
+        "distance": 4.347788
+      }
+    ]
+  },
+  {
+    "event_uuid": "f032e772-2229-5045-a5ce-d416c5a167d1",
+    "visible_area": [
+      1.924864,
+      43.34543,
+      73.163954,
+      7.271535,
+      25.162058,
+      39.781482,
+      95.342,
+      48.183901,
+      118.053873,
+      17.560672,
+      1.924864,
+      43.34543
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          51.3,
+          23.9
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          89.625455,
+          31.701299
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          68.479344,
+          40.745315
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          82.177158,
+          49.389114
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          47.634092,
+          23.663519
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          5.818197,
+          29.208285
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          23.497698,
+          66.319307
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          50.810247,
+          52.420434
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          74.671524,
+          5.741132
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          13.030708,
+          28.379912
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          29.332761,
+          66.554569
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          90.695365,
+          60.361439
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          97.79933,
+          15.857666
+        ]
+      }
+    ],
+    "line_breaking_pass": null,
+    "num_defenders_on_goal_side_of_actor": 9,
+    "distance_to_nearest_defender": 11.92002,
+    "ball_receipt_in_space": null,
+    "ball_receipt_exceeds_distance": null,
+    "visible_player_counts": [
+      {
+        "team_id": 101,
+        "count": 7
+      },
+      {
+        "team_id": 102,
+        "count": 6
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 1.465375
+      },
+      {
+        "point_id": 2,
+        "distance": 11.407241
+      },
+      {
+        "point_id": 3,
+        "distance": 4.316114
+      },
+      {
+        "point_id": 4,
+        "distance": 15.766503
+      },
+      {
+        "point_id": 5,
+        "distance": 5.302226
+      },
+      {
+        "point_id": 6,
+        "distance": 16.081948
+      },
+      {
+        "point_id": 7,
+        "distance": 8.800274
+      },
+      {
+        "point_id": 8,
+        "distance": 3.231959
+      },
+      {
+        "point_id": 9,
+        "distance": 11.457769
+      },
+      {
+        "point_id": 10,
+        "distance": 1.681928
+      },
+      {
+        "point_id": 11,
+        "distance": 14.188039
+      },
+      {
+        "point_id": 12,
+        "distance": 2.451887
+      },
+      {
+        "point_id": 13,
+        "distance": 2.31494
+      }
+    ]
+  },
+  {
+    "event_uuid": "6f4567ca-feb9-5392-89ca-4117276fdf6a",
+    "visible_area": [
+      99.329269,
+      16.97113,
+      49.235901,
+      52.121571,
+      78.594092,
+      19.614084,
+      44.984307,
+      6.721766,
+      3.818913,
+      51.659497,
+      99.329269,
+      16.97113
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          39.1,
+          37.6
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          77.066983,
+          6.105684
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          68.833493,
+          4.587337
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          13.928303,
+          12.195908
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          63.566929,
+          52.946892
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          89.365524,
+          39.776251
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          96.468114,
+          73.96215
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          58.809972,
+          19.016943
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          16.552289,
+          10.682435
+        ]
+      }
+    ],
+    "line_breaking_pass": null,
+    "num_defenders_on_goal_side_of_actor": 7,
+    "distance_to_nearest_defender": 11.408732,
+    "ball_receipt_in_space": null,
+    "ball_receipt_exceeds_distance": null,
+    "visible_player_counts": [
+      {
+        "team_id": 102,
+        "count": 5
+      },
+      {
+        "team_id": 101,
+        "count": 4
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 8.3791
+      },
+      {
+        "point_id": 2,
+        "distance": 10.676077
+      },
+      {
+        "point_id": 3,
+        "distance": 3.136117
+      },
+      {
+        "point_id": 4,
+        "distance": 10.143597
+      },
+      {
+        "point_id": 5,
+        "distance": 19.378253
+      },
+      {
+        "point_id": 6,
+        "distance": 3.191982
+      },
+      {
+        "point_id": 7,
+        "distance": 19.152986
+      },
+      {
+        "point_id": 8,
+        "distance": 9.396332
+      },
+      {
+        "point_id": 9,
+        "distance": 18.537962
+      }
+    ]
+  },
+  {
+    "event_uuid": "bb3bde72-e2e2-5d77-b9dd-019849cbd3be",
+    "visible_area": [
+      15.465834,
+      10.361868,
+      117.007864,
+      75.302552,
+      15.983133,
+      21.901728,
+      34.387553,
+      25.272641,
+      87.528565,
+      6.256547,
+      15.465834,
+      10.361868
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          92.9,
+          74.6
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          100.970828,
+          45.765571
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          61.294081,
+          48.241049
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          79.856458,
+          18.96416
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          111.665186,
+          66.475562
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          25.176218,
+          58.394953
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          11.246119,
+          46.084431
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          47.868489,
+          56.228224
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          68.566599,
+          61.561263
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          24.852167,
+          57.761046
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          116.869017,
+          79.478602
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          60.452221,
+          19.643871
+        ]
+      }
+    ],
+    "line_breaking_pass": null,
+    "num_defenders_on_goal_side_of_actor": 9,
+    "distance_to_nearest_defender": 8.552891,
+    "ball_receipt_in_space": null,
+    "ball_receipt_exceeds_distance": null,
+    "visible_player_counts": [
+      {
+        "team_id": 102,
+        "count": 8
+      },
+      {
+        "team_id": 101,
+        "count": 4
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 7.921957
+      },
+      {
+        "point_id": 2,
+        "distance": 15.063586
+      },
+      {
+        "point_id": 3,
+        "distance": 13.234245
+      },
+      {
+        "point_id": 4,
+        "distance": 3.459655
+      },
+      {
+        "point_id": 5,
+        "distance": 3.046119
+      },
+      {
+        "point_id": 6,
+        "distance": 10.424744
+      },
+      {
+        "point_id": 7,
+        "distance": 14.518189
+      },
+      {
+        "point_id": 8,
+        "distance": 13.567831
+      },
+      {
+        "point_id": 9,
+        "distance": 12.324409
+      },
+      {
+        "point_id": 10,
+        "distance": 12.455826
+      },
+      {
+        "point_id": 11,
+        "distance": 17.980947
+      },
+      {
+        "point_id": 12,
+        "distance": 11.155202
+      }
+    ]
+  },
+  {
+    "event_uuid": "073d2105-6892-59d6-ac50-da1800b51a95",
+    "visible_area": [
+      5.096591,
+      42.998592,
+      110.36869,
+      58.738713,
+      50.727056,
+      20.212802,
+      42.180321,
+      13.94781,
+      25.354437,
+      31.812931,
+      5.096591,
+      42.998592
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          32.3,
+          4.5
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          45.975537,
+          37.803933
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          34.183271,
+          52.569934
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          26.930102,
+          32.56413
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          42.283481,
+          8.985786
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          39.765323,
+          62.923117
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          51.745099,
+          35.204613
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          13.824652,
+          58.552481
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          57.975865,
+          15.657214
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          66.520988,
+          23.30874
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          105.034352,
+          60.747527
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          102.421917,
+          70.775532
+        ]
+      }
+    ],
+    "line_breaking_pass": null,
+    "num_defenders_on_goal_side_of_actor": 6,
+    "distance_to_nearest_defender": 8.192349,
+    "ball_receipt_in_space": null,
+    "ball_receipt_exceeds_distance": null,
+    "visible_player_counts": [
+      {
+        "team_id": 101,
+        "count": 7
+      },
+      {
+        "team_id": 102,
+        "count": 5
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 4.402729
+      },
+      {
+        "point_id": 2,
+        "distance": 2.73806
+      },
+      {
+        "point_id": 3,
+        "distance": 5.79404
+      },
+      {
+        "point_id": 4,
+        "distance": 14.086463
+      },
+      {
+        "point_id": 5,
+        "distance": 8.020654
+      },
+      {
+        "point_id": 6,
+        "distance": 7.582462
+      },
+      {
+        "point_id": 7,
+        "distance": 12.467052
+      },
+      {
+        "point_id": 8,
+        "distance": 15.917379
+      },
+      {
+        "point_id": 9,
+        "distance": 10.683219
+      },
+      {
+        "point_id": 10,
+        "distance": 6.661482
+      },
+      {
+        "point_id": 11,
+        "distance": 11.739016
+      },
+      {
+        "point_id": 12,
+        "distance": 19.876837
+      }
+    ]
+  },
+  {
+    "event_uuid": "feb484c6-900b-5ef6-86e1-4b7b94671d7f",
+    "visible_area": [
+      113.704517,
+      48.418147,
+      73.682716,
+      31.108078,
+      97.79437,
+      26.006617,
+      68.288493,
+      35.406369,
+      59.299597,
+      26.106465,
+      113.704517,
+      48.418147
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          53.8,
+          64.6
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          27.960591,
+          61.604183
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          52.494474,
+          78.773701
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          13.532611,
+          65.170923
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          12.432851,
+          28.761253
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          114.727102,
+          29.821409
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          4.141268,
+          40.972423
+        ]
+      }
+    ],
+    "line_breaking_pass": null,
+    "num_defenders_on_goal_side_of_actor": 2,
+    "distance_to_nearest_defender": 1.470138,
+    "ball_receipt_in_space": null,
+    "ball_receipt_exceeds_distance": null,
+    "visible_player_counts": [
+      {
+        "team_id": 102,
+        "count": 5
+      },
+      {
+        "team_id": 101,
+        "count": 2
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 13.231682
+      },
+      {
+        "point_id": 2,
+        "distance": 0.905953
+      },
+      {
+        "point_id": 3,
+        "distance": 11.916963
+      },
+      {
+        "point_id": 4,
+        "distance": 13.242843
+      },
+      {
+        "point_id": 5,
+        "distance": 3.50519
+      },
+      {
+        "point_id": 6,
+        "distance": 13.994104
+      },
+      {
+        "point_id": 7,
+        "distance": 19.228542
+      }
+    ]
+  },
+  {
+    "event_uuid": "13d41fff-38ff-5a0c-b571-f043f39f40b2",
+    "visible_area": [
+      62.860056,
+      38.555251,
+      19.26306,
+      79.058826,
+      22.995172,
+      65.853898,
+      22.248005,
+      45.976,
+      28.969377,
+      35.997934,
+      62.860056,
+      38.555251
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          94.8,
+          29.7
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          83.947312,
+          69.289071
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          119.623559,
+          15.084059
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          69.256408,
+          51.548706
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          32.146324,
+          30.620935
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          4.577924,
+          29.004851
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          24.786984,
+          20.602086
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          40.089741,
+          49.670994
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          50.376118,
+          62.493506
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          28.273335,
+          78.257358
+        ]
+      }
+    ],
+    "line_breaking_pass": null,
+    "num_defenders_on_goal_side_of_actor": 1,
+    "distance_to_nearest_defender": 6.423764,
+    "ball_receipt_in_space": null,
+    "ball_receipt_exceeds_distance": null,
+    "visible_player_counts": [
+      {
+        "team_id": 102,
+        "count": 7
+      },
+      {
+        "team_id": 101,
+        "count": 3
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 10.532779
+      },
+      {
+        "point_id": 2,
+        "distance": 3.345875
+      },
+      {
+        "point_id": 3,
+        "distance": 5.243755
+      },
+      {
+        "point_id": 4,
+        "distance": 9.312366
+      },
+      {
+        "point_id": 5,
+        "distance": 2.573285
+      },
+      {
+        "point_id": 6,
+        "distance": 6.596486
+      },
+      {
+        "point_id": 7,
+        "distance": 15.672684
+      },
+      {
+        "point_id": 8,
+        "distance": 6.76001
+      },
+      {
+        "point_id": 9,
+        "distance": 12.545682
+      },
+      {
+        "point_id": 10,
+        "distance": 15.274311
+      }
+    ]
+  },
+  {
+    "event_uuid": "68d837d8-ce7b-5cbe-8eb9-3b2c30cb0e77",
+    "visible_area": [
+      29.83778,
+      31.143529,
+      106.380226,
+      63.407534,
+      83.52692,
+      74.920914,
+      105.059535,
+      12.076359,
+      71.588054,
+      43.198286,
+      29.83778,
+      31.143529
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          20.1,
+          1.0
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          24.295703,
+          40.390684
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          119.109804,
+          51.840274
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          114.991008,
+          14.976685
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          8.006249,
+          4.089442
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          25.290175,
+          30.262772
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          27.327018,
+          63.503338
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          94.406351,
+          18.758006
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          76.336773,
+          43.879158
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          46.574591,
+          41.634188
+        ]
+      }
+    ],
+    "line_breaking_pass": null,
+    "num_defenders_on_goal_side_of_actor": 6,
+    "distance_to_nearest_defender": 4.150315,
+    "ball_receipt_in_space": null,
+    "ball_receipt_exceeds_distance": null,
+    "visible_player_counts": [
+      {
+        "team_id": 101,
+        "count": 3
+      },
+      {
+        "team_id": 102,
+        "count": 7
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 19.083458
+      },
+      {
+        "point_id": 2,
+        "distance": 7.276325
+      },
+      {
+        "point_id": 3,
+        "distance": 17.222481
+      },
+      {
+        "point_id": 4,
+        "distance": 19.916977
+      },
+      {
+        "point_id": 5,
+        "distance": 1.167766
+      },
+      {
+        "point_id": 6,
+        "distance": 14.113181
+      },
+      {
+        "point_id": 7,
+        "distance": 5.658125
+      },
+      {
+        "point_id": 8,
+        "distance": 16.078382
+      },
+      {
+        "point_id": 9,
+        "distance": 19.702521
+      },
+      {
+        "point_id": 10,
+        "distance": 11.720041
+      }
+    ]
+  },
+  {
+    "event_uuid": "2cb7c836-ea77-5b8a-a1d7-4697294d6676",
+    "visible_area": [
+      15.218255,
+      4.306557,
+      112.208224,
+      8.870792,
+      104.491399,
+      19.586653,
+      21.022352,
+      70.03395,
+      105.197926,
+      72.439656,
+      15.218255,
+      4.306557
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          31.4,
+          18.6
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          16.274178,
+          65.28753
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          13.976418,
+          66.671146
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          99.944655,
+          15.967307
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          29.566752,
+          0.539618
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          7.666402,
+          4.922528
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          76.4561,
+          19.367969
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          84.689278,
+          51.380588
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          60.969652,
+          78.263257
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          54.550583,
+          31.479272
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          50.444156,
+          29.865525
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          37.057178,
+          60.215747
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          86.793216,
+          61.240633
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          62.350289,
+          55.230535
+        ]
+      }
+    ],
+    "line_breaking_pass": null,
+    "num_defenders_on_goal_side_of_actor": 1,
+    "distance_to_nearest_defender": 4.250779,
+    "ball_receipt_in_space": null,
+    "ball_receipt_exceeds_distance": null,
+    "visible_player_counts": [
+      {
+        "team_id": 101,
+        "count": 7
+      },
+      {
+        "team_id": 102,
+        "count": 7
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 17.389762
+      },
+      {
+        "point_id": 2,
+        "distance": 9.470738
+      },
+      {
+        "point_id": 3,
+        "distance": 10.246362
+      },
+      {
+        "point_id": 4,
+        "distance": 15.907787
+      },
+      {
+        "point_id": 5,
+        "distance": 11.535649
+      },
+      {
+        "point_id": 6,
+        "distance": 12.001221
+      },
+      {
+        "point_id": 7,
+        "distance": 18.222038
+      },
+      {
+        "point_id": 8,
+        "distance": 3.311804
+      },
+      {
+        "point_id": 9,
+        "distance": 0.525996
+      },
+      {
+        "point_id": 10,
+        "distance": 4.964255
+      },
+      {
+        "point_id": 11,
+        "distance": 13.752395
+      },
+      {
+        "point_id": 12,
+        "distance": 2.434578
+      },
+      {
+        "point_id": 13,
+        "distance": 11.01663
+      },
+      {
+        "point_id": 14,
+        "distance": 2.326729
+      }
+    ]
+  },
+  {
+    "event_uuid": "b74b196f-a081-5168-9c4f-24e33b588af6",
+    "visible_area": [
+      56.783766,
+      0.755614,
+      63.036065,
+      68.559171,
+      35.320468,
+      73.311058,
+      79.747047,
+      58.401939,
+      25.62885,
+      33.108152,
+      56.783766,
+      0.755614
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          18.7,
+          60.3
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          81.553248,
+          24.170654
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          79.105513,
+          40.914091
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          55.981432,
+          64.671671
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          43.902852,
+          17.179659
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          81.707917,
+          8.092412
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          53.760907,
+          40.629844
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          118.83718,
+          50.983196
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          116.112503,
+          35.540431
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          40.778194,
+          7.24085
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          27.368777,
+          32.772565
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          117.780688,
+          54.537809
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          79.865869,
+          63.005431
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          30.705435,
+          32.706264
+        ]
+      }
+    ],
+    "line_breaking_pass": null,
+    "num_defenders_on_goal_side_of_actor": 7,
+    "distance_to_nearest_defender": 6.352376,
+    "ball_receipt_in_space": null,
+    "ball_receipt_exceeds_distance": null,
+    "visible_player_counts": [
+      {
+        "team_id": 102,
+        "count": 8
+      },
+      {
+        "team_id": 101,
+        "count": 6
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 15.531249
+      },
+      {
+        "point_id": 2,
+        "distance": 12.280959
+      },
+      {
+        "point_id": 3,
+        "distance": 8.703019
+      },
+      {
+        "point_id": 4,
+        "distance": 6.355814
+      },
+      {
+        "point_id": 5,
+        "distance": 6.699277
+      },
+      {
+        "point_id": 6,
+        "distance": 11.787362
+      },
+      {
+        "point_id": 7,
+        "distance": 13.24941
+      },
+      {
+        "point_id": 8,
+        "distance": 5.469333
+      },
+      {
+        "point_id": 9,
+        "distance": 19.311229
+      },
+      {
+        "point_id": 10,
+        "distance": 16.142501
+      },
+      {
+        "point_id": 11,
+        "distance": 9.143586
+      },
+      {
+        "point_id": 12,
+        "distance": 13.479671
+      },
+      {
+        "point_id": 13,
+        "distance": 14.829038
+      },
+      {
+        "point_id": 14,
+        "distance": 8.643518
+      }
+    ]
+  },
+  {
+    "event_uuid": "ce59bb2e-c488-5595-908e-214feca2b4bb",
+    "visible_area": [
+      75.359739,
+      4.650029,
+      14.735403,
+      11.459833,
+      43.169254,
+      40.208305,
+      2.520425,
+      40.733416,
+      57.51462,
+      18.77264,
+      75.359739,
+      4.650029
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          102.5,
+          2.5
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          75.29569,
+          60.569031
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          4.021205,
+          4.191429
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          13.617468,
+          32.861032
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          74.724575,
+          55.846281
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          50.010537,
+          27.529106
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          38.401373,
+          41.755804
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          110.455256,
+          43.802652
+        ]
+      }
+    ],
+    "line_breaking_pass": null,
+    "num_defenders_on_goal_side_of_actor": 4,
+    "distance_to_nearest_defender": 0.902874,
+    "ball_receipt_in_space": false,
+    "ball_receipt_exceeds_distance": 10,
+    "visible_player_counts": [
+      {
+        "team_id": 101,
+        "count": 3
+      },
+      {
+        "team_id": 102,
+        "count": 5
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 19.882713
+      },
+      {
+        "point_id": 2,
+        "distance": 14.022165
+      },
+      {
+        "point_id": 3,
+        "distance": 18.931878
+      },
+      {
+        "point_id": 4,
+        "distance": 2.129282
+      },
+      {
+        "point_id": 5,
+        "distance": 3.469859
+      },
+      {
+        "point_id": 6,
+        "distance": 12.770651
+      },
+      {
+        "point_id": 7,
+        "distance": 19.138068
+      },
+      {
+        "point_id": 8,
+        "distance": 13.318487
+      }
+    ]
+  },
+  {
+    "event_uuid": "1232879e-f8f8-5dad-9b7e-929c4c8f583c",
+    "visible_area": [
+      65.391604,
+      17.139982,
+      30.486541,
+      30.259111,
+      24.092206,
+      40.670384,
+      94.89742,
+      51.499197,
+      84.54237,
+      54.913128,
+      65.391604,
+      17.139982
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          107.9,
+          4.4
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          41.638601,
+          72.648004
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          86.375127,
+          76.783891
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          44.60989,
+          17.807497
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          8.659168,
+          58.565474
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          17.597847,
+          26.115854
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          17.780091,
+          43.872711
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          119.01245,
+          8.03219
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          32.360211,
+          47.558456
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          69.230771,
+          18.860389
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          22.301518,
+          41.351016
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          41.865205,
+          10.396382
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          48.495495,
+          10.882718
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          61.69024,
+          72.005426
+        ]
+      }
+    ],
+    "line_breaking_pass": null,
+    "num_defenders_on_goal_side_of_actor": 0,
+    "distance_to_nearest_defender": 2.283975,
+    "ball_receipt_in_space": null,
+    "ball_receipt_exceeds_distance": null,
+    "visible_player_counts": [
+      {
+        "team_id": 102,
+        "count": 9
+      },
+      {
+        "team_id": 101,
+        "count": 5
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 1.422103
+      },
+      {
+        "point_id": 2,
+        "distance": 14.212948
+      },
+      {
+        "point_id": 3,
+        "distance": 0.442311
+      },
+      {
+        "point_id": 4,
+        "distance": 15.625507
+      },
+      {
+        "point_id": 5,
+        "distance": 12.439238
+      },
+      {
+        "point_id": 6,
+        "distance": 3.610688
+      },
+      {
+        "point_id": 7,
+        "distance": 0.022202
+      },
+      {
+        "point_id": 8,
+        "distance": 9.43175
+      },
+      {
+        "point_id": 9,
+        "distance": 5.409823
+      },
+      {
+        "point_id": 10,
+        "distance": 0.444936
+      },
+      {
+        "point_id": 11,
+        "distance": 5.921197
+      },
+      {
+        "point_id": 12,
+        "distance": 3.456245
+      },
+      {
+        "point_id": 13,
+        "distance": 12.277082
+      },
+      {
+        "point_id": 14,
+        "distance": 19.073501
+      }
+    ]
+  },
+  {
+    "event_uuid": "23ee23ca-a881-55a5-af11-0b49c616f004",
+    "visible_area": [
+      67.525822,
+      59.846929,
+      20.125598,
+      67.290918,
+      58.347973,
+      73.081213,
+      110.690418,
+      52.409635,
+      65.469693,
+      61.999479,
+      67.525822,
+      59.846929
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          37.1,
+          19.3
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          86.032556,
+          31.506207
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          51.130492,
+          6.097806
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          109.918342,
+          47.851866
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          115.684762,
+          60.451825
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          109.474896,
+          43.789801
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          61.677378,
+          10.075476
+        ]
+      }
+    ],
+    "line_breaking_pass": null,
+    "num_defenders_on_goal_side_of_actor": 4,
+    "distance_to_nearest_defender": 12.536694,
+    "ball_receipt_in_space": null,
+    "ball_receipt_exceeds_distance": null,
+    "visible_player_counts": [
+      {
+        "team_id": 101,
+        "count": 4
+      },
+      {
+        "team_id": 102,
+        "count": 3
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 16.230559
+      },
+      {
+        "point_id": 2,
+        "distance": 9.759357
+      },
+      {
+        "point_id": 3,
+        "distance": 7.165648
+      },
+      {
+        "point_id": 4,
+        "distance": 17.119118
+      },
+      {
+        "point_id": 5,
+        "distance": 6.509415
+      },
+      {
+        "point_id": 6,
+        "distance": 4.3438
+      },
+      {
+        "point_id": 7,
+        "distance": 17.528094
+      }
+    ]
+  },
+  {
+    "event_uuid": "ddce9cf1-bfd1-5315-b43e-ae9a026e54d7",
+    "visible_area": [
+      80.748058,
+      28.855021,
+      53.169413,
+      20.446977,
+      95.844039,
+      62.560306,
+      105.582947,
+      25.691803,
+      19.020213,
+      56.586244,
+      80.748058,
+      28.855021
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          70.4,
+          56.3
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          60.80396,
+          77.679982
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          13.141348,
+          73.258818
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          10.455792,
+          47.161626
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          9.245092,
+          23.306452
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          1.683748,
+          27.099001
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          7.594685,
+          36.489136
+        ]
+      }
+    ],
+    "line_breaking_pass": null,
+    "num_defenders_on_goal_side_of_actor": 5,
+    "distance_to_nearest_defender": 1.80007,
+    "ball_receipt_in_space": null,
+    "ball_receipt_exceeds_distance": null,
+    "visible_player_counts": [
+      {
+        "team_id": 101,
+        "count": 4
+      },
+      {
+        "team_id": 102,
+        "count": 3
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 7.89612
+      },
+      {
+        "point_id": 2,
+        "distance": 6.185839
+      },
+      {
+        "point_id": 3,
+        "distance": 9.578114
+      },
+      {
+        "point_id": 4,
+        "distance": 3.415337
+      },
+      {
+        "point_id": 5,
+        "distance": 18.528339
+      },
+      {
+        "point_id": 6,
+        "distance": 4.225408
+      },
+      {
+        "point_id": 7,
+        "distance": 2.606082
+      }
+    ]
+  },
+  {
+    "event_uuid": "0453b030-fd6d-5246-90ee-dab10bba3647",
+    "visible_area": [
+      22.975231,
+      36.184515,
+      21.711407,
+      73.822208,
+      71.906939,
+      61.500551,
+      101.011286,
+      23.187247,
+      41.424806,
+      20.650158,
+      22.975231,
+      36.184515
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          117.0,
+          8.6
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          24.74054,
+          29.196993
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          71.317459,
+          14.271156
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          91.05536,
+          11.585612
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          60.645116,
+          29.940866
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          95.50591,
+          75.231389
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          18.657232,
+          12.413428
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          111.63635,
+          72.699202
+        ]
+      }
+    ],
+    "line_breaking_pass": null,
+    "num_defenders_on_goal_side_of_actor": 7,
+    "distance_to_nearest_defender": 0.146951,
+    "ball_receipt_in_space": null,
+    "ball_receipt_exceeds_distance": null,
+    "visible_player_counts": [
+      {
+        "team_id": 101,
+        "count": 7
+      },
+      {
+        "team_id": 102,
+        "count": 1
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 0.419478
+      },
+      {
+        "point_id": 2,
+        "distance": 10.573478
+      },
+      {
+        "point_id": 3,
+        "distance": 0.14486
+      },
+      {
+        "point_id": 4,
+        "distance": 14.70605
+      },
+      {
+        "point_id": 5,
+        "distance": 14.249176
+      },
+      {
+        "point_id": 6,
+        "distance": 15.482675
+      },
+      {
+        "point_id": 7,
+        "distance": 1.274428
+      },
+      {
+        "point_id": 8,
+        "distance": 9.312868
+      }
+    ]
+  },
+  {
+    "event_uuid": "67d5534b-2858-508a-8d82-7ce93ac9029f",
+    "visible_area": [
+      112.351561,
+      33.115297,
+      64.109361,
+      9.582599,
+      18.243571,
+      65.757458,
+      91.990889,
+      78.741455,
+      89.4168,
+      58.609738,
+      112.351561,
+      33.115297
+    ],
+    "freeze_frame": [
+      {
+        "teammate": true,
+        "actor": true,
+        "keeper": false,
+        "location": [
+          102.7,
+          62.1
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          114.146638,
+          23.66386
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          68.165531,
+          32.325427
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          106.941307,
+          37.667865
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          55.349971,
+          14.511436
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": true,
+        "location": [
+          88.198176,
+          0.60706
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          69.600555,
+          29.935566
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          44.578312,
+          29.473278
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          45.237812,
+          18.983938
+        ]
+      },
+      {
+        "teammate": true,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          84.502846,
+          14.02614
+        ]
+      },
+      {
+        "teammate": false,
+        "actor": false,
+        "keeper": false,
+        "location": [
+          98.926669,
+          17.023867
+        ]
+      }
+    ],
+    "line_breaking_pass": null,
+    "num_defenders_on_goal_side_of_actor": 3,
+    "distance_to_nearest_defender": 11.531691,
+    "ball_receipt_in_space": null,
+    "ball_receipt_exceeds_distance": null,
+    "visible_player_counts": [
+      {
+        "team_id": 101,
+        "count": 7
+      },
+      {
+        "team_id": 102,
+        "count": 4
+      }
+    ],
+    "distances_from_edge_of_visible_area": [
+      {
+        "point_id": 1,
+        "distance": 3.432428
+      },
+      {
+        "point_id": 2,
+        "distance": 5.156021
+      },
+      {
+        "point_id": 3,
+        "distance": 16.000901
+      },
+      {
+        "point_id": 4,
+        "distance": 4.711656
+      },
+      {
+        "point_id": 5,
+        "distance": 8.06346
+      },
+      {
+        "point_id": 6,
+        "distance": 14.775726
+      },
+      {
+        "point_id": 7,
+        "distance": 2.267948
+      },
+      {
+        "point_id": 8,
+        "distance": 18.102606
+      },
+      {
+        "point_id": 9,
+        "distance": 3.430526
+      },
+      {
+        "point_id": 10,
+        "distance": 13.171971
+      },
+      {
+        "point_id": 11,
+        "distance": 7.611017
+      }
+    ]
+  }
+]

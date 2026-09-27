@@ -1,0 +1,390 @@
+[
+  {
+    "match_id": 1001,
+    "match_date": "2025-08-11",
+    "kick_off": "15:00:00.000",
+    "competition": {
+      "competition_id": 1,
+      "country_name": "Pondland",
+      "competition_name": "Duck League"
+    },
+    "season": {
+      "season_id": 1,
+      "season_name": "2025/2026"
+    },
+    "home_team": {
+      "home_team_id": 101,
+      "home_team_name": "Mallard Town",
+      "home_team_gender": "male",
+      "home_team_youth": false,
+      "home_team_group": "Group A",
+      "country": {
+        "id": 1,
+        "name": "Pondland"
+      },
+      "managers": [
+        {
+          "id": 101,
+          "name": "Mallard Manager",
+          "nickname": "Boss",
+          "dob": "1975-01-01",
+          "country": {
+            "id": 1,
+            "name": "Pondland"
+          }
+        }
+      ]
+    },
+    "away_team": {
+      "away_team_id": 102,
+      "away_team_name": "Drake United",
+      "away_team_gender": "male",
+      "away_team_youth": false,
+      "away_team_group": "Group A",
+      "country": {
+        "id": 1,
+        "name": "Pondland"
+      },
+      "managers": [
+        {
+          "id": 102,
+          "name": "Drake Manager",
+          "nickname": null,
+          "dob": "1975-01-01",
+          "country": {
+            "id": 1,
+            "name": "Pondland"
+          }
+        }
+      ]
+    },
+    "home_score": 2,
+    "away_score": 1,
+    "attendance": 16303,
+    "behind_closed_doors": false,
+    "neutral_ground": false,
+    "collection_status": "Complete",
+    "play_status": "Normal",
+    "match_status": "available",
+    "match_status_360": "available",
+    "last_updated": "2025-06-01T12:00:00.123456",
+    "last_updated_360": "2025-06-01T12:00:00.123",
+    "metadata": {
+      "data_version": "1.1.0",
+      "shot_fidelity_version": "2",
+      "xy_fidelity_version": "2"
+    },
+    "match_week": 1,
+    "competition_stage": {
+      "id": 1,
+      "name": "Regular Season"
+    },
+    "stadium": {
+      "id": 101,
+      "name": "Mallard Park",
+      "country": {
+        "id": 1,
+        "name": "Pondland"
+      }
+    },
+    "referee": {
+      "id": 1,
+      "name": "Referee 1",
+      "country": {
+        "id": 1,
+        "name": "Pondland"
+      }
+    }
+  },
+  {
+    "match_id": 1002,
+    "match_date": "2025-08-12",
+    "kick_off": "15:00:00.000",
+    "competition": {
+      "competition_id": 1,
+      "country_name": "Pondland",
+      "competition_name": "Duck League"
+    },
+    "season": {
+      "season_id": 1,
+      "season_name": "2025/2026"
+    },
+    "home_team": {
+      "home_team_id": 103,
+      "home_team_name": "Teal Rovers",
+      "home_team_gender": "male",
+      "home_team_youth": false,
+      "home_team_group": "Group B",
+      "country": {
+        "id": 1,
+        "name": "Pondland"
+      },
+      "managers": [
+        {
+          "id": 103,
+          "name": "Teal Manager",
+          "nickname": "Boss",
+          "dob": "1975-01-01",
+          "country": {
+            "id": 1,
+            "name": "Pondland"
+          }
+        }
+      ]
+    },
+    "away_team": {
+      "away_team_id": 104,
+      "away_team_name": "Wigeon Athletic",
+      "away_team_gender": "male",
+      "away_team_youth": false,
+      "away_team_group": "Group B",
+      "country": {
+        "id": 1,
+        "name": "Pondland"
+      },
+      "managers": [
+        {
+          "id": 104,
+          "name": "Wigeon Manager",
+          "nickname": null,
+          "dob": "1975-01-01",
+          "country": {
+            "id": 1,
+            "name": "Pondland"
+          }
+        }
+      ]
+    },
+    "home_score": 1,
+    "away_score": 3,
+    "attendance": 37937,
+    "behind_closed_doors": false,
+    "neutral_ground": false,
+    "collection_status": "Complete",
+    "play_status": "Normal",
+    "match_status": "available",
+    "match_status_360": "available",
+    "last_updated": "2025-06-01T12:00:00.123",
+    "last_updated_360": "2025-06-01T12:00",
+    "metadata": {
+      "data_version": "1.1.0",
+      "shot_fidelity_version": "2",
+      "xy_fidelity_version": "2"
+    },
+    "match_week": 2,
+    "competition_stage": {
+      "id": 1,
+      "name": "Regular Season"
+    },
+    "stadium": {
+      "id": 103,
+      "name": "Teal Park",
+      "country": {
+        "id": 1,
+        "name": "Pondland"
+      }
+    },
+    "referee": {
+      "id": 2,
+      "name": "Referee 2",
+      "country": {
+        "id": 1,
+        "name": "Pondland"
+      }
+    }
+  },
+  {
+    "match_id": 1003,
+    "match_date": "2025-08-13",
+    "kick_off": "15:00:00.000",
+    "competition": {
+      "competition_id": 1,
+      "country_name": "Pondland",
+      "competition_name": "Duck League"
+    },
+    "season": {
+      "season_id": 1,
+      "season_name": "2025/2026"
+    },
+    "home_team": {
+      "home_team_id": 102,
+      "home_team_name": "Drake United",
+      "home_team_gender": "male",
+      "home_team_youth": false,
+      "home_team_group": "Group A",
+      "country": {
+        "id": 1,
+        "name": "Pondland"
+      },
+      "managers": [
+        {
+          "id": 102,
+          "name": "Drake Manager",
+          "nickname": null,
+          "dob": "1975-01-01",
+          "country": {
+            "id": 1,
+            "name": "Pondland"
+          }
+        }
+      ]
+    },
+    "away_team": {
+      "away_team_id": 103,
+      "away_team_name": "Teal Rovers",
+      "away_team_gender": "male",
+      "away_team_youth": false,
+      "away_team_group": "Group B",
+      "country": {
+        "id": 1,
+        "name": "Pondland"
+      },
+      "managers": [
+        {
+          "id": 103,
+          "name": "Teal Manager",
+          "nickname": "Boss",
+          "dob": "1975-01-01",
+          "country": {
+            "id": 1,
+            "name": "Pondland"
+          }
+        }
+      ]
+    },
+    "home_score": 0,
+    "away_score": 2,
+    "attendance": 15645,
+    "behind_closed_doors": false,
+    "neutral_ground": false,
+    "collection_status": "Complete",
+    "play_status": "Normal",
+    "match_status": "available",
+    "match_status_360": "available",
+    "last_updated": "2025-06-01T12:00",
+    "last_updated_360": "2025-06-01T12:00:00.123456",
+    "metadata": {
+      "data_version": "1.1.0",
+      "shot_fidelity_version": "2",
+      "xy_fidelity_version": "2"
+    },
+    "match_week": 3,
+    "competition_stage": {
+      "id": 1,
+      "name": "Regular Season"
+    },
+    "stadium": {
+      "id": 102,
+      "name": "Drake Park",
+      "country": {
+        "id": 1,
+        "name": "Pondland"
+      }
+    },
+    "referee": {
+      "id": 3,
+      "name": "Referee 3",
+      "country": {
+        "id": 1,
+        "name": "Pondland"
+      }
+    }
+  },
+  {
+    "match_id": 1004,
+    "match_date": "2025-08-14",
+    "kick_off": "15:00:00.000",
+    "competition": {
+      "competition_id": 1,
+      "country_name": "Pondland",
+      "competition_name": "Duck League"
+    },
+    "season": {
+      "season_id": 1,
+      "season_name": "2025/2026"
+    },
+    "home_team": {
+      "home_team_id": 104,
+      "home_team_name": "Wigeon Athletic",
+      "home_team_gender": "male",
+      "home_team_youth": false,
+      "home_team_group": "Group B",
+      "country": {
+        "id": 1,
+        "name": "Pondland"
+      },
+      "managers": [
+        {
+          "id": 104,
+          "name": "Wigeon Manager",
+          "nickname": null,
+          "dob": "1975-01-01",
+          "country": {
+            "id": 1,
+            "name": "Pondland"
+          }
+        }
+      ]
+    },
+    "away_team": {
+      "away_team_id": 101,
+      "away_team_name": "Mallard Town",
+      "away_team_gender": "male",
+      "away_team_youth": false,
+      "away_team_group": "Group A",
+      "country": {
+        "id": 1,
+        "name": "Pondland"
+      },
+      "managers": [
+        {
+          "id": 101,
+          "name": "Mallard Manager",
+          "nickname": "Boss",
+          "dob": "1975-01-01",
+          "country": {
+            "id": 1,
+            "name": "Pondland"
+          }
+        }
+      ]
+    },
+    "home_score": 4,
+    "away_score": 2,
+    "attendance": 21803,
+    "behind_closed_doors": false,
+    "neutral_ground": false,
+    "collection_status": "Complete",
+    "play_status": "Normal",
+    "match_status": "available",
+    "match_status_360": "unscheduled",
+    "last_updated": "2025-06-01T12:00:00.123456",
+    "last_updated_360": null,
+    "metadata": {
+      "data_version": "1.1.0",
+      "shot_fidelity_version": "2",
+      "xy_fidelity_version": "2"
+    },
+    "match_week": 4,
+    "competition_stage": {
+      "id": 1,
+      "name": "Regular Season"
+    },
+    "stadium": {
+      "id": 104,
+      "name": "Wigeon Park",
+      "country": {
+        "id": 1,
+        "name": "Pondland"
+      }
+    },
+    "referee": {
+      "id": 4,
+      "name": "Referee 4",
+      "country": {
+        "id": 1,
+        "name": "Pondland"
+      }
+    }
+  }
+]
